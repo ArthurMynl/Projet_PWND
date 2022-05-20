@@ -3,6 +3,68 @@
 include "../includes/core.php";
 $_TITRE_PAGE = "Accueil projet RS ESEO";
 
+if (isset($_POST["connexion_submit"]) && $_POST["connexion_submit"] == 1) {
+
+    $sql = "SELECT idEtu FROM Etudiant WHERE email = '" . trim($_POST['mail']) . "' AND motDePasse = '" . trim($_POST["password"]) . "'";
+
+    $result = $mysqli->query($sql);
+    if (!$result) {
+        exit($mysqli->error);
+    }
+
+    $mail_escaped = $mysqli->real_escape_string(trim($_POST["mail"]));
+    $password_escaped = $mysqli->real_escape_string(trim($_POST["password"]));
+
+    $nb = $result->num_rows;
+
+    if ($nb) {
+        //récupération de l’id de l’étudiant
+        $row = $result->fetch_assoc();
+        $_SESSION["compte"] = $row["idEtu"];
+    }
+}
+
+if (isset($_POST["inscription_submit"]) && $_POST["inscription_submit"] == 1) {
+    if($_POST['password'] == $_POST['password_confirm']) {
+        $mysqli = new mysqli($infoBdd["server"], $infoBdd["login"], $infoBdd["password"], $infoBdd["db_name"]);
+
+        if ($mysqli->connect_errno) {
+            exit("Problème de connexion à la BDD");
+        }
+
+        $sql = "INSERT INTO Etudiant (nom, prenom, anneeScolaire, email, motDePasse, photo) VALUES ('" . trim($_POST["nom"]) . "', '" . trim($_POST["prenom"]) . "', '" . trim($_POST["annees"]) . "', '" . trim($_POST["login"]) . "', '" . trim($_POST["password"]) . "', 'unknown.jpeg')";
+
+        $result = $mysqli->query($sql);
+        if (!$result) {
+            exit($mysqli->error);
+        }
+
+        $sql = "SELECT idEtu FROM Etudiant WHERE email = '" . trim($_POST['login']) . "' AND motDePasse = '" . trim($_POST["password"]) . "'";
+
+        $result = $mysqli->query($sql);
+        if (!$result) {
+            exit($mysqli->error);
+        }
+
+        $mail_escaped = $mysqli->real_escape_string(trim($_POST['login']));
+        $password_escaped = $mysqli->real_escape_string(trim($_POST['password']));
+
+        $nb = $result->num_rows;
+
+        if ($nb) {
+            //récupération de l’id de l’étudiant
+            $row = $result->fetch_assoc();
+            $_SESSION["compte"] = $row["idEtu"];
+        }
+    }
+}
+
+
+if ($_GET["logout"] == 1) {
+    unset($_SESSION["compte"]);
+    header('Location: ./index.php');
+}
+
 ?>
 
 
@@ -15,6 +77,7 @@ $_TITRE_PAGE = "Accueil projet RS ESEO";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Page de connexion</title>
     <link rel="stylesheet" href="../style/index_style.css">
+    <link rel="stylesheet" href="../style/navbar_style.css">
 </head>
 
 <body>
@@ -23,10 +86,13 @@ $_TITRE_PAGE = "Accueil projet RS ESEO";
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
-                    <li> <img src="../assets/logo.png" class="logo"> </li>
-                    <li> <a href="index.php" class="active">Accueil</a> </li>
-                    <li> <a href="Etudiants.php">Etudiants</a> </li>
+                    <li> <img src="../assets/logo.png" id="logo"> </li>
+                    <li> <a href="/pages/index.php" class="active">Accueil</a> </li>
+                    <li> <a href="/pages/Etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
+                        <li> <a href="profil.php">Profil</a> </li>
+                        <li> <a href="edit_profil.php">Editer profil</a> </li>
+                        <li> <a href="edit_profil.php">Publier un article</a> </li>
                         <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
                     <?php } ?>
                 </ul>
