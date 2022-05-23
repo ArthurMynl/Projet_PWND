@@ -25,7 +25,7 @@ if (isset($_POST["connexion_submit"]) && $_POST["connexion_submit"] == 1) {
 }
 
 if (isset($_POST["inscription_submit"]) && $_POST["inscription_submit"] == 1) {
-    if($_POST['password'] == $_POST['password_confirm']) {
+    if ($_POST['password'] == $_POST['password_confirm']) {
         $mysqli = new mysqli($infoBdd["server"], $infoBdd["login"], $infoBdd["password"], $infoBdd["db_name"]);
 
         if ($mysqli->connect_errno) {
@@ -91,7 +91,9 @@ if ($_GET["logout"] == 1) {
                     <li> <a href="/pages/index.php" class="active">Accueil</a> </li>
                     <li> <a href="/pages/Etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
-                        <li> <a href="profil.php">Profil</a> </li>
+                        <?php
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                        ?>
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
                         <li> <a href="edit_profil.php">Publier un article</a> </li>
                         <li> <a href="./index.php?logout=1">Deconnexion</a> </li>

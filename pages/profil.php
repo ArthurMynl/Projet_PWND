@@ -2,9 +2,8 @@
 
 include '../includes/core.php';
 
-$request = "SELECT nom FROM Etudiant WHERE id = " . $_GET["id"] . ";";
-$result = $mysqli->query($request);
-
+$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
+$result = $mysqli->query($request); 
 
 ?>
 
@@ -23,9 +22,6 @@ $result = $mysqli->query($request);
 </head>
 
 <body>
-    <?php echo "<h1> idEtu : " . $_GET["id"] . "</h1>";
-    "<h2> nom : " . $result["id"] . "</h2>";
-    ?>
     <section>
         <div id="container">
             <div id="content-wrap">
@@ -35,31 +31,38 @@ $result = $mysqli->query($request);
                         <li> <img src="../assets/logo.png" id="logo"> </li>
                         <li> <a href="index.php">Accueil</a> </li>
                         <li> <a href="Etudiants.php">Etudiants</a> </li>
+                        <?php if ($_SESSION["compte"]) { ?>
+                        <?php
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                        ?>
+                        <li> <a href="edit_profil.php">Editer profil</a> </li>
+                        <li> <a href="edit_profil.php">Publier un article</a> </li>
                         <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
-                        <li> <a href="profil.php" class="active">Profil</a> </li>
+                    <?php } ?>
                     </ul>
                 </nav>
                 <div class="corps">
                     <div class="profil">
                         <div class="informations">
-                            <h2> Ici il y aura l'image </h2>
-                            <p>
-                                <hr noshade>
-                            </p>
-                            <form method="post">
-                                <div class="nom_prenom">
-                                    <h4> echo "<h1> idEtu : . GET["id"] ."</h1">
-                                </div>
-                                <p>
-                                    <hr noshade>
-                                </p>
-                                <h4 class="classe"> Classe, Email, AnneeScolaire</h4>
-                            </form>
+                            <?php
+                            $row = $result->fetch_assoc();
+                            echo "<h2><img src='../assets/" . $row["photo"] . "'alt='profil' class='photo'></h2>";
+                            echo "<p><hr noshade></p>";
+                            echo "<div class='form'>";
+                            echo "<div class='nom_prenom'>";
+                            echo "<h4>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
+                            echo "</div>";
+                            echo "<p><hr noshade></p>";
+                            echo "<h4 class='classe'>" . $row["email"] . " " . $row["nomAnnee"] . "</h4>";
+                            echo "</div>";
+                            ?>
                         </div>
                         <div class="infos">
                             <h2> Mes infos </h2>
                             <div class="biographie">
-                                <p> L'amitié c'est comme un fruit ou un légume, tu peux en trouver des pourris de l'intérieur comme de l'exterieur </p>
+                                <?php
+                                echo "<p>" . $row["description"] . "</p>";
+                                ?>
                                 <p>
                                     <hr noshade>
                                 </p>
