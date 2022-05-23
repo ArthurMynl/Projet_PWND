@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     font-family: "Bahnschrift Light";
@@ -21,53 +20,6 @@ section{
     100%{
         filter:hue-rotate(360deg);
     }
-}
-
-.logo {
-    width : 100px;
-    padding: 10px;
-    margin-right: 10px;
-}
-
-.navbar {   
-    background-color : rgb(96,93,241);   
-    padding : 0px;
-}
-
-.navbar > ul {
-    list-style-type : none;
-    margin : 0;
-    padding : 0;
-    display : flex;
-    flex-direction : row;
-    justify-content : flex-start;
-    align-items: center;
-}
-
-.navbar > ul > li {
-    list-style-type: none;
-}
-
-.navbar > ul > li > a {
-    display : block;
-    padding : 15px;
-    color : white;
-    text-decoration: none;
-}
-
-.navbar > ul > li > .active {
-    display : block;
-    padding : 10px 15px 10px 15px;
-    color : white;
-    border-radius: 10px;
-    background-color : rgb(112,110,241);
-}
-
-.navbar > ul > li > .profil{
-    display : block;
-    padding : 15px;
-    color : white;
-    text-decoration: none;
 }
 
 h1 { 
@@ -94,7 +46,8 @@ h1 {
     justify-content : center;
 }
 
-.corps > .profil > form {
+
+.corps > .profil > .form {
     display : flex;
     flex-direction : column;
 }
@@ -145,19 +98,4 @@ h2{
 .biographie{
     font-family: italic;
     margin-top: -30px;
-}
-
-footer {
-    background-color : rgb(41, 41, 41);
-    color : white;
-    display : flex;
-    justify-content : space-around;
-    align-items : center;
-    text-align: center;
-    position : absolute;
-    bottom : 0;
-    left : 0;
-    width : 100%;
-    margin-bottom: 0;
-    height: 4rem;        
 }
