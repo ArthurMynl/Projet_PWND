@@ -23,6 +23,6 @@ $result = $mysqli->query($request);
 
 <body>
     <?php echo "<h1> idEtu : " . $_GET["id"] . "</h1>";
-    "<h2> nom : " . $result["id"] . "</h1>";
+    "<h2> nom : " . $result["id"] . "</h2>";
     ?>
 </body>
