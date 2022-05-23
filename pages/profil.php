@@ -68,6 +68,7 @@ $result = $mysqli->query($request);
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- create the footer -->
