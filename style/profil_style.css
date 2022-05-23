@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: "Bahnschrift Light";
+}
+
+section{
+    height: 100vh;
+    background-image: url(../assets/wallpaper.jpg);
+    background-size: cover;
+    animation-name: back;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes back{
+    0%{
+        filter:hue-rotate(0deg);
+    }
+    100%{
+        filter:hue-rotate(360deg);
+    }
+}
+
+h1 { 
+    color : grey;
+    text-align : center;
+    margin: 80px 0px 40px;
+    font-family: "Bahnschrift Light";
+}
+
+.corps {
+    display : flex;
+    flex-direction : row;
+    align-items : flex-start;
+    justify-content : center;
+    margin-top: 100px;
+    position: relative;
+    left: -70px;
+}
+
+.profil{
+    display : flex;
+    flex-direction : row;
+    align-items : flex-start;
+    justify-content : center;
+}
+
+.corps > .profil > form {
+    display : flex;
+    flex-direction : column;
+}
+
+.corps > .profil{
+    color: white;
+}
+
+.corps > .profil > .informations{
+    background-color:  rgb(96,93,241);
+    padding : 30px;
+    border-radius: 25px;
+    width : 500px;
+    margin : 10px 100px;
+    text-align: center;
+    border-style: outset;
+    border-width: 5px;
+}
+
+.corps > .profil> .infos { 
+    background-color:  rgb(94, 53, 166);
+    display : flex;
+    flex-direction : column;
+    padding : 30px;
+    border-radius: 25px;
+    width : 400px;
+    margin : 10px;
+    border-style: outset;
+    border-width: 5px;
+    text-align: center;
+}
+
+h2{
+    margin-bottom: 60px;
+}
+
+.nom_prenom{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : center;
+}
+
+.nom{
+    margin-right : 60px;
+}
+
+.biographie{
+    font-family: italic;
+    margin-top: -30px;
+}

@@ -78,6 +78,7 @@ if ($_GET["logout"] == 1) {
     <title>Page de connexion</title>
     <link rel="stylesheet" href="../style/index_style.css">
     <link rel="stylesheet" href="../style/navbar_style.css">
+    <link rel="stylesheet" href="../style/footer_style.css">
 </head>
 
 <body>

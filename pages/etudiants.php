@@ -16,6 +16,7 @@ include '../includes/core.php'
     <title>Etudiants</title>
     <link rel="stylesheet" href="../style/etudiants_style.css">
     <link rel="stylesheet" href="../style/navbar_style.css">
+    <link rel="stylesheet" href="../style/footer_style.css">
 </head>
 
 <div class="container">
