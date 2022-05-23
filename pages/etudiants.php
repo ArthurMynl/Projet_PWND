@@ -29,7 +29,7 @@ include '../includes/core.php'
                 <li> <a href="etudiants.php" class="active">Etudiants</a> </li>
                 <?php if ($_SESSION["compte"]) { ?>
                     <?php 
-                    echo "<li> <a href='profil.php?" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                    echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
                     ?>
                     <li> <a href="edit_profil.php">Editer profil</a> </li>
                     <li> <a href="edit_profil.php">Publier un article</a> </li>
