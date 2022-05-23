@@ -46,6 +46,7 @@ h1 {
     justify-content : center;
 }
 
+
 .corps > .profil > .form {
     display : flex;
     flex-direction : column;
@@ -97,10 +98,4 @@ h2{
 .biographie{
     font-family: italic;
     margin-top: -30px;
-}
-
-.photo {
-    width : 30%;
-    border-radius : 50%;
-    margin : 10px;
 }
