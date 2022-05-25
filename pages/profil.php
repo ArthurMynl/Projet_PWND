@@ -32,7 +32,7 @@ $result = $mysqli->query($request);
                     <li> <a href="Etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>";
                         ?>
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
                         <li> <a href="edit_profil.php">Publier un article</a> </li>

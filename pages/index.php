@@ -65,6 +65,10 @@ if ($_GET["logout"] == 1) {
     header('Location: ./index.php');
 }
 
+if (isset($_SESSION["compte"])) {
+    header('Location: ./accueil.php');
+}
+
 ?>
 
 
@@ -146,7 +150,7 @@ if ($_GET["logout"] == 1) {
                     </div>
                 <?php } else { ?>
                     <div>
-                        <h3>Vous êtes connecté !</h3>
+                        <?php echo "<h3> Vous etes connecté </h3>" ?>
                     </div>
                 <?php } ?>
             </div>
