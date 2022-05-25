@@ -6,9 +6,15 @@ $request = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, descriptio
 $result = $mysqli->query($request);
 $row = $result->fetch_assoc();
 
-$request2 = "SELECT Article.auteur, Article.contenu FROM Article, Etudiant WHERE Etudiant.idEtu = Article.auteur AND idEtu =" . $_GET['id'];
+$request2 = "SELECT Article.contenu, Article.auteur, Article.media, TIME(Article.dateCreation) as heure,
+DATE(Article.dateCreation) as ladate FROM Article, Etudiant WHERE Article.auteur = $_GET['id'] ORDER BY dateCreation ASC";
 $result2 = $mysqli->query($request2);
 $row2 = $result2->fetch_assoc();
+
+$request3 = "SELECT Article.contenu, Article.auteur, Article.media, TIME(Article.dateCreation) as heure, 
+DATE(Article.dateCreation) as ladate FROM Article, Etudiant WHERE Article.auteur = $_GET['id'] ORDER BY dateCreation DESC";
+$result3 = $mysqli->query($request3);
+$row3 = $result3->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -70,17 +76,23 @@ $row2 = $result2->fetch_assoc();
                     </div>
                     <div class="infos">
                         <?php
-                        echo "<div class='news1'>";
-                        echo "<h5> Dernières article </h5>";
-                        echo "<p> Article : " . $row2["contenu"] . "</p>";
+                        echo "<div class='article'>";
+                        echo "<div class='auteur_article'>";
+                        echo "<h3>" . $row["nomEtudiant"] . "   " . $row["prenom"] . "  -  " . $row["nomAnnee"] . "</h3>";
                         echo "</div>";
-                        echo "<div class='news2'>";
-                        echo "<h5> Avant dernier article </h5>";
-                        echo "<p> Article : " . $row2["contenu"] . "</p>";
+                        echo "<div class='titre'>";
+                        echo "<h3> Titre </h3>";
                         echo "</div>";
-                        echo "<div class='news3'>";
-                        echo "<h5> Avant avant dernier article </h5>";
-                        echo "<p> Article : " . $row2["contenu"] . "</p>";
+                        echo "<div class='contenu'>";
+                        echo "<h5>" . $row2["contenu"] . "</h5>";
+                        echo "</div>";
+                        echo "<div class='media'>";
+                        echo "<h5>" . $row2["media"] . "</h5>";
+                        echo "</div>";
+                        echo "<div class='date_heure'>";
+                        echo "<h6 class = 'date'>" . $row2["ladate"] . "</h6>";
+                        echo "<h6 class = 'heure'>" . $row2["heure"] . "</h6>";
+                        echo "</div>";
                         echo "</div>";
                         ?>
                     </div>
