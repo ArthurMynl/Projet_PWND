@@ -28,11 +28,11 @@ include '../includes/core.php'
                 <li> <a href="index.php">Accueil</a> </li>
                 <li> <a href="etudiants.php" class="active">Etudiants</a> </li>
                 <?php if ($_SESSION["compte"]) { ?>
-                    <?php 
+                    <?php
                     echo "<li> <a href='profil.php?" . $_SESSION["compte"] . "'>Profil</a> </li>";
                     ?>
                     <li> <a href="edit_profil.php">Editer profil</a> </li>
-                    <li> <a href="edit_profil.php">Publier un article</a> </li>
+                    <li> <a href="articles.php">Publier un article</a> </li>
                     <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
                 <?php } ?>
             </ul>
@@ -44,7 +44,7 @@ include '../includes/core.php'
         <div class="liste-etudiants">
             <?php
 
-            $sql = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, idEtu, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu > '7'";
+            $sql = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, idEtu, AnneeScolaire.nom as nomAnnee FROM etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu > '7'";
             $result = $mysqli->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -62,7 +62,7 @@ include '../includes/core.php'
         </div>
     </div>
     <footer>
-        <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+        <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
         <?php $mysqli->close(); ?>
     </footer>
 </div>

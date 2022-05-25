@@ -1,108 +1,108 @@
 body {
-    background-color : white;
+    background-color: white;
     margin: 0;
     font-family: "Bahnschrift Light";
 }
 
-.mdp-perdu { 
-    display : flex;
-    flex-direction : row;    
-    align-items : center;
-    justify-content : center;
-    margin-top : 10px;
+.mdp-perdu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-.mdp-perdu > img {
-    margin-right : 10px;
-    width : 10px;
+.mdp-perdu>img {
+    margin-right: 10px;
+    width: 10px;
 }
 
-.mdp-perdu > a {
-    padding-top : 5px;
+.mdp-perdu>a {
+    padding-top: 5px;
     text-decoration: none;
-    color : white;
+    color: white;
 }
 
 .corps {
-    display : flex;
-    flex-direction : row;
-    align-items : flex-start;
-    justify-content : center;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
 }
 
-.corps > .inscription > form {
-    display : flex;
-    flex-direction : column;
+.corps>.inscription>form {
+    display: flex;
+    flex-direction: column;
 }
 
-.corps > .connexion > form {
-    display : flex;
-    flex-direction : column;
+.corps>.connexion>form {
+    display: flex;
+    flex-direction: column;
 }
 
-.corps > .connexion { 
-    background-color:  rgb(96,93,241);
-    padding : 30px;
+.corps>.connexion {
+    background-color: rgb(96, 93, 241);
+    padding: 30px;
     border-radius: 25px;
-    width : 30%;
+    width: 30%;
     border: 0px solid black;
-    margin : 10px
+    margin: 10px
 }
 
-.corps > .inscription { 
-    background-color:  rgb(94, 53, 166);
-    padding : 30px;
+.corps>.inscription {
+    background-color: rgb(94, 53, 166);
+    padding: 30px;
     border-radius: 25px;
-    width : 30%;
+    width: 30%;
     border: 0px solid black;
-    margin : 10px
+    margin: 10px
 }
 
 button {
-    background-color: rgb(92, 105, 138) ;
-    padding : 10px; 
-    margin-top : 15px;
-    color : white;
+    background-color: rgb(92, 105, 138);
+    padding: 10px;
+    margin-top: 15px;
+    color: white;
     border-radius: 10px;
     border: 0px solid black;
 }
 
 h1 {
-    color : grey;
-    text-align : center;
+    color: grey;
+    text-align: center;
     margin: 40px;
     font-family: "Bahnschrift Light";
 }
 
-h2 { 
-    color : white;
-    text-align : center;
+h2 {
+    color: white;
+    text-align: center;
 }
 
-input { 
-    margin-top : 15px;
+input {
+    margin-top: 15px;
     border-radius: 10px;
     border: 0px solid black;
     height: 40px;
     padding-left: 10px;
 }
 
-.selecteur > label {
-    position : relative;
-    bottom : -7px;
-    left : 20px;
+.selecteur>label {
+    position: relative;
+    bottom: -7px;
+    left: 20px;
     padding-bottom: 9px;
-    height : 3px;
-    width : 70px;
-    background-color : rgb(248, 248, 251);
+    height: 3px;
+    width: 70px;
+    background-color: rgb(248, 248, 251);
     border-radius: 10px;
-    border : none;
-    color : rgb(188, 191, 211);
-    text-align : center;
+    border: none;
+    color: rgb(188, 191, 211);
+    text-align: center;
     font-size: 10px;
 }
 
-.selecteur > select {
+.selecteur>select {
     border-radius: 10px;
     border: none;
     height: 40px;
@@ -111,8 +111,8 @@ input {
 }
 
 .selecteur {
-    display : flex;
-    flex-direction : column;
+    display: flex;
+    flex-direction: column;
     margin-top: 3px;
 }
 
@@ -121,6 +121,6 @@ input {
     min-height: 100vh;
 }
 
-#content-wrap { 
+#content-wrap {
     padding-bottom: 4rem;
 }

@@ -2,7 +2,7 @@
 
 include '../includes/core.php';
 
-$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
+$request = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, description, AnneeScolaire.nom as nomAnnee FROM Etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
 $result = $mysqli->query($request);
 
 ?>
@@ -29,13 +29,13 @@ $result = $mysqli->query($request);
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
                         ?>
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
-                        <li> <a href="edit_profil.php">Publier un article</a> </li>
+                        <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
                     <?php } ?>
                 </ul>
@@ -73,7 +73,7 @@ $result = $mysqli->query($request);
         </div>
         <!-- create the footer -->
         <footer>
-            <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>
