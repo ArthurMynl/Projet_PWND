@@ -58,7 +58,8 @@ $result = $mysqli->query($request);
                 <div class="apercu">
                     <h2> Aperçu dernier article </h2>
                     <form method="post">
-
+                        <h4> <?php echo $_POST["contenu"] ?></h4>
+                        <h4> <?php echo $_POST["media"] ?></h4>
                         <button type="reset" value="1" name="article_modify"> MODIFIER ARTICLE </button>
                         <button type="submit" value="1" name="article_submit"> PUBLIER ARTICLE </button>
                     </form>
