@@ -65,6 +65,10 @@ if ($_GET["logout"] == 1) {
     header('Location: ./index.php');
 }
 
+if (isset($_SESSION["compte"])) {
+    header('Location: ./accueil.php');
+}
+
 ?>
 
 
@@ -89,7 +93,7 @@ if ($_GET["logout"] == 1) {
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="/pages/index.php" class="active">Accueil</a> </li>
-                    <li> <a href="/pages/Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="/pages/etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
@@ -97,6 +101,7 @@ if ($_GET["logout"] == 1) {
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
                         <li> <a href="edit_profil.php">Publier un article</a> </li>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+
                     <?php } ?>
                 </ul>
             </nav>
@@ -147,14 +152,14 @@ if ($_GET["logout"] == 1) {
                     </div>
                 <?php } else { ?>
                     <div>
-                        <h3>Vous êtes connecté !</h3>
+                        <?php echo "<h3> Vous etes connecté </h3>" ?>
                     </div>
                 <?php } ?>
             </div>
         </div>
         <!-- create the footer -->
         <footer>
-            <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>
