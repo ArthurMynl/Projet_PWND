@@ -96,7 +96,7 @@ if ($_GET["logout"] == 1) {
                         ?>
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
                         <li> <a href="edit_profil.php">Publier un article</a> </li>
-                        <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
+                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
@@ -125,6 +125,7 @@ if ($_GET["logout"] == 1) {
                             <div class="selecteur">
                                 <label class="etiquette-annee"> Année Scolaire </label>
                                 <select name="annees" id="annees">
+                                    <option value="" disabled selected>-- Choisissez --</option>
                                     <option value="1"> E1</option>
                                     <option value="2"> E2</option>
                                     <option value="3"> E3e</option>
