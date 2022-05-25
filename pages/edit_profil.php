@@ -56,7 +56,7 @@ $result = $mysqli->query($request);
                         <div class="selecteur">
                             <label>Année Scolaire</label>
                             <select name='annees' id='annees'>
-                                <?php echo "<option value='" .idAnneeScolaire. "'disabled selected>".$row["nomAnnee"]."</option>";?>
+                                <?php echo "<option value='" . $row['idAnneeScolaire']. "'disabled selected>".$row["nomAnnee"]."</option>";?>
                                 <option value="1"> E1</option>
                                 <option value="2"> E2</option>
                                 <option value="3"> E3e</option>
