@@ -6,15 +6,12 @@ $request = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, descriptio
 $result = $mysqli->query($request);
 $row = $result->fetch_assoc();
 
-$request2 = "SELECT Article.contenu, Article.auteur, Article.media, TIME(Article.dateCreation) as heure,
-DATE(Article.dateCreation) as ladate FROM Article, Etudiant WHERE Article.auteur = $_GET['id'] ORDER BY dateCreation ASC";
+$request2 = "SELECT contenu, auteur, media, TIME(dateCreation) as heure, DATE(dateCreation) as datePublication 
+            FROM Article WHERE auteur =" . $_GET['id'];
 $result2 = $mysqli->query($request2);
 $row2 = $result2->fetch_assoc();
 
-$request3 = "SELECT Article.contenu, Article.auteur, Article.media, TIME(Article.dateCreation) as heure, 
-DATE(Article.dateCreation) as ladate FROM Article, Etudiant WHERE Article.auteur = $_GET['id'] ORDER BY dateCreation DESC";
-$result3 = $mysqli->query($request3);
-$row3 = $result3->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +24,8 @@ $row3 = $result3->fetch_assoc();
     <title>Page de connexion</title>
     <link rel="stylesheet" href="../style/index_style.css">
     <link rel="stylesheet" href="../style/navbar_style.css">
-    <link rel="stylesheet" href="../style/profil_style.css">
     <link rel="stylesheet" href="../style/footer_style.css">
+    <link rel="stylesheet" href="../style/profil_style.css">
 </head>
 
 <body>
@@ -90,14 +87,13 @@ $row3 = $result3->fetch_assoc();
                         echo "<h5>" . $row2["media"] . "</h5>";
                         echo "</div>";
                         echo "<div class='date_heure'>";
-                        echo "<h6 class = 'date'>" . $row2["ladate"] . "</h6>";
+                        echo "<h6 class = 'date'>" . $row2["datePublication"] . "</h6>";
                         echo "<h6 class = 'heure'>" . $row2["heure"] . "</h6>";
                         echo "</div>";
                         echo "</div>";
                         ?>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- create the footer -->
