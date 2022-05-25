@@ -19,11 +19,16 @@
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
-                    <li> <img src="../assets/logo.png" class="logo"> </li>
-                    <li> <a href="index.php" class="active">Accueil</a> </li>
-                    <li> <a href="Etudiants.php">Etudiants</a> </li>
+                    <li> <img src="../assets/logo.png" id="logo"> </li>
+                    <li> <a href="/pages/index.php">Accueil</a> </li>
+                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
-                        <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
+                        <?php
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."' class='active'>Publier un article</a> </li>";
+                        ?>
+                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>

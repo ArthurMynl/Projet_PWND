@@ -1,0 +1,92 @@
+body {
+    background-color : white;
+    margin: 0;
+    font-family: "Bahnschrift Light";
+}
+
+.corps {
+    display : flex;
+    justify-content : center;
+}
+
+.corps > .editionProfil { 
+    background-color:  rgb(96,93,241);
+    padding : 30px;
+    border-radius: 25px;
+    width : 40%;
+    border: 0px solid black;
+    margin : 30px
+}
+
+h2 { 
+    color : white;
+    text-align : center;
+}
+
+.corps > .editionProfil > form {
+    display : flex;
+    flex-direction : column;
+}
+
+.corps > .editionProfil > form > label {
+    position : relative;
+    bottom: -7px;
+    left : 20px;
+    padding-bottom: 9px;
+    height : 3px;
+    width : 150px;
+    background-color : rgb(248, 248, 251);
+    border-radius: 10px;
+    border : none;
+    color : rgb(149, 151, 163);
+    text-align : center;
+    font-size: 10px;
+}
+
+input {
+    margin-bottom : 15px;
+    border-radius: 10px;
+    border: 0px solid black;
+    height: 40px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+button {
+    background-color: rgb(92, 105, 138) ;
+    padding : 10px;
+    margin-top : 15px;
+    color : white;
+    border-radius: 10px;
+    border: 0px solid black;
+}
+
+.selecteur {
+    display : flex;
+    flex-direction : column;
+    margin-top: 3px;
+    width: 100%;
+}
+
+.selecteur > select {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.selecteur > label {
+    position : relative;
+    bottom : -7px;
+    left : 20px;
+    padding-bottom: 9px;
+    height : 3px;
+    width : 150px;
+    background-color : rgb(248, 248, 251);
+    border-radius: 10px;
+    border : none;
+    color : rgb(149, 151, 163);
+    text-align : center;
+    font-size: 10px;
+}
