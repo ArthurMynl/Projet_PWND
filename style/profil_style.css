@@ -7,28 +7,6 @@ body {
     animation-direction: alternate;
 }
 
-/* @keyframes bgcolor {
-    0% {
-        background-color: #45a3e5
-    }
-
-    30% {
-        background-color: #66bf39
-    }
-
-    60% {
-        background-color: #eb670f
-    }
-
-    90% {
-        background-color: #f35
-    }
-
-    100% {
-        background-color: #864cbf
-    }
-} */
-
 h1 {
     color: grey;
     text-align: center;
@@ -56,7 +34,7 @@ h1 {
 .corps > .profil > .form {
     display : flex;
     flex-direction : column;
-
+}
 
 .corps>.profil {
     color: white;
@@ -129,3 +107,7 @@ h2 {
     margin-right : 60px;
 }
 
+.photo {
+    width : 15%;
+    border-radius: 50%;
+}
