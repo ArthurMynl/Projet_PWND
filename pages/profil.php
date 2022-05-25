@@ -56,7 +56,7 @@ $row2 = $result2->fetch_assoc();
                         echo "</div>";
                         echo "<p><hr></p>";
                         echo "<div class='classe'>";
-                        echo "<h4> Adresse Mail : ". $row["email"] . "</h4>";
+                        echo "<h4> Adresse Mail : " . $row["email"] . "</h4>";
                         echo "<div class='anneeScolaire'>";
                         echo "<h4> Année Scolaire : " . $row["nomAnnee"] . "</h4>";
                         echo "</div>";
