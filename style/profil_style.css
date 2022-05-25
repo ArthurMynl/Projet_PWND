@@ -7,7 +7,7 @@ body {
     animation-direction: alternate;
 }
 
-@keyframes bgcolor {
+/* @keyframes bgcolor {
     0% {
         background-color: #45a3e5
     }
@@ -27,7 +27,7 @@ body {
     100% {
         background-color: #864cbf
     }
-}
+} */
 
 h1 { 
     color : grey;
@@ -53,7 +53,6 @@ h1 {
     justify-content : center;
 }
 
-
 .corps > .profil > .form {
     display : flex;
     flex-direction : column;
@@ -61,6 +60,12 @@ h1 {
 
 .corps > .profil{
     color: white;
+}
+
+.corps > .profil > .infos{
+    position: relative;
+    top: -50px;
+    border-spacing: 0px;
 }
 
 .corps > .profil > .informations{
@@ -74,12 +79,12 @@ h1 {
     border-width: 5px;
 }
 
-.corps > .profil> .infos { 
-    background-color:  rgb(94, 53, 166);
+.news1, .news2, .news3{
+    color: black;
+    background-color:  rgb(255, 255, 255);
     display : flex;
     flex-direction : column;
     padding : 30px;
-    border-radius: 25px;
     width : 400px;
     margin : 10px;
     border-style: outset;
@@ -98,11 +103,26 @@ h2{
     justify-content : center;
 }
 
-.nom{
-    margin-right : 60px;
+.classe{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center;
+    margin-top : -10px;
 }
 
-.biographie{
-    font-family: italic;
-    margin-top: -30px;
+.anneeScolaire{
+    position: relative;
+    top: -25px;
+}
+
+.description{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : center;
+}
+
+.nom{
+    margin-right : 60px;
 }

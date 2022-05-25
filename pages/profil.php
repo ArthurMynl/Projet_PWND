@@ -2,9 +2,15 @@
 
 include '../includes/core.php';
 
-$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
-$result = $mysqli->query($request);
 
+// Sur ton ordinateur arthur tu peux laisser le etudiant et le anneeScolaire
+$request = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, description, AnneeScolaire.nom as nomAnnee FROM Etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
+$result = $mysqli->query($request);
+$row = $result->fetch_assoc();
+
+$request2 = "SELECT Article.auteur, Article.contenu FROM Article, Etudiant WHERE Etudiant.idEtu = Article.auteur AND idEtu =" . $_GET['id'];
+$result2 = $mysqli->query($request2);
+$row2 = $result2->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +33,7 @@ $result = $mysqli->query($request);
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
-                    <li> <img src="../assets/logo.png" id="logo"> </li>
+                    <li> <img src="../assets/logo.jpg" id="logo"> </li>
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="Etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
@@ -44,28 +50,41 @@ $result = $mysqli->query($request);
                 <div class="profil">
                     <div class="informations">
                         <?php
-                        $row = $result->fetch_assoc();
                         echo "<h2><img src='../assets/" . $row["photo"] . "'alt='profil' class='photo'></h2>";
-                        echo "<p><hr noshade></p>";
+                        echo "<p><hr></p>";
                         echo "<div class='form'>";
                         echo "<div class='nom_prenom'>";
                         echo "<h4>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
                         echo "</div>";
-                        echo "<p><hr noshade></p>";
-                        echo "<h4 class='classe'>" . $row["email"] . " " . $row["nomAnnee"] . "</h4>";
+                        echo "<p><hr></p>";
+                        echo "<div class='classe'>";
+                        echo "<h4> Adresse Mail : ". $row["email"] . "</h4>";
+                        echo "<div class='anneeScolaire'>";
+                        echo "<h4> Année Scolaire : " . $row["nomAnnee"] . "</h4>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "<p><hr></p>";
+                        echo "<div class='description'>";
+                        echo "<h4> Description : " . $row["description"] . "</h4>";
+                        echo "</div>";
                         echo "</div>";
                         ?>
                     </div>
                     <div class="infos">
-                        <h2> Mes infos </h2>
-                        <div class="biographie">
-                            <?php
-                            echo "<p>" . $row["description"] . "</p>";
-                            ?>
-                            <p>
-                                <hr noshade>
-                            </p>
-                        </div>
+                        <?php
+                        echo "<div class='news1'>";
+                        echo "<h5> Dernières article </h5>";
+                        echo "<p> Article : " . $row2["contenu"] . "</p>";
+                        echo "</div>";
+                        echo "<div class='news2'>";
+                        echo "<h5> Avant dernier article </h5>";
+                        echo "<p> Article : " . $row2["contenu"] . "</p>";
+                        echo "</div>";
+                        echo "<div class='news3'>";
+                        echo "<h5> Avant avant dernier article </h5>";
+                        echo "<p> Article : " . $row2["contenu"] . "</p>";
+                        echo "</div>";
+                        ?>
                     </div>
                 </div>
 
