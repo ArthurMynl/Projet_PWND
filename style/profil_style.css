@@ -7,28 +7,6 @@ body {
     animation-direction: alternate;
 }
 
-@keyframes bgcolor {
-    0% {
-        background-color: #45a3e5
-    }
-
-    30% {
-        background-color: #66bf39
-    }
-
-    60% {
-        background-color: #eb670f
-    }
-
-    90% {
-        background-color: #f35
-    }
-
-    100% {
-        background-color: #864cbf
-    }
-}
-
 h1 {
     color: grey;
     text-align: center;
@@ -62,9 +40,16 @@ h1 {
     color: white;
 }
 
-.corps>.profil>.informations {
-    background-color: rgb(96, 93, 241);
-    padding: 30px;
+.corps > .profil > .infos{
+    position: relative;
+    top: -50px;
+    border-spacing: 0px;
+}
+
+.corps > .profil > .informations{
+    background-color:  rgb(96,93,241);
+    padding : 30px;
+
     border-radius: 25px;
     width: 500px;
     margin: 10px 100px;
@@ -81,6 +66,17 @@ h1 {
     border-radius: 25px;
     width: 400px;
     margin: 10px;
+}
+
+.news1, .news2, .news3{
+    color: black;
+    background-color:  rgb(255, 255, 255);
+    display : flex;
+    flex-direction : column;
+    padding : 30px;
+    width : 400px;
+    margin : 10px;
+
     border-style: outset;
     border-width: 5px;
     text-align: center;
@@ -95,6 +91,26 @@ h2 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.classe{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center;
+    margin-top : -10px;
+}
+
+.anneeScolaire{
+    position: relative;
+    top: -25px;
+}
+
+.description{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : center;
 }
 
 .nom {
