@@ -2,7 +2,7 @@
 
 include '../includes/core.php';
 
-$sql = "SELECT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, dateCreation, auteur, media
+$sql = "SELECT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, TIME(dateCreation) as heurePublication, DATE(dateCreation) as datePublication, auteur, media
         FROM etudiant, anneeScolaire, Article
         WHERE idAnneeScolaire = anneeScolaire AND Article.auteur = etudiant.idEtu
         ORDER BY dateCreation DESC";
@@ -55,8 +55,8 @@ $result = $mysqli->query($sql);
                         echo "<div class='contenu'>";
                             echo "<p class='texte'>" . $row["contenu"] . "</p>";
                             echo "<img src='images/assets/" . $row["media"] . "' class='media'>";
-                            echo "<p class='date'>" . $row["dateCreation"] . "</p>";
-                            echo "<p class='heure'>" . $row["dateCreation"] . "</p>";
+                            echo "<p class='date'>" . $row["datePublication"] . "</p>";
+                            echo "<p class='heure'>" . $row["heurePublication"] . "</p>";
                         echo "</div>";
                     echo "</div>";
                 }

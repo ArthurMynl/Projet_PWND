@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 include '../includes/core.php'
 
 ?>

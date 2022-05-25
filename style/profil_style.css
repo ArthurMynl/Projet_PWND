@@ -7,36 +7,36 @@ body {
     animation-direction: alternate;
 }
 
-h1 {
-    color: grey;
-    text-align: center;
+h1 { 
+    color : grey;
+    text-align : center;
     margin: 80px 0px 40px;
     font-family: "Bahnschrift Light";
 }
 
 .corps {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
+    display : flex;
+    flex-direction : row;
+    align-items : flex-start;
+    justify-content : center;
     margin-top: 100px;
     position: relative;
     left: -70px;
 }
 
-.profil {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
+.profil{
+    display : flex;
+    flex-direction : row;
+    align-items : flex-start;
+    justify-content : center;
 }
 
-.corps>.profil>.form {
-    display: flex;
-    flex-direction: column;
+.corps > .profil > .form {
+    display : flex;
+    flex-direction : column;
 }
 
-.corps>.profil {
+.corps > .profil{
     color: white;
 }
 
@@ -49,48 +49,76 @@ h1 {
 .corps > .profil > .informations{
     background-color:  rgb(96,93,241);
     padding : 30px;
-
     border-radius: 25px;
-    width: 500px;
-    margin: 10px 100px;
+    width : 500px;
+    margin : 10px 100px;
     text-align: center;
     border-style: outset;
     border-width: 5px;
 }
 
-.corps>.profil>.infos {
-    background-color: rgb(94, 53, 166);
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    border-radius: 25px;
-    width: 400px;
-    margin: 10px;
-}
-
-.news1, .news2, .news3{
+.article{
     color: black;
     background-color:  rgb(255, 255, 255);
     display : flex;
     flex-direction : column;
-    padding : 30px;
     width : 400px;
     margin : 10px;
-
     border-style: outset;
     border-width: 5px;
+    padding: 5px;
+}
+
+.article > .auteur_article{
+    text-align: center;
+    position: relative;
+    top: -8px
+}
+
+.article > .titre{
+    text-align: left;
+    position: relative;
+    top: -15px
+}
+
+.article > .media{
+    text-align: center;
+    position: relative;
+}
+
+.article > .date_heure{
+    display: flex;
+    flex-direction : row;
+}
+
+.article > .heure{
+    text-align: right;
+    position: relative;
+    top: -15px;
+    margin-left: 350px;
+    margin-bottom: 15px;
+}
+
+.article > .date{
+    text-align: left;
+    position: relative;
+    top: -15px;
+    margin-bottom: 15px;
+}
+
+.article > .contenu{
     text-align: center;
 }
 
-h2 {
+h2{
     margin-bottom: 60px;
 }
 
-.nom_prenom {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.nom_prenom{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : center;
 }
 
 .classe{
@@ -111,19 +139,14 @@ h2 {
     flex-direction : row;
     align-items : center;
     justify-content : center;
+    position: relative;
+    top: -25    px;
 }
 
-.nom {
-    margin-right: 60px;
+.nom{
+    margin-right : 60px;
 }
 
-.biographie {
-    font-family: italic;
-    margin-top: -30px;
-}
-
-.photo {
-    width: 30%;
-    border-radius: 50%;
-    margin: 10px;
+img { 
+    width: 10%; 
 }

@@ -32,7 +32,9 @@ $result = $mysqli->query($request);
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="profil.php">Profil</a> </li>
+                    <?php
+                    echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                    ?>
                     <li> <a href="edit_profil.php" class="active">Mettre à jour le profil</a> </li>
                     <li> <a href="articles.php">Publier un article</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>

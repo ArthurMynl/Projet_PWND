@@ -19,7 +19,7 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     background-color: green;
-    margin-top: 5px;
+    margin-top: 1%;
     border-radius: 25px;
 }
 
@@ -34,7 +34,8 @@ body {
 
 
 .informations>.photo {
-    width: 50px;
+    width: 10%;
+    border-radius: 50%;
     margin-right: 10px;
     margin-left: 10px;
 }
@@ -48,3 +49,11 @@ body {
 }
 
 
+#container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 4rem;
+}
