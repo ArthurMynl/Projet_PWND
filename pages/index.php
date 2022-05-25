@@ -99,8 +99,9 @@ if (isset($_SESSION["compte"])) {
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
                         ?>
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
-                        <li> <a href="articles.php">Publier un article</a> </li>
-                        <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
+                        <li> <a href="edit_profil.php">Publier un article</a> </li>
+                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+
                     <?php } ?>
                 </ul>
             </nav>
@@ -129,6 +130,7 @@ if (isset($_SESSION["compte"])) {
                             <div class="selecteur">
                                 <label class="etiquette-annee"> Année Scolaire </label>
                                 <select name="annees" id="annees">
+                                    <option value="" disabled selected>-- Choisissez --</option>
                                     <option value="1"> E1</option>
                                     <option value="2"> E2</option>
                                     <option value="3"> E3e</option>
