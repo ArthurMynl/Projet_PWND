@@ -1,4 +1,12 @@
 <?php
+
+include '../includes/core.php';
+
+/*
+$request = "SELECT e.photo, e.nom, e.prenom, asco.nom, FROM Etudiant as e, AnneeScolaire as asco WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
+$result = $mysqli->query($request);
+*/
+
 ?>
 
 
@@ -9,8 +17,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Page de connexion</title>
-    <link rel="stylesheet" href="../style/index_style.css">
+    <title>Publication d'un article</title>
+    <link rel="stylesheet" href="../style/articles_style.css">
+    <link rel="stylesheet" href="../style/navbar_style.css">
+    <link rel="stylesheet" href="../style/footer_style.css">
 </head>
 
 <body>
@@ -19,16 +29,16 @@
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
-                    <li> <img src="../assets/logo.png" class="logo"> </li>
+                    <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="index.php" class="active">Accueil</a> </li>
-                    <li> <a href="Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
 
-            <h1><?php echo $_TITRE_PAGE ?></h1>
+            <h1><?php echo "Publier un article" ?></h1>
             <div class="corps">
                 <div class="article">
                     <h2> Publication Article </h2>
@@ -37,11 +47,20 @@
                         <input type="media" name="media" id="media" placeholder="Media">
                         <div class="visibilite">
                             <label class="etiquette-visibilite"> Visibilité </label>
-                            <datalist name="visibilite" id="visibilite">
-                                <option value="public">
-                                <option value="amis">
-                            </datalist>
+                            <select name="visibilite" id="visibilite">
+                                <option value="1"> Public </option>
+                                <option value="2"> Amis </option>
+                            </select>
                         </div>
+                        <button type="submit" value="1" name="article_preview"> PREVIEW ARTICLE </button>
+                    </form>
+                </div>
+                <div class="apercu">
+                    <h2> Aperçu dernier article </h2>
+                    <form method="post">
+                        <h4> <?php echo $_POST["contenu"] ?></h4>
+                        <h4> <?php echo $_POST["media"] ?></h4>
+                        <button type="reset" value="1" name="article_modify"> MODIFIER ARTICLE </button>
                         <button type="submit" value="1" name="article_submit"> PUBLIER ARTICLE </button>
                     </form>
                 </div>
@@ -49,7 +68,7 @@
         </div>
         <!-- create the footer -->
         <footer>
-            <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Le groupe - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>
