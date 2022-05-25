@@ -1,51 +1,51 @@
 body {
-    background-color : white;
+    background-color: white;
     margin: 0;
     font-family: "Bahnschrift Light";
 }
 
 .info-etudiant {
-    display : flex;
-    flex-direction : row;
-    justify-content : space-around;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    margin-top : 10px;
-    background-color : blue;
+    margin-top: 10px;
+    background-color: blue;
 }
 
-.nom { 
+.nom {
     margin: 20px;
 }
 
-.mail { 
+.mail {
     margin: 20px;
 }
 
-.annee { 
+.annee {
     margin: 20px;
 }
 
 .photo {
-    width : 10%;
-    border-radius : 50%;
-    margin : 20px;
+    width: 10%;
+    border-radius: 50%;
+    margin: 20px;
 }
 
 .voir-profil {
-    padding : 10px;
-    margin : 20px;
-    border-radius : 10px;
-    background-color : rgb(112,110,241);
-    color : white;
-    border : solid 1px white;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: rgb(112, 110, 241);
+    color: white;
+    border: solid 1px white;
 }
 
-.voir-profil > a { 
+.voir-profil>a {
     text-decoration: none;
-    color : white;
+    color: white;
 }
 
-h1 { 
-    text-align : center;
-    margin-top : 10px;
+h1 {
+    text-align: center;
+    margin-top: 10px;
 }

@@ -29,7 +29,7 @@ include '../includes/core.php'
                 <li> <a href="etudiants.php" class="active">Etudiants</a> </li>
                 <?php if ($_SESSION["compte"]) { ?>
                     <?php
-                    echo "<li> <a href='profil.php?" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                    echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
                     ?>
                     <li> <a href="edit_profil.php">Editer profil</a> </li>
                     <li> <a href="articles.php">Publier un article</a> </li>
@@ -53,7 +53,7 @@ include '../includes/core.php'
                     echo "<h2 class='nom'>" . $row["prenom"] . " " . $row["nomEtudiant"] . "</h2>";
                     echo "<p class='mail'>" . $row["email"] . "</p>";
                     echo "<p class='annee'>" . $row["nomAnnee"] . "</p>";
-                    echo "<button class='voir-profil'><a href='profil.php?id=" . $row["idEtu"] . "'>Voir profil</a></button>";
+                    echo "<a href='profil.php?id=" . $row["idEtu"] . "' class='voir-profil' >Voir profil</a>";
                     echo "</div>";
                     echo "</div>";
                 }
