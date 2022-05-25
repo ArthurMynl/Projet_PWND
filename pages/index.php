@@ -80,8 +80,8 @@ if (isset($_SESSION["compte"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Page de connexion</title>
-    <link rel="stylesheet" href="../style/index_style.css">
     <link rel="stylesheet" href="../style/navbar_style.css">
+    <link rel="stylesheet" href="../style/index_style.css">
     <link rel="stylesheet" href="../style/footer_style.css">
 </head>
 
@@ -93,13 +93,13 @@ if (isset($_SESSION["compte"])) {
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="/pages/index.php" class="active">Accueil</a> </li>
-                    <li> <a href="/pages/etudiants.php">Etudiants</a> </li>
+                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
                         ?>
-                        <li> <a href="edit_profil.php">Editer profil</a> </li>
-                        <li> <a href="edit_profil.php">Publier un article</a> </li>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
 
                     <?php } ?>

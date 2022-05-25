@@ -31,50 +31,57 @@ $result = $mysqli->query($request);
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="profil.php">Profil</a> </li>
-                    <li> <a href="edit_profil.php" class="active">Mettre à jour le profil</a> </li>
-                    <li> <a href="articles.php">Publier un article</a> </li>
-                    <li> <a href="etudiants.php">Étudiants</a> </li>
+                    <li> <a href="/pages/index.php">Accueil</a> </li>
+                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
+                        <?php
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."' class='active'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
+                        ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
 
-            <div class="editionProfil">
-                <?php $row = $result->fetch_assoc(); ?>
-                <h2>Mise à jour du profil</h2>
-                <form method="post">
-                    <h4>Nom</h4>
-                    <?php echo "<input type='text' name='nom' id='nom' placeholder='" . $row["nomEtudiant"] . "'>"; ?>
-                    <h4>Prénom</h4>
-                    <?php echo "<input type='text' name='prenom' id='prenom' placeholder='" . $row["prenom"] . "'>"; ?>
-                    <h4>Année scolaire</h4>
-                    <div class="selecteur">
-                        <select name='annees' id='annees'>
-                            <?php echo "<option value='" . $row['idAnneeScolaire'] . "'disabled selected>" . $row["nomAnnee"] . "</option>"; ?>
-                            <option value="1"> E1</option>
-                            <option value="2"> E2</option>
-                            <option value="3"> E3e</option>
-                            <option value="4"> E4e</option>
-                            <option value="5"> E5e</option>
-                            <option value="6"> E3a</option>
-                            <option value="7"> E4a</option>
-                            <option value="8"> E5a</option>
-                            <option value="9"> B1</option>
-                            <option value="10"> B2</option>
-                            <option value="11"> B3</option>
-                        </select>
-                    </div>
-                    <h4>Email</h4>
-                    <?php echo "<input type='email' name='login' id='login' placeholder='" . $row["email"] . "'>"; ?>
-                    <h4>Nouveau mot de passe</h4>
-                    <input type='password' name='password' id='password'>
-                    <h4>Confirmez le nouveau mot de passe</h4>
-                    <input type='password' name='password_confirm' id='password_confirm'>
-                    <button type="submit" value="1" name="edit_profil_submit">ENREGISTRER LES MODIFICATIONS</button>
-                </form>
+            <div class="corps">
+                <div class="editionProfil">
+                    <?php $row = $result->fetch_assoc();?>
+                    <h2>Mise à jour du profil</h2>
+                    <form method="post">
+                        <label>Nom</label>
+                        <?php echo "<input type='text' name='nom' id='nom' placeholder='".$row["nomEtudiant"]."'>"; ?>
+                        <label>Prénom</label>
+                        <?php echo "<input type='text' name='prenom' id='prenom' placeholder='".$row["prenom"]."'>"; ?>
+                        <div class="selecteur">
+                            <label>Année Scolaire</label>
+                            <select name='annees' id='annees'>
+                                <?php echo "<option value='" .idAnneeScolaire. "'disabled selected>".$row["nomAnnee"]."</option>";?>
+                                <option value="1"> E1</option>
+                                <option value="2"> E2</option>
+                                <option value="3"> E3e</option>
+                                <option value="4"> E4e</option>
+                                <option value="5"> E5e</option>
+                                <option value="6"> E3a</option>
+                                <option value="7"> E4a</option>
+                                <option value="8"> E5a</option>
+                                <option value="9"> B1</option>
+                                <option value="10"> B2</option>
+                                <option value="11"> B3</option>
+                            </select>
+                        </div>
+                        <label>Email</label>
+                        <?php echo "<input type='email' name='login' id='login' placeholder='".$row["email"]."'>"; ?>
+                        <label>Ancien mot de passe</label>
+                        <input type='password' name='old_password' id='old_password'>
+                        <label>Nouveau mot de passe</label>
+                        <input type='password' name='password' id='password'>
+                        <label>Confirmez le nouveau mot de passe</label>
+                        <input type='password' name='password_confirm' id='password_confirm'>
+                        <button type="submit" value="1" name="edit_profil_submit">ENREGISTRER LES MODIFICATIONS</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
