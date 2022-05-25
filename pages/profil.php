@@ -2,8 +2,6 @@
 
 include '../includes/core.php';
 
-
-// Sur ton ordinateur arthur tu peux laisser le etudiant et le anneeScolaire
 $request = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, description, AnneeScolaire.nom as nomAnnee FROM Etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
 $result = $mysqli->query($request);
 $row = $result->fetch_assoc();
@@ -33,15 +31,15 @@ $row2 = $result2->fetch_assoc();
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
-                    <li> <img src="../assets/logo.jpg" id="logo"> </li>
+                    <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>";
                         ?>
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
-                        <li> <a href="edit_profil.php">Publier un article</a> </li>
+                        <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
                     <?php } ?>
                 </ul>
@@ -58,7 +56,7 @@ $row2 = $result2->fetch_assoc();
                         echo "</div>";
                         echo "<p><hr></p>";
                         echo "<div class='classe'>";
-                        echo "<h4> Adresse Mail : ". $row["email"] . "</h4>";
+                        echo "<h4> Adresse Mail : " . $row["email"] . "</h4>";
                         echo "<div class='anneeScolaire'>";
                         echo "<h4> Année Scolaire : " . $row["nomAnnee"] . "</h4>";
                         echo "</div>";
@@ -92,7 +90,7 @@ $row2 = $result2->fetch_assoc();
         </div>
         <!-- create the footer -->
         <footer>
-            <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>
