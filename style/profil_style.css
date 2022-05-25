@@ -31,9 +31,9 @@ h1 {
     justify-content: center;
 }
 
-.corps > .profil > .form {
-    display : flex;
-    flex-direction : column;
+.corps>.profil>.form {
+    display: flex;
+    flex-direction: column;
 }
 
 .corps>.profil {
@@ -56,6 +56,16 @@ h1 {
     text-align: center;
     border-style: outset;
     border-width: 5px;
+}
+
+.corps>.profil>.infos {
+    background-color: rgb(94, 53, 166);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 25px;
+    width: 400px;
+    margin: 10px;
 }
 
 .news1, .news2, .news3{
@@ -103,11 +113,17 @@ h2 {
     justify-content : center;
 }
 
-.nom{
-    margin-right : 60px;
+.nom {
+    margin-right: 60px;
+}
+
+.biographie {
+    font-family: italic;
+    margin-top: -30px;
 }
 
 .photo {
-    width : 15%;
+    width: 30%;
     border-radius: 50%;
+    margin: 10px;
 }
