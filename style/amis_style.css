@@ -1,0 +1,81 @@
+body {
+    background-color: white;
+    margin: 0;
+    font-family: "Bahnschrift Light";
+}
+
+#container {
+    position: relative;
+    height: 100vh;
+    background-color: #173C4B;
+}
+
+#content-wrap {
+    padding-bottom: 4rem;
+}
+
+.small-nav {
+    color: white;
+    position: sticky;
+    top: 10%;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 50px;
+    border: none;
+    background: rgba(127, 125, 255, 0.8);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(127, 125, 255, 0.3);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.small-nav>ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.small-nav>ul>li {
+    list-style-type: none;
+}
+
+.small-nav>ul>li>a {
+    color: white;
+    text-decoration: none;
+}
+
+.small-nav>ul>li>.recherche>input {
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+}
+
+.small-nav>ul>li>.recherche>button {
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.fiche-ami {
+    background-color: #7F7DFF;
+    color: white;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
