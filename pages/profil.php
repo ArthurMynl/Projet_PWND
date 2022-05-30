@@ -50,19 +50,19 @@ $row2 = $result2->fetch_assoc();
                     <div class="informations">
                         <?php
                         echo "<h2><img src='../assets/" . $row["photo"] . "'alt='profil' class='photo'></h2>";
-                        echo "<p><hr></p>";
+                        echo "<hr>";
                         echo "<div class='form'>";
                         echo "<div class='nom_prenom'>";
                         echo "<h4>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
                         echo "</div>";
-                        echo "<p><hr></p>";
+                        echo "<hr>";
                         echo "<div class='classe'>";
                         echo "<h4> Adresse Mail : " . $row["email"] . "</h4>";
                         echo "<div class='anneeScolaire'>";
                         echo "<h4> Année Scolaire : " . $row["nomAnnee"] . "</h4>";
                         echo "</div>";
                         echo "</div>";
-                        echo "<p><hr></p>";
+                        echo "<hr>";
                         echo "<div class='description'>";
                         echo "<h4> Description : " . $row["description"] . "</h4>";
                         echo "</div>";

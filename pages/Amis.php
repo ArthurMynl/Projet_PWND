@@ -3,9 +3,9 @@
 include "../includes/core.php";
 $_TITRE_PAGE = "Amis RS ESEO";
 
-$sql = "SELECT statut, a.prenom, a.nom
-                FROM Amis, Etudiant e, Etudiant a 
-                WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'valide' AND e.idEtu= '" . $_SESSION["compte"] . "'";
+$sql = "SELECT statut, a.prenom, a.nom, a.photo, a.email, a.idEtu, AnneeScolaire.nom as nomAnnee, a.description
+                FROM Amis, Etudiant e, Etudiant a, AnneeScolaire
+                WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'valide' AND idAnneeScolaire = a.anneeScolaire AND e.idEtu= '" . $_SESSION["compte"] . "'";
 
 $result = $mysqli->query($sql);
 ?>
@@ -49,24 +49,26 @@ $result = $mysqli->query($sql);
                     </li>
                 </ul>
             </nav>
-
-            <h1><?php echo "Liste d'amis" ?></h1>
-            <p id="afficheAmis">
+            <h1>Vos amis</h1>
+            <div id="afficheAmis">
                 <?php
                 while ($row = $result->fetch_array()) {
                     echo "<div class='fiche-ami'>";
-                        echo "<img src='" . $row["photo"] . "'>";
-                        echo "<h3>" . $row["prenom"] . " " . $row["nom"] . "</p>";
-                        echo "<h4>" . $row["classe"] . "</h4>";
-                        echo "<h4>" . $row["mail"] . "</h4>";
-                        echo "<hr>";
-                        echo "<p class='description'> . " . $row["description"] . "</p>";
-                        echo "<a class='voir-profil' href='./profil?id=" . $row["id"] . "'>Voir profil</a>";
+                    echo "<img src='../assets/" . $row["photo"] . "'>";
+                    echo "<h3>" . $row["prenom"] . " " . $row["nom"] . "</p>";
+                    echo "<h4>" . $row["nomAnnee"] . "</h4>";
+                    echo "<h4>" . $row["email"] . "</h4>";
+                    echo "<hr>";
+                    echo "<p class='description'>" . $row["description"] . "</p>";
+                    echo "<a class='voir-profil' href='./profil.php?id=" . $row["idEtu"] . "'>Voir profil</a>";
                     echo "</div>";
                 }
                 ?>
-            </p>
-
+            </div>
         </div>
+        <footer>
+            <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
+            <?php $mysqli->close(); ?>
+        </footer>
     </div>
 </body>
