@@ -65,8 +65,14 @@ body {
 
 h1 {
     text-align: center;
-    color: #173C4B;
+    color: white;
     font-size: 3rem;
+    margin-left : 30%;
+    margin-right : 30%;
+    background-color : #7F7DFF;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #afficheAmis {

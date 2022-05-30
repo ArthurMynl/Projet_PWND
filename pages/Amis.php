@@ -7,7 +7,21 @@ $sql = "SELECT statut, a.prenom, a.nom, a.photo, a.email, a.idEtu, AnneeScolaire
                 FROM Amis, Etudiant e, Etudiant a, AnneeScolaire
                 WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'valide' AND idAnneeScolaire = a.anneeScolaire AND e.idEtu= '" . $_SESSION["compte"] . "'";
 
+
+$sql2 = "SELECT COUNT(statut) as nbDemandes
+        FROM Amis, Etudiant e, Etudiant a,
+        WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'en attente' AND e.idEtu= '" . $_SESSION["compte"] . "'";
+
 $result = $mysqli->query($sql);
+$result2 = $mysqli->query($sql2);
+
+if($result2->num_rows > 0){
+    $row2 = $result2->fetch_array();
+    $nbDemandes = $row2["nbDemandes"];
+}
+else {
+    $nbDemandes = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +54,7 @@ $result = $mysqli->query($sql);
             <nav class="small-nav">
                 <ul>
                     <li> <a href="./amis.php">Amis</a> </li>
-                    <li> <a href="./demande.php">Demandes en cours</a> </li>
+                    <li> <a href="./demande.php">Nombre de demandes : <?php echo $nbDemandes; ?> </a> </li>
                     <li>
                         <form class="recherche" type="search">
                             <input type="search" placeholder="Rechercher un ami">
