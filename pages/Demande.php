@@ -35,9 +35,9 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" class="logo"> </li>
-                    <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="Etudiants.php">Etudiants</a> </li>
-                    <li> <a href="Amis.php" class="active" >Amis</a> </li>
+                    <li> <a href="./index.php">Accueil</a> </li>
+                    <li> <a href="./Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="./Amis.php" class="active" >Amis</a> </li>
                     <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
                 </ul>
             </nav>
@@ -45,8 +45,8 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
             <h1><?php echo "Liste d'amis" ?></h1>
             <nav class="navbar">
                 <ul>
-                    <li> <a href="Amis.php">Amis </a> </li>
-                    <li> <a href="Demande.php" class="active">Demande en cours</a> </li>
+                    <li> <a href="./Amis.php">Amis </a> </li>
+                    <li> <a href="./Demande.php" class="active">Demande en cours</a> </li>
                     <li> 
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un ami" aria-label="Search">
