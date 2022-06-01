@@ -38,7 +38,7 @@ $_TITRE_PAGE = "Amis RS ESEO";
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un ami" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" values = 1 name= "rechercher_amis_submit" type="submit">Valider</button>
-                     </form>                
+                    </form>                
                 </ul>
             </nav>
             <p id="afficheAmis">
