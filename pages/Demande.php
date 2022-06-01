@@ -72,12 +72,14 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     echo "<br>";
                 }
                 ?>
-                <ul>
-                    <li>
-                        <button type="submit" value="1" name="Attente_submit"> Supprimer requête </button>
-                    </li>
-                </ul>
-                <?php
+            </p>
+            <p>
+            <ul>
+                <li>
+                    <button type="submit" value="1" name="Attente_submit"> Supprimer requête </button>
+                </li>
+            </ul>
+            <?php
                 if (isset($_POST["attente_submit"]) && $_POST["attente_submit"] == 1) {
                     $sql = "DELETE etudiant, amis, dateAjout, statut
                     FROM Amis, Etudiant e, Etudiant a
@@ -86,7 +88,7 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     $result = $mysqli->query($sql);
                     if (!$result) { exit($mysqli->error); }
                 }
-                ?>
+            ?>
             </p>
             <p id="barreRecherche">
 
