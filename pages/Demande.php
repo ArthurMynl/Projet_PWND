@@ -72,6 +72,16 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     echo "<br>";
                 }
                 ?>
+                <ul>
+                    <li>
+                        <button type="submit" value="1" name="Attente_submit"> En attente </button>
+                    </li>
+                </ul>
+                <?php
+                if (isset($_POST["attente_submit"]) && $_POST["attente_submit"] == 1) {
+                    
+                }
+                ?>
             </p>
             <p id="barreRecherche">
 
