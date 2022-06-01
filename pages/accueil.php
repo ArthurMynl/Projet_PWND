@@ -39,6 +39,8 @@ $result = $mysqli->query($sql);
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
                         <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="amis.php">Amis</a> </li>
+                        <?php
+                        echo "<li> <a href='liste_conversation.php?id=" . $_SESSION["compte"] . "'> Conversation </a> </li>"; ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
@@ -49,16 +51,16 @@ $result = $mysqli->query($sql);
                 <?php
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='article'>";
-                        echo "<div class='informations'>";
-                            echo "<img src='../assets/" . $row["photo"] . "' class='photo'>";
-                            echo "<h3 class='nomPrenomClasse'>" . $row["nomEtudiant"] . " " . $row["prenom"] . " - " . $row["nomAnnee"] . "</h3>";
-                        echo "</div>";
-                        echo "<div class='contenu'>";
-                            echo "<p class='texte'>" . $row["contenu"] . "</p>";
-                            echo "<img src='images/assets/" . $row["media"] . "' class='media'>";
-                            echo "<p class='date'>" . $row["dateCreation"] . "</p>";
-                            echo "<p class='heure'>" . $row["dateCreation"] . "</p>";
-                        echo "</div>";
+                    echo "<div class='informations'>";
+                    echo "<img src='../assets/" . $row["photo"] . "' class='photo'>";
+                    echo "<h3 class='nomPrenomClasse'>" . $row["nomEtudiant"] . " " . $row["prenom"] . " - " . $row["nomAnnee"] . "</h3>";
+                    echo "</div>";
+                    echo "<div class='contenu'>";
+                    echo "<p class='texte'>" . $row["contenu"] . "</p>";
+                    echo "<img src='images/assets/" . $row["media"] . "' class='media'>";
+                    echo "<p class='date'>" . $row["dateCreation"] . "</p>";
+                    echo "<p class='heure'>" . $row["dateCreation"] . "</p>";
+                    echo "</div>";
                     echo "</div>";
                 }
                 ?>

@@ -97,8 +97,8 @@ if (isset($_SESSION["compte"])) {
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=" . $_SESSION["compte"] . "'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=" . $_SESSION["compte"] . "'>Publier un article</a> </li>";
                         ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
 
@@ -160,7 +160,9 @@ if (isset($_SESSION["compte"])) {
         <!-- create the footer -->
         <footer>
             <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
-            <?php $mysqli->close(); ?>
+            <?php $mysqli->close();
+            unset($_SESSION['idConvCourrante']);
+            unset($_SESSION['etat']); ?>
         </footer>
     </div>
 </body>
