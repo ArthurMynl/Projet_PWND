@@ -24,7 +24,7 @@ $_TITRE_PAGE = "Amis RS ESEO";
                 <ul>
                     <li> <img src="../assets/logo.png" class="logo"> </li>
                     <li> <a href="./index.php">Accueil</a> </li>
-                    <li> <a href="./Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="./etudiants.php">Etudiants</a> </li>
                     <li> <a href="./Amis.php" class="active" >Amis</a> </li>
                     <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
                 </ul>

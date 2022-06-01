@@ -30,7 +30,7 @@ $result = $mysqli->query($sql);
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="./pages/index.php" class="active">Accueil</a> </li>
-                    <li> <a href="./pages/Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="./pages/etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
