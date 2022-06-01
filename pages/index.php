@@ -110,6 +110,7 @@ if (isset($_SESSION["compte"])) {
                     <li> <a href="articles.php">Publier un article</a> </li>
                     <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
+                    <?php } ?> 
                 </ul>
             </nav>
 
@@ -159,7 +160,7 @@ if (isset($_SESSION["compte"])) {
                     </div>
                 <?php } else { ?>
                     <div>
-                        <?php echo "<h3> Vous etes connecté </h3>" ?>
+                        <?php echo "<h3> Vous etes connecté </h3>"; ?>
                     </div>
                 <?php } ?>
             </div>

@@ -38,7 +38,6 @@ $result_notif = $mysqli->query($request_notif);
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-<<<<<<< HEAD
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) {
@@ -46,17 +45,6 @@ $result_notif = $mysqli->query($request_notif);
                     <li> <a href="edit_profil.php">Mettre à jour le profil</a> </li>
                     <li> <a href="articles.php">Publier un article</a> </li>
                     <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
-=======
-                    <li> <a href="/pages/index.php">Accueil</a> </li>
-                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
-                    <?php if ($_SESSION["compte"]) { ?>
-                        <?php
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=" . $_SESSION["compte"] . "'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=" . $_SESSION["compte"] . "'>Publier un article</a> </li>";
-                        ?>
-                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
->>>>>>> ec356d9776cf0946c61de68649307e5c8ccc6ac2
                     <?php } ?>
                 </ul>
             </nav>
