@@ -7,28 +7,6 @@ body {
     animation-direction: alternate;
 }
 
-/* @keyframes bgcolor {
-    0% {
-        background-color: #45a3e5
-    }
-
-    30% {
-        background-color: #66bf39
-    }
-
-    60% {
-        background-color: #eb670f
-    }
-
-    90% {
-        background-color: #f35
-    }
-
-    100% {
-        background-color: #864cbf
-    }
-} */
-
 h1 {
     color: grey;
     text-align: center;
@@ -80,9 +58,17 @@ h1 {
     border-width: 5px;
 }
 
-.news1,
-.news2,
-.news3 {
+.corps>.profil>.infos {
+    background-color: rgb(94, 53, 166);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 25px;
+    width: 400px;
+    margin: 10px;
+}
+
+.news1, .news2, .news3{
     color: black;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -120,13 +106,24 @@ h2 {
     top: -25px;
 }
 
-.description {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.description{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : center;
 }
 
 .nom {
     margin-right: 60px;
+}
+
+.biographie {
+    font-family: italic;
+    margin-top: -30px;
+}
+
+.photo {
+    width: 30%;
+    border-radius: 50%;
+    margin: 10px;
 }

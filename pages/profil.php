@@ -32,15 +32,16 @@ $row2 = $result2->fetch_assoc();
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="etudiants.php">Etudiants</a> </li>
+                    <li> <a href="/pages/index.php">Accueil</a> </li>
+                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
                         ?>
-                        <li> <a href="edit_profil.php">Editer profil</a> </li>
-                        <li> <a href="articles.php">Publier un article</a> </li>
-                        <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
+                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+
                     <?php } ?>
                 </ul>
             </nav>
@@ -49,19 +50,19 @@ $row2 = $result2->fetch_assoc();
                     <div class="informations">
                         <?php
                         echo "<h2><img src='../assets/" . $row["photo"] . "'alt='profil' class='photo'></h2>";
-                        echo "<p><hr></p>";
+                        echo "<hr>";
                         echo "<div class='form'>";
                         echo "<div class='nom_prenom'>";
                         echo "<h4>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
                         echo "</div>";
-                        echo "<p><hr></p>";
+                        echo "<hr>";
                         echo "<div class='classe'>";
                         echo "<h4> Adresse Mail : " . $row["email"] . "</h4>";
                         echo "<div class='anneeScolaire'>";
                         echo "<h4> Année Scolaire : " . $row["nomAnnee"] . "</h4>";
                         echo "</div>";
                         echo "</div>";
-                        echo "<p><hr></p>";
+                        echo "<hr>";
                         echo "<div class='description'>";
                         echo "<h4> Description : " . $row["description"] . "</h4>";
                         echo "</div>";
