@@ -1,11 +1,52 @@
 <?php
 
-$_TITRE_PAGE = "Mettre à jour le profil";
-
 include '../includes/core.php';
 
-$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
+$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION["compte"];
 $result = $mysqli->query($request);
+
+$request2 = "SELECT etudiant.motDePasse FROM Etudiant WHERE idEtu = '" . $_SESSION['compte'] . "'";
+$result2 = $mysqli->query($request2);
+
+if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
+
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $anneeScolaire = $_POST['annees'];
+    $login = $_POST['login'];
+    $old_pwd = $_POST['old_password'];
+    $password = $_POST['password'];
+    $pwd_confirm = $_POST['password_confirm'];
+
+    if(isset($nom) && trim($nom) != '') {
+        $requestNom = "UPDATE Etudiant SET nom = '" . $nom . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $resultNom = $mysqli->query($requestNom);
+    }
+
+    if(isset($prenom) && trim($prenom) != '') {
+        $requestPrenom = "UPDATE Etudiant SET prenom = '" . $prenom . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $resultPrenom = $mysqli->query($requestPrenom);
+    }
+
+    if(isset($anneeScolaire) && trim($anneeScolaire) != '') {
+        $requestAS = "UPDATE Etudiant SET anneeScolaire = '" . $anneeScolaire . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $resultAS = $mysqli->query($requestAS);
+    }
+
+    if(isset($login) && trim($login) != '') {
+        $requestLogin = "UPDATE Etudiant SET email = '" . $login . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $resultLogin = $mysqli->query($requestLogin);
+    }
+
+    if(isset($old_pwd) && trim($old_pwd) != '' && isset($password) && trim($password) != '' && isset($pwd_confirm) && trim($pwd_confirm) != '' && $result2 == $old_pwd && $password == $pwd_confirm) {
+        $requestPwd= "UPDATE Etudiant SET motDePasse = '" . $password . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $resultPwd = $mysqli->query($requestPwd);
+    }
+
+    $requestRefresh = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION["compte"];
+    $resultRefresh = $mysqli->query($requestRefresh);
+
+}
 
 ?>
 
@@ -16,7 +57,7 @@ $result = $mysqli->query($request);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $_TITRE_PAGE ?></title>
+    <title>Mise à jour du profil</title>
     <link rel="stylesheet" href="../style/navbar_style.css">
     <link rel="stylesheet" href="../style/edit_profil_style.css">
     <link rel="stylesheet" href="../style/footer_style.css">
@@ -31,22 +72,20 @@ $result = $mysqli->query($request);
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="/pages/index.php">Accueil</a> </li>
-                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
-                    <?php if ($_SESSION["compte"]) { ?>
-                        <?php
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."' class='active'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
-                        ?>
-                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+                    <li> <a href="index.php">Accueil</a> </li>
+                    <li> <a href="etudiants.php">Étudiants</a> </li>
+                    <?php if ($_SESSION["compte"]) {
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>"; ?>
+                    <li> <a href="edit_profil.php" class="active">Mettre à jour le profil</a> </li>
+                    <li> <a href="articles.php">Publier un article</a> </li>
+                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
 
             <div class="corps">
                 <div class="editionProfil">
-                    <?php $row = $result->fetch_assoc();?>
+                    <?php $row = $result->fetch_assoc(); ?>
                     <h2>Mise à jour du profil</h2>
                     <form method="post">
                         <label>Nom</label>
