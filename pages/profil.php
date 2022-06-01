@@ -9,6 +9,12 @@ $row = $result->fetch_assoc();
 $request2 = "SELECT Article.auteur, Article.contenu FROM Article, Etudiant WHERE Etudiant.idEtu = Article.auteur AND idEtu =" . $_GET['id'];
 $result2 = $mysqli->query($request2);
 $row2 = $result2->fetch_assoc();
+
+$request_notif = "SELECT COUNT(idNotification) as nbNotification, dateNotification, typeNotification, emetteur.nom, emetteur.prenom, emetteur.idEtu, emetteur.photo
+                  FROM Notification, Etudiant receveur, Etudiant emetteur
+                  WHERE idEtudiant =" . $_SESSION["compte"] . " AND idEtudiant = receveur.idEtu";
+
+$result_notif = $mysqli->query($request_notif);
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +43,10 @@ $row2 = $result2->fetch_assoc();
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=" . $_SESSION["compte"] . "'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=" . $_SESSION["compte"] . "'>Publier un article</a> </li>";
                         ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
-
                     <?php } ?>
                 </ul>
             </nav>

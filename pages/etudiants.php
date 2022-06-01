@@ -26,7 +26,7 @@ include '../includes/core.php'
             <ul>
                 <li> <img src="../assets/logo.png" id="logo"> </li>
                 <li> <a href="/pages/index.php">Accueil</a> </li>
-                <li> <a href="/pages/etudiants.php" class="active">Étudiants</a> </li>
+                <li> <a href="./etudiants.php" class="active">Étudiants</a> </li>
                 <?php if ($_SESSION["compte"]) { ?>
                     <?php
                     echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";

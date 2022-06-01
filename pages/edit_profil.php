@@ -4,7 +4,7 @@ $_TITRE_PAGE = "Mettre à jour le profil";
 
 include '../includes/core.php';
 
-$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
+$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION['compte'];
 $result = $mysqli->query($request);
 
 ?>
@@ -36,7 +36,7 @@ $result = $mysqli->query($request);
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."' class='active'>Mettre à jour le profil</a></li>";
+                        echo "<li><a href='edit_profil.php' class='active'>Mettre à jour le profil</a></li>";
                         echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
                         ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
