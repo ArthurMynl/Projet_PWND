@@ -2,11 +2,7 @@
 
 include '../includes/core.php';
 
-<<<<<<< HEAD
-$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION["compte"];
-=======
 $request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION['compte'];
->>>>>>> ec356d9776cf0946c61de68649307e5c8ccc6ac2
 $result = $mysqli->query($request);
 
 $request2 = "SELECT etudiant.motDePasse FROM Etudiant WHERE idEtu = '" . $_SESSION['compte'] . "'";
@@ -76,7 +72,6 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-<<<<<<< HEAD
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) {
@@ -84,17 +79,6 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
                     <li> <a href="edit_profil.php" class="active">Mettre à jour le profil</a> </li>
                     <li> <a href="articles.php">Publier un article</a> </li>
                     <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
-=======
-                    <li> <a href="/pages/index.php">Accueil</a> </li>
-                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
-                    <?php if ($_SESSION["compte"]) { ?>
-                        <?php
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php' class='active'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
-                        ?>
-                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
->>>>>>> ec356d9776cf0946c61de68649307e5c8ccc6ac2
                     <?php } ?>
                 </ul>
             </nav>
