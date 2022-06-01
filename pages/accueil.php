@@ -29,7 +29,7 @@ $result = $mysqli->query($sql);
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="./pages/index.php" class="active">Accueil</a> </li>
+                    <li> <a href="./pages/accueil.php" class="active">Accueil</a> </li>
                     <li> <a href="./pages/etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
