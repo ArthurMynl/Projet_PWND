@@ -17,7 +17,7 @@ $result = $mysqli->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Page de connexion</title>
+    <title>Accueil</title>
     <link rel="stylesheet" href="../style/navbar_style.css">
     <link rel="stylesheet" href="../style/accueil_style.css">
     <link rel="stylesheet" href="../style/footer_style.css">
@@ -42,6 +42,7 @@ $result = $mysqli->query($sql);
                         <?php
                         echo "<li> <a href='liste_conversation.php?id=" . $_SESSION["compte"] . "'> Conversation </a> </li>"; ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+
                     <?php } ?>
                 </ul>
             </nav>
