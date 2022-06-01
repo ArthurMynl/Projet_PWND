@@ -11,8 +11,9 @@ $extensionFichier = pathinfo($nomOrigine, PATHINFO_EXTENSION);
 $extensionsAutorisees = array("jpeg", "jpg", "gif", "png");
 
 if (!(in_array($extensionFichier, $extensionsAutorisees))) {
-    $MESSAGE_ERROR = "Le fichier n'a pas l'extension attendue";
+    $valid = false;
 } else {
+    $valid = true;
     $MESSAGE_VALID = "Le fichier a correctement été upload";
 
     $repertoireDestination = dirname(__FILE__) . "/";
@@ -42,8 +43,13 @@ if (!(in_array($extensionFichier, $extensionsAutorisees))) {
 $media = $_POST['file'];
 $requestMedia = "UPDATE Article SET media = '" . $media . "'";
 
-?>
 
+
+if (isset($_POST["close"])) {
+    unset($valid);
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,12 +67,19 @@ $requestMedia = "UPDATE Article SET media = '" . $media . "'";
 <body>
     <div id="container">
         <div id="content-wrap">
-            <div class='message'>
-                <?php echo "<p class='message-error'> $MESSAGE_ERROR </p>";
-                echo "<p class='message-valid'> $MESSAGE_VALID </p>";
-                ?>
-                <button class='close'> x </button>
-            </div>
+            <?php
+            if (isset($valid) && $valid) {
+                echo "<form class='valid' method='post'>";
+                echo "<h2>Le fichier a correctement été upload</h2>";
+                echo "<button type='submit' name='close' class='close'>X</button>";
+                echo "</form>";
+            } elseif (isset($valid) && !$valid) {
+                echo "<form class='error' method='post'>";
+                echo "<h2>Le fichier n'a pas l'extension attendue</h2>";
+                echo "<button type='submit' name='close' class='close'>X</button>";
+                echo "</form>";
+            }
+            ?>
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
@@ -75,9 +88,9 @@ $requestMedia = "UPDATE Article SET media = '" . $media . "'";
                     <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
+                        echo "<li><a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
                         echo "<li><a href='edit_profil.php?id=" . $_SESSION["compte"] . "'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=" . $_SESSION["compte"] . "' class='active'>Publier un article</a> </li>";
+                        echo "<li><a href='articles.php?id=" . $_SESSION["compte"] . "' class='active'>Publier un article</a> </li>";
                         ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
@@ -118,8 +131,8 @@ $requestMedia = "UPDATE Article SET media = '" . $media . "'";
                         echo $now;
 
                         ?>
-                        <button type="reset" value="1" name="article_modify"> MODIFIER ARTICLE </button>
-                        <button type="submit" value="1" name="article_submit"> PUBLIER ARTICLE </button>
+                        <button type="reset" value="1" name="article_modify" class="btn-article"> MODIFIER ARTICLE </button>
+                        <button type="submit" value="1" name="article_submit" class="btn-article"> PUBLIER ARTICLE </button>
                     </form>
                 </div>
             </div>

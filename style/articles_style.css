@@ -4,26 +4,44 @@ body {
     font-family: "Bahnschrift Light";
 }
 
-.message {
+.valid {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-
-.close {
-    background-color: none;
-
-}
-
-.message-error {
-    background-color: red;
-    margin: 0;
-}
-
-.message-valid {
     background-color: green;
-    margin: 0;
+}
+
+.error {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red;
+}
+
+.error > .close {
+    color: white;
+    background-color: rgb(72, 72, 72);
+    border-radius: 50%;
+    padding : 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border : 1px solid white;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.valid > .close {
+    color: white;
+    background-color: rgb(72, 72, 72);
+    border-radius: 50%;
+    padding : 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border : 1px solid white;
+    text-align: center;
+    margin-right: 20px;
 }
 
 .corps {
@@ -63,7 +81,7 @@ body {
 }
 
 
-button {
+.btn-article {
     background-color: rgb(92, 105, 138);
     padding: 10px;
     margin-top: 15px;
