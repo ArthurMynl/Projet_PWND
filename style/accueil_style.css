@@ -4,6 +4,14 @@ body {
     font-family: "Bahnschrift Light";
 }
 
+#container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 4rem;
+}
 
 .liste-articles {
     display: flex;
@@ -18,7 +26,7 @@ body {
     width: 90%;
     margin-left: 10%;
     margin-right: 10%;
-    background-color: green;
+    background-color: #7F7DFF;
     margin-top: 5px;
     border-radius: 25px;
 }
@@ -37,6 +45,7 @@ body {
     width: 50px;
     margin-right: 10px;
     margin-left: 10px;
+    border-radius: 50%;
 }
 
 
