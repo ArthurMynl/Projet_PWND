@@ -61,6 +61,9 @@ $_TITRE_PAGE = "Amis RS ESEO";
                 }
                 ?>
             </p>
+            <p id="barreRecherche">
+                
+            </p>
 
         </div>
     </div>
