@@ -31,7 +31,7 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Liste d'amis</title>
     <link rel="stylesheet" href="../style/index_style.css">
-</head>
+,</head>
 
 <body>
     <div id="container">
