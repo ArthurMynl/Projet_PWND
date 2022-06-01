@@ -77,8 +77,6 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     echo "<br>";
                 }
                 ?>
-            </p>
-            <p>
             <ul>
                 <li>
                     <button type="submit" value="1" name="Attente_submit"> Supprimer requête </button>
