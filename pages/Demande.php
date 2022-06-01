@@ -70,6 +70,12 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     echo $row["prenom"]." ";
                     echo $row["statut"];
                     echo "<br>";
+                    echo "<button type='submit' value='1' name='supp_submit'> Supprimer requête</button>";
+                }
+                if (isset($_POST["supp_submit"]) && $_POST["supp_submit"] == 1) {
+                    $sql = "DELETE etudiant, amis, dateAjout, statut
+                    FROM Amis, Etudiant e, Etudiant a
+                    WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'en attente' AND e.idEtu= '".$_SESSION["compte"]."'";
                 }
                 ?>
             </p>
