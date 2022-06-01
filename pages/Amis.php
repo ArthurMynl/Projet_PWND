@@ -44,8 +44,8 @@ else {
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="./index.php">Accueil</a> </li>
-                    <li> <a href="./Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="./accueil.php">Accueil</a> </li>
+                    <li> <a href="./etudiants.php">Etudiants</a> </li>
                     <li> <a href="./Amis.php" class="active">Amis</a> </li>
                     <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                 </ul>
