@@ -38,7 +38,7 @@ $result = $mysqli->query($sql);
                         ?>
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
                         <li> <a href="articles.php">Publier un article</a> </li>
-                        <li> <a href="amis.php">Amis</a> </li>
+                        <li> <a href="Amis.php">Amis</a> </li>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
