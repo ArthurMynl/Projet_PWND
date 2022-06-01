@@ -30,8 +30,8 @@ $result = $mysqli->query($request);
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="etudiants.php" class="active">Etudiants</a> </li>
+                    <li> <a href="./index.php">Accueil</a> </li>
+                    <li> <a href="./etudiants.php" class="active">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?" . $_SESSION["compte"] . "'>Profil</a> </li>";

@@ -32,8 +32,8 @@ $row2 = $result2->fetch_assoc();
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="etudiants.php">Etudiants</a> </li>
+                    <li> <a href="./index.php">Accueil</a> </li>
+                    <li> <a href="./etudiants.php">Etudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>";
