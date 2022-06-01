@@ -1,0 +1,50 @@
+body {
+    background-color: white;
+    margin: 0;
+    font-family: "Bahnschrift Light";
+}
+
+
+.liste-articles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.article {
+    padding: 10px;
+    border: 1px solid black;
+    width: 90%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: green;
+    margin-top: 5px;
+    border-radius: 25px;
+}
+
+
+.informations {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+.informations>.photo {
+    width: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+
+.contenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
