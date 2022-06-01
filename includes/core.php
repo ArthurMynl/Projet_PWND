@@ -6,8 +6,8 @@ error_reporting(E_ALL); */
 
 $infoBdd = [
     "server" => "localhost",
-    "login" => "pwnd",
-    "password" => "network",
+    "login" => "root",
+    "password" => "root",
     "db_name" => "projet"
 ];
 
