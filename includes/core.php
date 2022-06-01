@@ -2,8 +2,8 @@
 
 $infoBdd = [
     "server" => "localhost",
-    "login" => "root",
-    "password" => "root",
+    "login" => "pwnd",
+    "password" => "network",
     "db_name" => "projet"
 ];
 

@@ -5,6 +5,7 @@ body {
     animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
+    background-color:  rgb(17, 80, 99);
 }
 
 /* @keyframes bgcolor {
@@ -29,28 +30,8 @@ body {
     }
 } */
 
-h1 { 
-    color : grey;
-    text-align : center;
-    margin: 80px 0px 40px;
-    font-family: "Bahnschrift Light";
-}
-
 .corps {
-    display : flex;
-    flex-direction : row;
-    align-items : flex-start;
-    justify-content : center;
-    margin-top: 100px;
-    position: relative;
-    left: -70px;
-}
-
-.profil{
-    display : flex;
-    flex-direction : row;
-    align-items : flex-start;
-    justify-content : center;
+    align-items: center;
 }
 
 .corps > .profil > .form {
@@ -58,82 +39,16 @@ h1 {
     flex-direction : column;
 }
 
-.corps > .profil{
-    color: white;
-}
-
-.corps > .profil > .infos{
-    position: relative;
-    top: -50px;
-    border-spacing: 0px;
-}
-
 .corps > .profil > .informations{
-    background-color:  rgb(96,93,241);
+    color: rgb(0, 0, 0);
+    background-color:  rgb(0, 255, 251);
     padding : 30px;
-    border-radius: 25px;
-    width : 500px;
-    margin : 10px 100px;
-    text-align: center;
-    border-style: outset;
-    border-width: 5px;
-}
-
-.article{
-    color: black;
-    background-color:  rgb(255, 255, 255);
-    display : flex;
-    flex-direction : column;
-    width : 400px;
-    margin : 10px;
-    border-style: outset;
-    border-width: 5px;
-    padding: 5px;
-}
-
-.article > .auteur_article{
-    text-align: center;
-    position: relative;
-    top: -8px
-}
-
-.article > .titre{
-    text-align: left;
-    position: relative;
-    top: -15px
-}
-
-.article > .media{
-    text-align: center;
-    position: relative;
-}
-
-.article > .date_heure{
-    display: flex;
-    flex-direction : row;
-}
-
-.article > .heure{
-    text-align: right;
-    position: relative;
-    top: -15px;
-    margin-left: 350px;
-    margin-bottom: 15px;
-}
-
-.article > .date{
-    text-align: left;
-    position: relative;
-    top: -15px;
-    margin-bottom: 15px;
-}
-
-.article > .contenu{
-    text-align: center;
-}
-
-h2{
-    margin-bottom: 60px;
+    margin-top: 50px;
+    border-radius: 5px;
+    width : 310px;
+    height: 340px;
+    text-align: center;     
+    border: none;
 }
 
 .nom_prenom{
@@ -159,12 +74,49 @@ h2{
 .description{
     display : flex;
     flex-direction : row;
-    align-items : center;
+    text-align: center;
     justify-content : center;
-    position: relative;
-    top: -25    px;
+    font-size: 15px;
+    margin: 20px 40px 0px 40px;
 }
 
-.nom{
-    margin-right : 60px;
+hr{
+    margin: -30px 20px -20px 20px;
+}
+
+.corps > .profil > .bg {
+    background-color:  rgb(17, 80, 99);
+    width : 1000;
+    height: 1000px;
+}
+
+.corps > .profil > .infos {
+    color: rgb(0, 0, 0);
+    background-color:  rgb(0, 255, 251);
+    width : 170%;
+    margin-top : 50px;
+    margin-bottom : 50px;
+    border-radius: 5px;
+    position: relative;
+    left: -125px;
+    border: none;
+
+}
+
+.date_heure{
+    display: flex;
+    align-items: flex-end;
+    justify-content : flex-end;
+    position: relative;
+    left: -8px;
+    font-size: 10px;
+}
+
+.article > .contenu{
+    display: flex;
+    align-items: center;
+    justify-content : center;
+    text-align: center;
+    position: relative;
+    top: -30px;
 }
