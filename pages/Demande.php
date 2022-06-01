@@ -35,18 +35,25 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" class="logo"> </li>
+<<<<<<< HEAD
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <li> <a href="amis.php" class="active">Amis</a> </li>
                     <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+=======
+                    <li> <a href="./accueil.php">Accueil</a> </li>
+                    <li> <a href="./etudiants.php">Etudiants</a> </li>
+                    <li> <a href="./Amis.php" class="active" >Amis</a> </li>
+                    <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
+>>>>>>> ec356d9776cf0946c61de68649307e5c8ccc6ac2
                 </ul>
             </nav>
 
             <h1><?php echo "Liste d'amis" ?></h1>
             <nav class="navbar">
                 <ul>
-                    <li> <a href="Amis.php">Amis </a> </li>
-                    <li> <a href="Demande.php" class="active">Demande en cours</a> </li>
+                    <li> <a href="./Amis.php">Amis </a> </li>
+                    <li> <a href="./Demande.php" class="active">Demande en cours</a> </li>
                     <li> 
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un ami" aria-label="Search">
@@ -70,6 +77,12 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     echo $row["prenom"]." ";
                     echo $row["statut"];
                     echo "<br>";
+                    echo "<button type='submit' value='1' name='supp_submit'> Supprimer requête</button>";
+                }
+                if (isset($_POST["supp_submit"]) && $_POST["supp_submit"] == 1) {
+                    $sql = "DELETE etudiant, amis, dateAjout, statut
+                    FROM Amis, Etudiant e, Etudiant a
+                    WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'en attente' AND e.idEtu= '".$_SESSION["compte"]."'";
                 }
                 ?>
             </p>
