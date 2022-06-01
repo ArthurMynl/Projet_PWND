@@ -1,0 +1,87 @@
+input[type=text],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: rgb(56, 63, 71);
+    color: white;
+    padding: 40px 20px;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: right;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(25, 18, 50);
+}
+
+.message_envoyer {
+    border-radius: 20px;
+    background-color: #2b0dd3;
+    padding: 20px;
+    height: auto;
+    width: 120px;
+    margin-top: 10px;
+    position: relative;
+    left: 280px;
+}
+
+.message_recu {
+    border-radius: 20px;
+    background-color: #a29dbe;
+    padding: 20px;
+    height: auto;
+    width: 120px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.message {
+    height: 600px;
+    width: 500px;
+    overflow: scroll;
+    position: relative;
+
+}
+
+.conversation {
+    float: right;
+    height: 700px;
+    width: 500px;
+    position: relative;
+}
+
+.ajout {
+    float: right;
+    height: 30px;
+    width: 150px;
+    position: relative;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.body>.conversation>form {
+    display: flex;
+    flex-direction: column;
+}
+
+.body>.connexion>form {
+    display: flex;
+    flex-direction: column;
+}
