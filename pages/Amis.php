@@ -2,7 +2,22 @@
 
 include "../includes/core.php";
 $_TITRE_PAGE = "Amis RS ESEO";
-
+if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] == 1) {
+	$sql = "SELECT a.nom,a.prenom FROM Amis,Etudiant e, Etudiant a 
+	WHERE e.idEtu = '".$SESSION['compte']." AND Amis.etudiant = e.idEtu
+    AND Amis.amis = a.idEtu 
+    AND a.prenom = '" .trim($_POST['amis'])." AND a.nom = '" .trim($_POST['amis'])."";
+	
+    $result = $mysqli->query($sql);
+    if (!$result) {
+        exit($mysqli->error);
+    }
+    while ($row=$result -> fetch_array()){
+        echo $row["prenom"]." ";
+        echo $row["nom"];
+        echo "<br>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +51,7 @@ $_TITRE_PAGE = "Amis RS ESEO";
                     <li> <a href="./Amis.php" class="active">Amis </a> </li>
                     <li> <a href="./Demande.php">Demande en cours</a> </li>
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un ami" aria-label="Search">
+                        <input class="form-control mr-sm-2" name = "amis" type="search" placeholder="Rechercher un ami" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" values = 1 name= "rechercher_amis_submit" type="submit">Valider</button>
                     </form>                
                 </ul>
