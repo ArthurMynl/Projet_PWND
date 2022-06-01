@@ -4,6 +4,28 @@ body {
     font-family: "Bahnschrift Light";
 }
 
+.message {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    background-color: none;
+
+}
+
+.message-error {
+    background-color: red;
+    margin: 0;
+}
+
+.message-valid {
+    background-color: green;
+    margin: 0;
+}
+
 .corps {
     display: flex;
     flex-direction: row;
@@ -65,7 +87,7 @@ h2 {
 input {
     margin-top: 15px;
     border-radius: 10px;
-    border: 0px solid black;
+    border: 1px solid black;
     height: 40px;
     padding-left: 10px;
 }

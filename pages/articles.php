@@ -2,10 +2,19 @@
 
 include '../includes/core.php';
 
-/*
-$request = "SELECT e.photo, e.nom, e.prenom, asco.nom, FROM Etudiant as e, AnneeScolaire as asco WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
-$result = $mysqli->query($request);
-*/
+ini_set("post_max_size", "100000M");
+ini_set("upload_max_filesize", "100000M");
+ini_set("memory_limit", -1);
+
+$nomOrigine = $_POST['file'];
+$extensionFichier = pathinfo($nomOrigine, PATHINFO_EXTENSION);
+$extensionsAutorisees = array("jpeg", "jpg", "gif", "png");
+
+if (!(in_array($extensionFichier, $extensionsAutorisees))) {
+    $MESSAGE_ERROR = "Le fichier n'a pas l'extension attendue";
+} else {
+    $MESSAGE_VALID = "Le fichier a correctement été upload";
+}
 
 ?>
 
@@ -26,6 +35,12 @@ $result = $mysqli->query($request);
 <body>
     <div id="container">
         <div id="content-wrap">
+            <div class='message'>
+                <?php echo "<p class='message-error'> $MESSAGE_ERROR </p>";
+                echo "<p class='message-valid'> $MESSAGE_VALID </p>";
+                ?>
+                <button class='close'> x </button>
+            </div>
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
@@ -35,13 +50,14 @@ $result = $mysqli->query($request);
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."' class='active'>Publier un article</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=" . $_SESSION["compte"] . "'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=" . $_SESSION["compte"] . "' class='active'>Publier un article</a> </li>";
                         ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
+
 
             <h1><?php echo "Publier un article" ?></h1>
             <div class="corps">
@@ -49,24 +65,32 @@ $result = $mysqli->query($request);
                     <h2> Publication Article </h2>
                     <form method="post">
                         <input type="contenu" name="contenu" id="contenu" placeholder="Contenu">
-                        <input type="media" name="media" id="media" placeholder="Media">
                         <div class="visibilite">
                             <label class="etiquette-visibilite"> Visibilité </label>
                             <select name="visibilite" id="visibilite">
-                                <option value="1"> Public </option>
-                                <option value="2"> Amis </option>
+                                <option value="" disabled selected>-- Choisissez --</option>
+                                <option value="public"> public </option>
+                                <option value="amis"> amis </option>
                             </select>
                         </div>
-                        <button type="submit" value="1" name="article_preview"> PREVIEW ARTICLE </button>
+                        <form enctype="multipart/form-data" action="fileupload.php" method="post">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+                            Média <input type="file" name="file" />
+                            <button type="submit" value="1" name="article_preview"> PREVIEW ARTICLE </button>
+                        </form>
                     </form>
                 </div>
                 <div class="apercu">
                     <h2> Aperçu dernier article </h2>
                     <form method="post">
                         <h4> <?php echo $_POST["contenu"] ?></h4>
-                        <h4> <?php echo $_POST["media"] ?></h4>
-                        <?php $now = date_create()->format('Y-m-d H:i:s');
+                        <h4> <?php echo $_POST["file"] ?></h4>
+                        <h4> <?php echo $_POST["visibilite"] ?></h4>
+                        <?php
+                        ini_set('date.timezone', 'Europe/Paris');
+                        $now = date_create()->format('Y-m-d H:i:s');
                         echo $now;
+
                         ?>
                         <button type="reset" value="1" name="article_modify"> MODIFIER ARTICLE </button>
                         <button type="submit" value="1" name="article_submit"> PUBLIER ARTICLE </button>
