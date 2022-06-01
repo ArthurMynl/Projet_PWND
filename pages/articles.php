@@ -65,6 +65,9 @@ $result = $mysqli->query($request);
                     <form method="post">
                         <h4> <?php echo $_POST["contenu"] ?></h4>
                         <h4> <?php echo $_POST["media"] ?></h4>
+                        <?php $now = date_create()->format('Y-m-d H:i:s');
+                        echo $now;
+                        ?>
                         <button type="reset" value="1" name="article_modify"> MODIFIER ARTICLE </button>
                         <button type="submit" value="1" name="article_submit"> PUBLIER ARTICLE </button>
                     </form>
