@@ -43,18 +43,26 @@ else {
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
-                    <li> <img src="../assets/logo.png" id="logo"> </li>
+<<<<<<< HEAD
+                    <li> <img src="../assets/logo.png" class="logo"> </li>
                     <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="Etudiants.php">Etudiants</a> </li>
+                    <li> <a href="etudiants.php">Étudiants</a> </li>
                     <li> <a href="amis.php" class="active">Amis</a> </li>
+                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+=======
+                    <li> <img src="../assets/logo.png" id="logo"> </li>
+                    <li> <a href="./accueil.php">Accueil</a> </li>
+                    <li> <a href="./etudiants.php">Etudiants</a> </li>
+                    <li> <a href="./Amis.php" class="active">Amis</a> </li>
                     <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+>>>>>>> ec356d9776cf0946c61de68649307e5c8ccc6ac2
                 </ul>
             </nav>
 
             <nav class="small-nav">
                 <ul>
-                    <li> <a href="./amis.php">Amis</a> </li>
-                    <li> <a href="./demande.php">Nombre de demandes : <?php echo $nbDemandes; ?> </a> </li>
+                    <li> <a href="./Amis.php">Amis</a> </li>
+                    <li> <a href="./Demande.php">Nombre de demandes : <?php echo $nbDemandes; ?> </a> </li>
                     <li>
                         <form class="recherche" type="search">
                             <input type="search" placeholder="Rechercher un ami">

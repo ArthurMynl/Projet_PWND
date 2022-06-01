@@ -9,6 +9,12 @@ $row = $result->fetch_assoc();
 $request2 = "SELECT Article.auteur, Article.contenu FROM Article, Etudiant WHERE Etudiant.idEtu = Article.auteur AND idEtu =" . $_GET['id'];
 $result2 = $mysqli->query($request2);
 $row2 = $result2->fetch_assoc();
+
+$request_notif = "SELECT COUNT(idNotification) as nbNotification, dateNotification, typeNotification, emetteur.nom, emetteur.prenom, emetteur.idEtu, emetteur.photo
+                  FROM Notification, Etudiant receveur, Etudiant emetteur
+                  WHERE idEtudiant =" . $_SESSION["compte"] . " AND idEtudiant = receveur.idEtu";
+
+$result_notif = $mysqli->query($request_notif);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +24,7 @@ $row2 = $result2->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Page de connexion</title>
+    <title>Profil</title>
     <link rel="stylesheet" href="../style/index_style.css">
     <link rel="stylesheet" href="../style/navbar_style.css">
     <link rel="stylesheet" href="../style/profil_style.css">
@@ -32,16 +38,25 @@ $row2 = $result2->fetch_assoc();
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
+<<<<<<< HEAD
+                    <li> <a href="index.php">Accueil</a> </li>
+                    <li> <a href="etudiants.php">Étudiants</a> </li>
+                    <?php if ($_SESSION["compte"]) {
+                        echo "<li> <a href='profil.php?id=".$_SESSION["compte"]."' class='active'>Profil</a> </li>"; ?>
+                    <li> <a href="edit_profil.php">Mettre à jour le profil</a> </li>
+                    <li> <a href="articles.php">Publier un article</a> </li>
+                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+=======
                     <li> <a href="/pages/index.php">Accueil</a> </li>
                     <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=".$_SESSION["compte"]."'>Mettre à jour le profil</a></li>";
-                        echo "<li> <a href='articles.php?id=".$_SESSION["compte"]."'>Publier un article</a> </li>";
+                        echo "<li><a href='edit_profil.php?id=" . $_SESSION["compte"] . "'>Mettre à jour le profil</a></li>";
+                        echo "<li> <a href='articles.php?id=" . $_SESSION["compte"] . "'>Publier un article</a> </li>";
                         ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
-
+>>>>>>> ec356d9776cf0946c61de68649307e5c8ccc6ac2
                     <?php } ?>
                 </ul>
             </nav>
