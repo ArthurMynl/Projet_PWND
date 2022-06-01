@@ -58,7 +58,7 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                 <?php 
                 $mysqli = new mysqli($infoBdd["server"], $infoBdd["login"], $infoBdd["password"], $infoBdd["db_name"]);
 
-                if ($mysqli->connect_errno) { exit("Problème de connexion à la BDD");}
+                if ($mysespaqli->connect_errno) { exit("Problème de connexion à la BDD");}
                 
                 $sql = "SELECT statut, e.prenom, a.prenom 
                 FROM Amis, Etudiant e, Etudiant a 
