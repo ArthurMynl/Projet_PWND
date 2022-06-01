@@ -54,7 +54,7 @@ else {
             <nav class="small-nav">
                 <ul>
                     <li> <a href="./Amis.php">Amis</a> </li>
-                    <li> <a href="./demande.php">Nombre de demandes : <?php echo $nbDemandes; ?> </a> </li>
+                    <li> <a href="./Demande.php">Nombre de demandes : <?php echo $nbDemandes; ?> </a> </li>
                     <li>
                         <form class="recherche" type="search">
                             <input type="search" placeholder="Rechercher un ami">
