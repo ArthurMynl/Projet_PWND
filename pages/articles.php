@@ -115,7 +115,7 @@ if (isset($_POST["close"])) {
                         <form enctype="multipart/form-data" action="fileupload.php" method="post">
                             <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
                             Média <input type="file" name="file" />
-                            <button type="submit" value="1" name="article_preview"> PREVIEW ARTICLE </button>
+                            <button class='btn-article' type="submit" value="1" name="article_preview"> PREVIEW ARTICLE </button>
                         </form>
                     </form>
                 </div>
