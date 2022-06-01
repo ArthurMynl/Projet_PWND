@@ -33,8 +33,8 @@ $_TITRE_PAGE = "Amis RS ESEO";
             <h1><?php echo "Liste d'amis" ?></h1>
             <nav class="navbar justify-content-between">
                 <ul>
-                    <li> <a href="Amis.php" class="active">Amis </a> </li>
-                    <li> <a href="Demande.php">Demande en cours</a> </li>
+                    <li> <a href="./Amis.php" class="active">Amis </a> </li>
+                    <li> <a href="./Demande.php">Demande en cours</a> </li>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un ami" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" values = 1 name= "rechercher_amis_submit" type="submit">Valider</button>
