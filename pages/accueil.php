@@ -3,7 +3,7 @@
 include '../includes/core.php';
 
 $sql = "SELECT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, dateCreation, auteur, media
-        FROM etudiant, anneeScolaire, Article
+        FROM etudiant, anneeScolaire, article
         WHERE idAnneeScolaire = anneeScolaire AND Article.auteur = etudiant.idEtu
         ORDER BY dateCreation DESC";
 $result = $mysqli->query($sql);
