@@ -19,6 +19,7 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
         echo $row["nom"];
         echo "<br>";
     }
+}
 
 $sql = "SELECT statut, a.prenom, a.nom, a.photo, a.email, a.idEtu, AnneeScolaire.nom as nomAnnee, a.description
                 FROM Amis, Etudiant e, Etudiant a, AnneeScolaire

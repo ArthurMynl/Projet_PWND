@@ -8,6 +8,16 @@ $_SESSION['etat'] = 0;
 $convSQL = "SELECT Conversation.nom as nomConv, conversation.idConv as idConv FROM Membre, Conversation WHERE Membre.etudiant = " . $_SESSION["compte"] . " AND membre.conversation = conversation.idConv ";
 $resultConv = $mysqli->query($convSQL);
 
+if(isset($_SESSION['idConvCourante'])){
+    // récupérer les messages de la conversation
+    $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
+    $resultMessage = $mysqli->query($messageSQL);
+
+    // recuperer les participants de la conversation
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
+}
+
 // envoyer un message
 if (isset($_POST['message_submit'])) {
     // incrémenter l'id du message ?
@@ -20,7 +30,7 @@ if (isset($_POST['message_submit'])) {
     $id = $row[0] + 1;
 
     // ajouter le message à la bdd
-    $ajoutMessageSQL = "INSERT INTO Message (idMess,contenu,dateEnvoi,conversation,emetteur) VALUES (" . $id . ",'" . trim($_POST["contenu"]) . "',NOW()," . $_SESSION['idConvCourante'] . "," . $_SESSION['compte'] . ")";
+    $ajoutMessageSQL = "INSERT INTO Message (idMess,contenu,dateEnvoi,conversation,emetteur) VALUES (" . $id . ",'" . trim($_POST["message"]) . "',NOW()," . $_SESSION['idConvCourante'] . "," . $_SESSION['compte'] . ")";
     $resultAjoutMessage = $mysqli->query($ajoutMessageSQL);
     if (!$resultAjoutMessage) {
         exit($mysqli->error);
@@ -29,6 +39,10 @@ if (isset($_POST['message_submit'])) {
     // récupérer les messages de la conversation
     $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
     $resultMessage = $mysqli->query($messageSQL);
+
+    // recuperer les participants de la conversation
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
 
     unset($_POST["message_submit"]);
 }
@@ -46,17 +60,29 @@ if (isset($_POST['conv_courante'])) {
 // selectionne le mode
 if (isset($_POST['etat'])) {
     $_SESSION['etat'] = $_POST['etat'];
+    $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
+    $resultMessage = $mysqli->query($messageSQL);
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
 }
 
 // créer la conversation
 if (isset($_POST['creation_submit']) && $_POST['creation_submit'] == 1) {
     $_SESSION['etat'] = 1;
+    $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
+    $resultMessage = $mysqli->query($messageSQL);
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
     unset($_POST["creation_submit"]);
 }
 
 // ajouter des personnes
 if (isset($_POST['ajout_submit']) && $_POST['ajout_submit'] == 1) {
     $_SESSION['etat'] = 2;
+    $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
+    $resultMessage = $mysqli->query($messageSQL);
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
     unset($_POST["creation_submit"]);
 }
 
@@ -87,12 +113,16 @@ if (isset($_POST['validation_creation']) && $_POST['validation_creation'] == 1) 
     }
 
     // récuperer les conversations de l'étudiant connecté
-    $convSQL = "SELECT conversation FROM Membre WHERE etudiant = " . $_SESSION["compte"];
+    $convSQL = "SELECT Conversation.nom as nomConv, conversation.idConv as idConv FROM Membre, Conversation WHERE Membre.etudiant = " . $_SESSION["compte"] . " AND membre.conversation = conversation.idConv ";
     $resultConv = $mysqli->query($convSQL);
+
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
 
     if (!$resultConv) {
         exit($mysqli->error);
     }
+
 
     $_SESSION['idConvCourante'] = $id;
     $_SESSION['etat'] = 0;
@@ -102,6 +132,10 @@ if (isset($_POST['validation_creation']) && $_POST['validation_creation'] == 1) 
 // annuler nouvelle conversation
 if (isset($_POST['annulation_creation']) && $_POST['annulation_creation'] == 1) {
     $_SESSION['etat'] = 0;
+    $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
+    $resultMessage = $mysqli->query($messageSQL);
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
     unset($_POST["annulation_creation"]);
 }
 
@@ -130,14 +164,22 @@ if (isset($_POST['validation_ajout']) && $_POST['validation_ajout'] == 1) {
         if (!$result) {
             exit($mysqli->error);
         }
-        $_SESSION['etat'] = 0;
-        unset($_POST["validation_ajout"]);
     }
+    $_SESSION['etat'] = 0;
+    $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
+    $resultMessage = $mysqli->query($messageSQL);
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
+    unset($_POST["validation_ajout"]);
 }
 
 // annuler ajouter une personne
 if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
     $_SESSION['etat'] = 0;
+    $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
+    $resultMessage = $mysqli->query($messageSQL);
+    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
     unset($_POST["annulation_ajout"]);
 }
 
@@ -188,6 +230,7 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                 </form>
             </nav>
 
+
             <?php if ($_SESSION["etat"] == 0) { ?>
 
                 <h1>Mes conversations</h1>
@@ -208,7 +251,7 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                                         if ($message['emetteur'] == $_SESSION['compte']) { ?>
                                             <div class="message-sortant">
                                                 <h3 class="message-emetteur"><?php echo $message['prenomEmetteur'] . " " . $message['nomEmetteur'] ?></h3>
-                                                <p class="message-sortant"> <?php echo $message['contenu'] ?> </p>
+                                                <p> <?php echo $message['contenu'] ?> </p>
                                                 <h6> <?php echo $message['dateEnvoi'] ?> </h6>
                                             </div>
                                         <?php } else { ?>
@@ -221,7 +264,7 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                                     <?php } ?>
                                 <?php } ?>
                             </div>
-                            <form class="envoi-message">
+                            <form method='post' class="envoi-message">
                                 <input type="text" name="message" placeholder="Votre message">
                                 <input type="submit" value="Envoyer" name="message_submit">
                             </form>
