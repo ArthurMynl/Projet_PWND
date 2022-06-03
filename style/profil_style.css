@@ -23,7 +23,6 @@ body {
     margin-bottom: 20px;
     border-radius: 5px;
     width : 310px;
-    height: 340px;
     display : flex;
     flex-direction : column;
     align-items : center;
@@ -32,19 +31,40 @@ body {
     border: none;
 }
 
-.nom_prenom{
-    display : flex;
-    flex-direction : row;
-    align-items : center;
-    justify-content : center;
+.profil > .form { 
+    margin-top : 20px;
 }
 
-.classe{
+.profil img { 
+    width: 120px;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.donnees { 
     display : flex;
     flex-direction : column;
     align-items : center;
     justify-content : center;
 }
+
+
+.donnees > .nom { 
+    margin-top : 10px;
+    margin-bottom: 0;
+    padding : 0;
+}
+
+.donnees > .classe {
+    margin-top : 5px;
+    padding : 0;
+}
+
+.donnees > .mail {
+    margin-top : 20px;
+}
+
 
 .description{
     display : flex;
@@ -60,12 +80,13 @@ body {
     flex-direction : column;
     align-items : center;
     justify-content : center; 
+    width: 70%;
 }
 
 .article{
     color: rgb(0, 0, 0);
     background-color:  rgb(0, 255, 251);
-    width : 120%;
+    width : 100%;
     height: 15%;
     border-radius: 5px;
     border: none;
@@ -73,7 +94,8 @@ body {
 }
 
 hr{
-    margin:0px 12px;
+    width : 80%;
+    color :rgb(0, 0, 0);
 }
 
 .date_heure{

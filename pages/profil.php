@@ -46,24 +46,14 @@ $result2 = $mysqli->query($request2);
             <div class="profil">
                 <div class="informations">
                     <?php
-                    echo "<h2><img src='../assets/Unknown.jpeg" . $row["photo"] . "class='photo'></h2>";
-                    echo "<div class='form'>";
-                    echo "<div class='nom_prenom'>";
-                    echo "<h4>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
+                    echo "<h2><img src='../assets/" . $row["photo"] . "'class='photo'></h2>";
+                    echo "<div class='donnees'>";
+                    echo "<h4 class='nom'>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
+                    echo "<h4 class='classe'>" . $row["nomAnnee"] . "</h4>";
+                    echo "<h4 class='mail'>" . $row["email"] . "</h4>";
                     echo "</div>";
-                    echo "<div class='classe'>";
-                    echo "<div class='anneeScolaire'>";
-                    echo "<h4>" . $row["nomAnnee"] . "</h4>";
-                    echo "</div>";
-                    echo "<div class='email'>";
-                    echo "<h4>" . $row["email"] . "</h4>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "<p><hr noshade></p>";
-                    echo "<div class='description'>";
-                    echo "<h4>" . $row["description"] . "</h4>";
-                    echo "</div>";
-                    echo "</div>";
+                    echo "<hr noshade>";
+                    echo "<h4 class='description'>" . $row["description"] . "</h4>";
                     ?>
                 </div>
                 <div class="liste-articles">
