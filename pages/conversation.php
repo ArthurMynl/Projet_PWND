@@ -5,10 +5,11 @@ include '../includes/core.php';
 $_SESSION['etat'] = 0;
 
 // recuperer les conversations de l'étudiant connecté
-$convSQL = "SELECT Conversation.nom as nomConv, conversation.idConv as idConv FROM Membre, Conversation WHERE Membre.etudiant = " . $_SESSION["compte"] . " AND membre.conversation = conversation.idConv ";
+$convSQL = "SELECT Conversation.nom as nomConv, Conversation.idConv as idConv FROM Membre, Conversation WHERE Membre.etudiant = " . $_SESSION["compte"] . " AND Membre.conversation = Conversation.idConv ";
 $resultConv = $mysqli->query($convSQL);
 
-if(isset($_SESSION['idConvCourante'])){
+
+if (isset($_SESSION['idConvCourante'])) {
     // récupérer les messages de la conversation
     $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
     $resultMessage = $mysqli->query($messageSQL);
@@ -36,12 +37,35 @@ if (isset($_POST['message_submit'])) {
         exit($mysqli->error);
     }
 
+
     // récupérer les messages de la conversation
     $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
     $resultMessage = $mysqli->query($messageSQL);
 
     // recuperer les participants de la conversation
-    $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $participantSQL = "SELECT Etudiant.idEtu, Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
+    $resultParticipant = $mysqli->query($participantSQL);
+
+    // Notification du message à tous les membres de la conversation
+    while ($participant = $resultParticipant->fetch_assoc()) {
+        $sqlid = "SELECT MAX(idNotification)  FROM Notification";
+        $resid = $mysqli->query($sqlid);
+        if (!$resid) {
+            exit($mysqli->error);
+        }
+        $rowid = $resid->fetch_row();
+        $id = $rowid[0] + 1;
+        if ($participant['idEtu'] != $_SESSION['compte']) {
+            $sql = "INSERT INTO Notification(idNotification,idEtudiant,idEmetteur,type,dateAjout) VALUES (" . $id . "," . $participant['idEtu'] . "," . $_SESSION['compte'] . ", 'message', NOW() )";
+            $res = $mysqli->query($sql);
+            echo $sql;
+            if (!$res) {
+                exit($mysqli->error);
+            }
+        }
+    }
+    // recuperer les participants de la conversation
+    $participantSQL = "SELECT Etudiant.idEtu, Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
     $resultParticipant = $mysqli->query($participantSQL);
 
     unset($_POST["message_submit"]);
@@ -164,12 +188,27 @@ if (isset($_POST['validation_ajout']) && $_POST['validation_ajout'] == 1) {
         if (!$result) {
             exit($mysqli->error);
         }
+
+        $sqlid = "SELECT MAX(idNotification)  FROM Notification";
+        $resid = $mysqli->query($sqlid);
+        if (!$resid) {
+            exit($mysqli->error);
+        }
+        $rowid = $resid->fetch_row();
+        $id = $rowid[0] + 1;
+        $sql = "INSERT INTO Notification(idNotification,idEtudiant,idEmetteur,type,dateAjout) VALUES (" . $id . "," . $row['idEtu'] . ", NULL, 'nouveau groupe' , NOW() )";
+
+        $res = $mysqli->query($sql);
+        if (!$res) {
+            exit($mysqli->error);
+        }
     }
     $_SESSION['etat'] = 0;
     $messageSQL = "SELECT contenu, Etudiant.nom as nomEmetteur, Etudiant.prenom as prenomEmetteur, emetteur, dateEnvoi FROM Message, Etudiant WHERE Message.emetteur = Etudiant.idEtu AND conversation = " . $_SESSION['idConvCourante'] . " ORDER BY dateEnvoi ASC";
     $resultMessage = $mysqli->query($messageSQL);
     $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
     $resultParticipant = $mysqli->query($participantSQL);
+
     unset($_POST["validation_ajout"]);
 }
 
@@ -213,8 +252,8 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                         <li> <a href="edit_profil.php">Editer profil</a> </li>
                         <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="amis.php">Amis</a> </li>
-                        <?php
-                        echo "<li> <a href='liste_conversation.php?id=" . $_SESSION["compte"] . "' class='active'> Conversation </a> </li>"; ?>
+                        <li> <a href="conversation.php" class='active'> Conversation </a> </li>
+                        <li> <a href="notification.php"> Notification </a> </li>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
