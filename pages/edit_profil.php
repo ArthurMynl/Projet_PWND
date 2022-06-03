@@ -2,11 +2,11 @@
 
 include '../includes/core.php';
 
-$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION['compte'];
+$request = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, `description`, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION['compte'];
 $result = $mysqli->query($request);
 
-$request2 = "SELECT etudiant.motDePasse FROM Etudiant WHERE idEtu = '" . $_SESSION['compte'] . "'";
-$result2 = $mysqli->query($request2);
+$request_pwd = "SELECT motDePasse FROM Etudiant WHERE idEtu=" . $_SESSION['compte'];
+$result_pwd = $mysqli->query($request_pwd);
 
 if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
 
@@ -15,36 +15,39 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
     $anneeScolaire = $_POST['annees'];
     $login = $_POST['login'];
     $old_pwd = $_POST['old_password'];
-    $password = $_POST['password'];
-    $pwd_confirm = $_POST['password_confirm'];
+    $new_pwd = $_POST['password'];
+    $confirm_pwd = $_POST['password_confirm'];
+    $result_old_pwd = $result_pwd->fetch_assoc();
 
     if(isset($nom) && trim($nom) != '') {
-        $requestNom = "UPDATE Etudiant SET nom = '" . $nom . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $requestNom = "UPDATE Etudiant SET nom = '" . $nom . "' WHERE idEtu = " . $_SESSION['compte'];
         $resultNom = $mysqli->query($requestNom);
     }
 
     if(isset($prenom) && trim($prenom) != '') {
-        $requestPrenom = "UPDATE Etudiant SET prenom = '" . $prenom . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $requestPrenom = "UPDATE Etudiant SET prenom = '" . $prenom . "' WHERE idEtu = " . $_SESSION['compte'];
         $resultPrenom = $mysqli->query($requestPrenom);
     }
 
     if(isset($anneeScolaire) && trim($anneeScolaire) != '') {
-        $requestAS = "UPDATE Etudiant SET anneeScolaire = '" . $anneeScolaire . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $requestAS = "UPDATE Etudiant SET anneeScolaire='" . $anneeScolaire . "' WHERE idEtu=" . $_SESSION['compte'];
         $resultAS = $mysqli->query($requestAS);
     }
 
     if(isset($login) && trim($login) != '') {
-        $requestLogin = "UPDATE Etudiant SET email = '" . $login . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
+        $requestLogin = "UPDATE Etudiant SET email = '" . $login . "' WHERE idEtu = " . $_SESSION['compte'];
         $resultLogin = $mysqli->query($requestLogin);
     }
 
-    if(isset($old_pwd) && trim($old_pwd) != '' && isset($password) && trim($password) != '' && isset($pwd_confirm) && trim($pwd_confirm) != '' && $result2 == $old_pwd && $password == $pwd_confirm) {
-        $requestPwd= "UPDATE Etudiant SET motDePasse = '" . $password . "' WHERE idEtu = '" . $_SESSION['compte'] . "'";
-        $resultPwd = $mysqli->query($requestPwd);
+    if(isset($old_pwd) && trim($old_pwd)!='' && $old_pwd==$result_old_pwd['motDePasse']) {
+        if(isset($new_pwd) && trim($new_pwd)!='' && isset($confirm_pwd) && trim($confirm_pwd)!='' && $new_pwd==$confirm_pwd) {
+            $requestPwd="UPDATE Etudiant SET motDePasse='" . $new_pwd . "' WHERE idEtu='" . $_SESSION['compte'] . "'";
+            $resultPwd = $mysqli->query($requestPwd);
+        }
     }
 
-    $requestRefresh = "SELECT etudiant.nom as nomEtudiant, prenom, email, photo, description, anneeScolaire.nom as nomAnnee FROM etudiant, anneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION["compte"];
-    $resultRefresh = $mysqli->query($requestRefresh);
+    header("Location: edit_profil.php");
+    exit;
 
 }
 
