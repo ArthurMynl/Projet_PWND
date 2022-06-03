@@ -43,19 +43,15 @@ else {
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
-<<<<<<< HEAD
-                    <li> <img src="../assets/logo.png" class="logo"> </li>
+                    <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
-                    <li> <a href="amis.php" class="active">Amis</a> </li>
+                    <?php if ($_SESSION["compte"]) {
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>"; ?>
+                    <li> <a href="articles.php">Publier un article</a> </li>
+                    <li> <a href="Amis.php" class="active">Amis</a> </li>
                     <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
-=======
-                    <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="./accueil.php">Accueil</a> </li>
-                    <li> <a href="./etudiants.php">Etudiants</a> </li>
-                    <li> <a href="./Amis.php" class="active">Amis</a> </li>
-                    <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
->>>>>>> ec356d9776cf0946c61de68649307e5c8ccc6ac2
+                    <?php } ?>
                 </ul>
             </nav>
 
