@@ -232,8 +232,6 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
 
 
             <?php if ($_SESSION["etat"] == 0) { ?>
-
-                <h1>Mes conversations</h1>
                 <div id="liste-conversations">
                     <?php while ($conversation = $resultConv->fetch_assoc()) { ?>
                         <form method='post'>
@@ -243,6 +241,7 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                 </div>
                 <?php if (isset($_SESSION['idConvCourante'])) { ?>
                     <div class="conversation">
+                        <h1>Mes conversations</h1>
                         <div class='page-messages'>
                             <div class="messages">
                                 <?php
