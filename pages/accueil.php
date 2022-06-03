@@ -36,9 +36,9 @@ $result = $mysqli->query($sql);
                         <?php
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
                         ?>
-                        <li> <a href="edit_profil.php">Editer profil</a> </li>
-                        <li> <a href="articles.php">Publier un article</a> </li>
-                        <li> <a href="amis.php">Amis</a> </li>
+                        <li> <a href="./edit_profil.php">Editer profil</a> </li>
+                        <li> <a href="./articles.php">Publier un article</a> </li>
+                        <li> <a href="./Amis.php">Amis</a> </li>
                         <?php
                         echo "<li> <a href='liste_conversation.php?id=" . $_SESSION["compte"] . "'> Conversation </a> </li>"; ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>

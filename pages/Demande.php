@@ -30,7 +30,9 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Demande d'ami</title>
-    <link rel="stylesheet" href="../style/index_style.css">
+    <link rel="stylesheet" href="../style/demande_style.css">
+    <link rel="stylesheet" href="../style/footer_style.css">
+    <link rel="stylesheet" href="../style/navbar_style.css">
 ,</head>
 
 <body>
@@ -40,13 +42,23 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" class="logo"> </li>
-                    <li> <a href="index.php">Accueil</a> </li>
-                    <li> <a href="etudiants.php">Étudiants</a> </li>
-                    <li> <a href="amis.php" class="active">Amis</a> </li>
+                    <li> <a href="./index.php">Accueil</a> </li>
+                    <li> <a href="./etudiants.php">Étudiants</a> </li>
+                    <li> <a href="./Amis.php" class="active">Amis</a> </li>
                     <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                 </ul>
             </nav>
+            <nav class="small-nav">
+                <ul>
+                    <li> <a href="./Amis.php" >Amis </a> </li>
+                    <li> <a href="./Demande.php" class="active">Nombre de demandes : <?php echo $nbDemandes; ?> </a> </li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" name = "amis" type="search" placeholder="Rechercher un ami" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" values = 1 name= "rechercher_amis_submit" type="submit">Valider</button>
+                    </form>                
 
+                </ul>
+            </nav>
             <h1><?php echo "Liste d'amis" ?></h1>
             <nav class="navbar">
                 <ul>
@@ -54,7 +66,7 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     <li> <a href="./Demande.php" class="active">Demande en cours</a> </li>
                     <li> 
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" name= "amis" placeholder="Rechercher un ami" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" name= "amis" id = "amis" placeholder="Rechercher un ami" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" values = 1 name= "rechercher_amis_submit" type="submit">Valider</button>
                      </form>                  
                 </ul>
@@ -85,7 +97,7 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                 ?>
             <ul>
                 <li>
-                    <button type="submit" value="1" name="Attente_submit"> Supprimer requête </button>
+                    <button type="submit" value="1" name="attente_submit"> Supprimer requête </button>
                 </li>
             </ul>
             <?php
