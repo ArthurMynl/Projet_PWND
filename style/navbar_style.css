@@ -7,6 +7,7 @@
 .navbar {
     background-color: rgb(96, 93, 241);
     padding: 0px;
+    width: 100%;
 }
 
 .navbar>ul {
