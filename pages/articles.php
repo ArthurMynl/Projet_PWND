@@ -7,6 +7,7 @@ ini_set("upload_max_filesize", "100000M");
 ini_set("memory_limit", -1);
 
 $nomOrigine = $_POST['file'];
+$directionFichier = pathinfo($nomOrigine, PATHINFO_DIRNAME);
 $extensionFichier = pathinfo($nomOrigine, PATHINFO_EXTENSION);
 $extensionsAutorisees = array("jpeg", "jpg", "gif", "png");
 
@@ -14,9 +15,28 @@ if (!(in_array($extensionFichier, $extensionsAutorisees))) {
     $valid = false;
 } else {
     $valid = true;
-    $MESSAGE_VALID = "Le fichier a correctement été upload";
 
-    $repertoireDestination = dirname(__FILE__) . "/";
+
+
+    // $uploaddir = '/var/www/assets/';
+    // $uploadfile = $uploaddir . basename($_POST['file']['name']);
+
+    // echo '<pre>';
+    // if (move_uploaded_file($_POST['userfile']['tmp_name'], $uploadfile)) {
+    //     echo "Le fichier est valide, et a été téléchargé
+    //         avec succès. Voici plus d'informations :\n";
+    // } else {
+    //     echo "Attaque potentielle par téléchargement de fichiers.
+    //         Voici plus d'informations :\n";
+    // }
+
+    // echo 'Voici quelques informations de débogage :';
+    // print_r($_FILES);
+
+    // echo '</pre>';
+
+
+    $repertoirePhoto = dirname(__FILE__) . "/";
     $nomDestination = "file_" . date("YmdHis") . "." . $extensionFichier;
 
     // on récupère les infos du fichier à uploader
@@ -29,14 +49,16 @@ if (!(in_array($extensionFichier, $extensionsAutorisees))) {
 
     if (move_uploaded_file(
         $_POST["file"]["tmp_name"],
-        $repertoireDestination . $file_n_nom
+        $repertoirePhoto . $file_n_nom
     )) {
-        echo "Le fichier temporaire " . $_POST["file"]["tmp_name"] .
-            " a été déplacé vers " . $repertoireDestination . $file_n_nom;
+        // echo "Le fichier temporaire " . $_POST["file"]["tmp_name"] .
+        //     " a été déplacé vers " . $repertoireDestination . $file_n_nom;
+        echo "" . $repertoirePhoto;
     } else {
-        echo "Le fichier n'a pas été uploadé (trop gros ?) ou " .
-            "Le déplacement du fichier temporaire a échoué" .
-            " vérifiez l'existence du répertoire " . $repertoireDestination . $file_n_nom;
+        // echo "Le fichier n'a pas été uploadé (trop gros ?) ou " .
+        //     "Le déplacement du fichier temporaire a échoué" .
+        //     " vérifiez l'existence du répertoire " . $repertoireDestination . $file_n_nom;
+        echo "" . $nomOrigine;
     }
 }
 
@@ -123,7 +145,7 @@ if (isset($_POST["close"])) {
                     <h2> Aperçu dernier article </h2>
                     <form method="post">
                         <h4> <?php echo $_POST["contenu"] ?></h4>
-                        <?php echo '<img src="' . $repertoireDestination . $file_n_nom . '">'; ?>
+                        <?php echo '<img src="' . $_FILES['file'] . '">'; ?>
                         <h4> <?php echo $_POST["visibilite"] ?></h4>
                         <?php
                         ini_set('date.timezone', 'Europe/Paris');
