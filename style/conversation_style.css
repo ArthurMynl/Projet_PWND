@@ -1,0 +1,196 @@
+body {
+    margin: 0;
+}
+
+#container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 4rem;
+}
+
+.small-nav {
+    position: sticky;
+    top: 10%;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 50px;
+    border: none;
+    background: rgba(202, 202, 214, 0.8);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(127, 125, 255, 0.3);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.small-nav>form>ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.small-nav>form>ul>li {
+    list-style-type: none;
+}
+
+.small-nav>form>ul>li>button {
+    background: rgba(202, 202, 214, 0.8);
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.creation-conversation {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : space-between;
+    background-color : #7F7DFF;
+    border-radius : 10px;
+    padding : 1rem;
+    width : 60%;
+    margin-left : 20%;
+}
+
+.creation-conversation>form {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : space-around;
+    background-color : #7F7DFF;
+    border-radius : 10px;
+    padding : 1rem;
+    width : 100%;
+    flex-wrap: wrap;
+}
+
+
+.creation-conversation>form>input {
+    border-radius : 50px;
+    border : none;
+    padding-left : 10px;
+    padding-right : 10px;
+    margin-right : 1rem;
+    margin-bottom : 0.5rem;
+    width : 80%;
+    height : 50px
+}
+
+.creation-conversation>form>.boutons {
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : space-around;
+}
+
+
+.creation-conversation>form>.boutons>button {
+    border-radius : 50px;
+    border : none;
+    padding-left : 10px;
+    padding-right : 10px;
+    margin-right : 2rem;
+    margin-left : 2rem;
+    margin-top: 20px;
+    width: 100px;
+    height : 30px;
+    background-color: rgb(112, 110, 241);
+}
+
+.ajout-personne {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : space-between;
+    background-color : #7F7DFF;
+    border-radius : 10px;
+    padding : 1rem;
+    width : 60%;
+    margin-left : 20%;
+}
+
+.ajout-personne>form {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : space-around;
+    background-color : #7F7DFF;
+    border-radius : 10px;
+    padding : 1rem;
+    width : 100%;
+    flex-wrap: wrap;
+}
+
+
+.ajout-personne>form>input {
+    border-radius : 50px;
+    border : none;
+    padding-left : 10px;
+    padding-right : 10px;
+    margin-right : 1rem;
+    margin-bottom : 0.5rem;
+    width : 80%;
+    height : 50px
+}
+
+.ajout-personne>form>.boutons {
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : space-around;
+}
+
+
+.ajout-personne>form>.boutons>button {
+    border-radius : 50px;
+    border : none;
+    padding-left : 10px;
+    padding-right : 10px;
+    margin-right : 2rem;
+    margin-left : 2rem;
+    margin-top: 20px;
+    width: 100px;
+    height : 30px;
+    background-color: rgb(112, 110, 241);
+}
+
+
+#liste-conversations {
+    display : flex;
+    flex-direction : row;
+}
+
+#liste-conversations > form > button {
+    background-color : #7F7DFF;
+    border-radius : 10px;
+    border : none;
+    padding-left : 10px;
+    padding-right : 10px;
+    margin-right : 10px;
+    margin-top: 20px;
+    width: 150px;
+    height : 50px;
+}
+
+.conversation {
+    display : flex;
+    flex-direction : row;
+    align-items : top;
+    justify-content : space-around;
+}
+
+.conversation > .page-messages {
+    display : flex;
+    flex-direction: column;
+    align-items : center;
+}

@@ -29,7 +29,7 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Liste d'amis</title>
+    <title>Demande d'ami</title>
     <link rel="stylesheet" href="../style/index_style.css">
 ,</head>
 
@@ -40,10 +40,10 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" class="logo"> </li>
-                    <li> <a href="./index.php">Accueil</a> </li>
-                    <li> <a href="./etudiants.php">Etudiants</a> </li>
-                    <li> <a href="./Amis.php" class="active" >Amis</a> </li>
-                    <li> <a href="./index.php?logout=1">Deconnexion</a> </li>
+                    <li> <a href="index.php">Accueil</a> </li>
+                    <li> <a href="etudiants.php">Étudiants</a> </li>
+                    <li> <a href="amis.php" class="active">Amis</a> </li>
+                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                 </ul>
             </nav>
 
@@ -75,6 +75,12 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
                     echo $row["prenom"]." ";
                     echo $row["statut"];
                     echo "<br>";
+                    echo "<button type='submit' value='1' name='supp_submit'> Supprimer requête</button>";
+                }
+                if (isset($_POST["supp_submit"]) && $_POST["supp_submit"] == 1) {
+                    $sql = "DELETE etudiant, amis, dateAjout, statut
+                    FROM Amis, Etudiant e, Etudiant a
+                    WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'en attente' AND e.idEtu= '".$_SESSION["compte"]."'";
                 }
                 ?>
             <ul>

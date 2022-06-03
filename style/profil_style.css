@@ -31,24 +31,24 @@ h1 {
     justify-content: center;
 }
 
-.corps > .profil > .form {
-    display : flex;
-    flex-direction : column;
+.corps>.profil>.form {
+    display: flex;
+    flex-direction: column;
 }
 
 .corps>.profil {
     color: white;
 }
 
-.corps > .profil > .infos{
+.corps>.profil>.infos {
     position: relative;
     top: -50px;
     border-spacing: 0px;
 }
 
-.corps > .profil > .informations{
-    background-color:  rgb(96,93,241);
-    padding : 30px;
+.corps>.profil>.informations {
+    background-color: rgb(96, 93, 241);
+    padding: 30px;
 
     border-radius: 25px;
     width: 500px;
@@ -58,14 +58,26 @@ h1 {
     border-width: 5px;
 }
 
-.news1, .news2, .news3{
+.corps>.profil>.infos {
+    background-color: rgb(94, 53, 166);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 25px;
+    width: 400px;
+    margin: 10px;
+}
+
+.news1,
+.news2,
+.news3 {
     color: black;
-    background-color:  rgb(255, 255, 255);
-    display : flex;
-    flex-direction : column;
-    padding : 30px;
-    width : 400px;
-    margin : 10px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 400px;
+    margin: 10px;
 
     border-style: outset;
     border-width: 5px;
@@ -83,31 +95,37 @@ h2 {
     justify-content: center;
 }
 
-.classe{
-    display : flex;
-    flex-direction : column;
-    align-items : center;
-    justify-content : center;
-    margin-top : -10px;
+.classe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -10px;
 }
 
-.anneeScolaire{
+.anneeScolaire {
     position: relative;
     top: -25px;
 }
 
-.description{
-    display : flex;
-    flex-direction : row;
-    align-items : center;
-    justify-content : center;
+.description {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.nom{
-    margin-right : 60px;
+.nom {
+    margin-right: 60px;
+}
+
+.biographie {
+    font-family: italic;
+    margin-top: -30px;
 }
 
 .photo {
-    width : 15%;
+    width: 30%;
     border-radius: 50%;
+    margin: 10px;
 }
