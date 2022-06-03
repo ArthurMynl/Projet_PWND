@@ -69,6 +69,10 @@ $result_notif = $mysqli->query($request_notif);
                         echo "<div class='description'>";
                         echo "<h4> Description : " . $row["description"] . "</h4>";
                         echo "</div>";
+                        echo "<hr>";
+                        echo "<div class='mettreAJourProfil'>";
+                        echo "<a href='edit_profil.php'>Mettre à jour le profil</a>";
+                        echo "</div>";
                         echo "</div>";
                         ?>
                     </div>

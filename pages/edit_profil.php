@@ -46,7 +46,7 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
         }
     }
 
-    header("Location: edit_profil.php");
+    header("Location: profil.php?id=" . $_SESSION['compte']);
     exit;
 
 }
