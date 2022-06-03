@@ -9,12 +9,12 @@ body {
     min-height: 100vh;
 }
 
-
 #content-wrap {
     padding-bottom: 4rem;
 }
 
 .small-nav {
+    color: white;
     position: sticky;
     top: 10%;
     width: 60%;
@@ -23,7 +23,7 @@ body {
     margin-bottom: 2rem;
     border-radius: 50px;
     border: none;
-    background: rgba(202, 202, 214, 0.8);
+    background: rgba(127, 125, 255, 0.8);
     border-radius: 50px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -45,7 +45,7 @@ body {
 }
 
 .small-nav>ul>li>a {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 

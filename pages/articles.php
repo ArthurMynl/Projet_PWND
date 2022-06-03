@@ -84,6 +84,7 @@ if (isset($_POST["close"])) {
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
+
          <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>

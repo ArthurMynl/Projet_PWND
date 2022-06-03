@@ -38,6 +38,7 @@ $result_notif = $mysqli->query($request_notif);
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
+
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) {

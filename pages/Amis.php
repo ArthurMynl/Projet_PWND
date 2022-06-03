@@ -3,6 +3,23 @@
 include "../includes/core.php";
 $_TITRE_PAGE = "Amis RS ESEO";
 
+
+if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] == 1) {
+	$sql = "SELECT a.nom,a.prenom FROM Amis,Etudiant e, Etudiant a 
+	WHERE e.idEtu = '".$SESSION['compte']." AND Amis.etudiant = e.idEtu
+    AND Amis.amis = a.idEtu 
+    AND a.prenom = '" .trim($_POST['amis'])." AND a.nom = '" .trim($_POST['amis'])."";
+	
+    $result = $mysqli->query($sql);
+    if (!$result) {
+        exit($mysqli->error);
+    }
+    while ($row=$result -> fetch_array()){
+        echo $row["prenom"]." ";
+        echo $row["nom"];
+        echo "<br>";
+    }
+
 $sql = "SELECT statut, a.prenom, a.nom, a.photo, a.email, a.idEtu, AnneeScolaire.nom as nomAnnee, a.description
                 FROM Amis, Etudiant e, Etudiant a, AnneeScolaire
                 WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'valide' AND idAnneeScolaire = a.anneeScolaire AND e.idEtu= '" . $_SESSION["compte"] . "'";
@@ -53,14 +70,13 @@ else {
 
             <nav class="small-nav">
                 <ul>
-                    <li> <a href="./Amis.php">Amis</a> </li>
+                    <li> <a href="./Amis.php" class="active">Amis </a> </li>
                     <li> <a href="./Demande.php">Nombre de demandes : <?php echo $nbDemandes; ?> </a> </li>
-                    <li>
-                        <form class="recherche" type="search">
-                            <input type="search" placeholder="Rechercher un ami">
-                            <button type="submit">Valider</button>
-                        </form>
-                    </li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" name = "amis" type="search" placeholder="Rechercher un ami" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" values = 1 name= "rechercher_amis_submit" type="submit">Valider</button>
+                    </form>                
+
                 </ul>
             </nav>
             <h1>Vos amis</h1>
@@ -78,6 +94,7 @@ else {
                     echo "</div>";
                 }
                 ?>
+
             </div>
         </div>
         <footer>

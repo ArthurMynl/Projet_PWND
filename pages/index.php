@@ -138,6 +138,7 @@ if (isset($_SESSION["compte"])) {
                             <div class="selecteur">
                                 <label class="etiquette-annee"> Année Scolaire </label>
                                 <select name="annees" id="annees">
+
                                     <option value="" disabled selected>-- Choisissez --</option>
                                     <option value="1"> E1</option>
                                     <option value="2"> E2</option>

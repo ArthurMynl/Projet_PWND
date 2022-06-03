@@ -71,6 +71,7 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
+
                     <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>

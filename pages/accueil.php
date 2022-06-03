@@ -42,7 +42,6 @@ $result = $mysqli->query($sql);
                         <?php
                         echo "<li> <a href='liste_conversation.php?id=" . $_SESSION["compte"] . "'> Conversation </a> </li>"; ?>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
-
                     <?php } ?>
                 </ul>
             </nav>
