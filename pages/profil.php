@@ -42,9 +42,9 @@ $result_notif = $mysqli->query($request_notif);
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) {
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>"; ?>
-                    <li> <a href="articles.php">Publier un article</a> </li>
-                    <li> <a href="Amis.php">Amis</a> </li>
-                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+                        <li> <a href="articles.php">Publier un article</a> </li>
+                        <li> <a href="Amis.php">Amis</a> </li>
+                        <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
@@ -69,10 +69,12 @@ $result_notif = $mysqli->query($request_notif);
                         echo "<div class='description'>";
                         echo "<h4> Description : " . $row["description"] . "</h4>";
                         echo "</div>";
-                        echo "<hr>";
-                        echo "<div class='mettreAJourProfil'>";
-                        echo "<a href='edit_profil.php'>Mettre à jour le profil</a>";
-                        echo "</div>";
+                        if (isset($_SESSION["compte"]) && $_GET["id"]==$_SESSION["compte"]) {
+                            echo "<hr>";
+                            echo "<div class='mettreAJourProfil'>";
+                            echo "<a href='edit_profil.php'>Mettre à jour le profil</a>";
+                            echo "</div>";
+                        }
                         echo "</div>";
                         ?>
                     </div>

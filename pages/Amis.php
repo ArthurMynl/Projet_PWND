@@ -48,9 +48,9 @@ else {
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) {
                         echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>"; ?>
-                    <li> <a href="articles.php">Publier un article</a> </li>
-                    <li> <a href="Amis.php" class="active">Amis</a> </li>
-                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+                        <li> <a href="articles.php">Publier un article</a> </li>
+                        <li> <a href="Amis.php" class="active">Amis</a> </li>
+                        <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
