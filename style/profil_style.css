@@ -8,45 +8,26 @@ body {
     background-color:  rgb(17, 80, 99);
 }
 
-/* @keyframes bgcolor {
-    0% {
-        background-color: #45a3e5
-    }
-
-    30% {
-        background-color: #66bf39
-    }
-
-    60% {
-        background-color: #eb670f
-    }
-
-    90% {
-        background-color: #f35
-    }
-
-    100% {
-        background-color: #864cbf
-    }
-} */
-
-.corps {
-    align-items: center;
-}
-
-.corps > .profil > .form {
+.profil{
     display : flex;
+    align-items : center;
+    justify-content : center; 
     flex-direction : column;
 }
 
-.corps > .profil > .informations{
+.profil > .informations{
     color: rgb(0, 0, 0);
     background-color:  rgb(0, 255, 251);
     padding : 30px;
     margin-top: 50px;
+    margin-bottom: 20px;
     border-radius: 5px;
     width : 310px;
     height: 340px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center; 
     text-align: center;     
     border: none;
 }
@@ -63,12 +44,6 @@ body {
     flex-direction : column;
     align-items : center;
     justify-content : center;
-    margin-top : -10px;
-}
-
-.anneeScolaire{
-    position: relative;
-    top: -25px;
 }
 
 .description{
@@ -77,46 +52,41 @@ body {
     text-align: center;
     justify-content : center;
     font-size: 15px;
-    margin: 20px 40px 0px 40px;
+    padding: 0px 25px; 
+}
+
+.liste-articles{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center; 
+}
+
+.article{
+    color: rgb(0, 0, 0);
+    background-color:  rgb(0, 255, 251);
+    width : 120%;
+    height: 15%;
+    border-radius: 5px;
+    border: none;
+    margin: 20px;
 }
 
 hr{
-    margin: -30px 20px -20px 20px;
-}
-
-.corps > .profil > .bg {
-    background-color:  rgb(17, 80, 99);
-    width : 1000;
-    height: 1000px;
-}
-
-.corps > .profil > .infos {
-    color: rgb(0, 0, 0);
-    background-color:  rgb(0, 255, 251);
-    width : 170%;
-    margin-top : 50px;
-    margin-bottom : 50px;
-    border-radius: 5px;
-    position: relative;
-    left: -125px;
-    border: none;
-
+    margin:0px 12px;
 }
 
 .date_heure{
     display: flex;
     align-items: flex-end;
     justify-content : flex-end;
-    position: relative;
-    left: -8px;
     font-size: 10px;
+    padding: 8px;
 }
 
-.article > .contenu{
+.liste-articles>.article > .contenu{
     display: flex;
-    align-items: center;
     justify-content : center;
     text-align: center;
-    position: relative;
-    top: -30px;
+    margin-bottom: 40px;
 }
