@@ -106,15 +106,14 @@ if (isset($_POST["close"])) {
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="/pages/index.php">Accueil</a> </li>
-                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
-                    <?php if ($_SESSION["compte"]) { ?>
-                        <?php
-                        echo "<li><a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        echo "<li><a href='edit_profil.php?id=" . $_SESSION["compte"] . "'>Mettre à jour le profil</a></li>";
-                        echo "<li><a href='articles.php?id=" . $_SESSION["compte"] . "' class='active'>Publier un article</a> </li>";
-                        ?>
-                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+                    <li> <a href="index.php">Accueil</a> </li>
+                    <li> <a href="etudiants.php">Étudiants</a> </li>
+                    <?php if ($_SESSION["compte"]) {
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>"; ?>
+                    <li> <a href="edit_profil.php">Mettre à jour le profil</a> </li>
+                    <li> <a href="articles.php" class="active">Publier un article</a> </li>
+                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>

@@ -68,7 +68,9 @@ h1 {
     margin: 10px;
 }
 
-.news1, .news2, .news3{
+.news1,
+.news2,
+.news3 {
     color: black;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -106,11 +108,11 @@ h2 {
     top: -25px;
 }
 
-.description{
-    display : flex;
-    flex-direction : row;
-    align-items : center;
-    justify-content : center;
+.description {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .nom {
