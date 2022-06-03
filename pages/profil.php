@@ -6,15 +6,9 @@ $request = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, descriptio
 $result = $mysqli->query($request);
 $row = $result->fetch_assoc();
 
-$request2 = "SELECT Article.auteur, Article.contenu FROM Article, Etudiant WHERE Etudiant.idEtu = Article.auteur AND idEtu =" . $_GET['id'];
+$request2 = "SELECT Article.contenu, Article.media, TIME(Article.dateCreation) as heure,
+DATE(Article.dateCreation) as ladate FROM Etudiant, Article WHERE Article.auteur =" . $_GET['id'] . " AND Article.auteur = Etudiant.idEtu ORDER BY DATE(Article.dateCreation) ASC" ;
 $result2 = $mysqli->query($request2);
-$row2 = $result2->fetch_assoc();
-
-$request_notif = "SELECT COUNT(idNotification) as nbNotification, dateNotification, typeNotification, emetteur.nom, emetteur.prenom, emetteur.idEtu, emetteur.photo
-                  FROM Notification, Etudiant receveur, Etudiant emetteur
-                  WHERE idEtudiant =" . $_SESSION["compte"] . " AND idEtudiant = receveur.idEtu";
-
-$result_notif = $mysqli->query($request_notif);
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +21,8 @@ $result_notif = $mysqli->query($request_notif);
     <title>Profil</title>
     <link rel="stylesheet" href="../style/index_style.css">
     <link rel="stylesheet" href="../style/navbar_style.css">
-    <link rel="stylesheet" href="../style/profil_style.css">
     <link rel="stylesheet" href="../style/footer_style.css">
+    <link rel="stylesheet" href="../style/profil_style.css">
 </head>
 
 <body>
@@ -49,48 +43,48 @@ $result_notif = $mysqli->query($request_notif);
                     <?php } ?>
                 </ul>
             </nav>
-            <div class="corps">
-                <div class="profil">
-                    <div class="informations">
-                        <?php
-                        echo "<h2><img src='../assets/" . $row["photo"] . "'alt='profil' class='photo'></h2>";
-                        echo "<hr>";
-                        echo "<div class='form'>";
-                        echo "<div class='nom_prenom'>";
-                        echo "<h4>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
-                        echo "</div>";
-                        echo "<hr>";
-                        echo "<div class='classe'>";
-                        echo "<h4> Adresse Mail : " . $row["email"] . "</h4>";
-                        echo "<div class='anneeScolaire'>";
-                        echo "<h4> Année Scolaire : " . $row["nomAnnee"] . "</h4>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "<hr>";
-                        echo "<div class='description'>";
-                        echo "<h4> Description : " . $row["description"] . "</h4>";
-                        echo "</div>";
-                        echo "</div>";
-                        ?>
-                    </div>
-                    <div class="infos">
-                        <?php
-                        echo "<div class='news1'>";
-                        echo "<h5> Dernières article </h5>";
-                        echo "<p> Article : " . $row2["contenu"] . "</p>";
-                        echo "</div>";
-                        echo "<div class='news2'>";
-                        echo "<h5> Avant dernier article </h5>";
-                        echo "<p> Article : " . $row2["contenu"] . "</p>";
-                        echo "</div>";
-                        echo "<div class='news3'>";
-                        echo "<h5> Avant avant dernier article </h5>";
-                        echo "<p> Article : " . $row2["contenu"] . "</p>";
-                        echo "</div>";
-                        ?>
-                    </div>
+            <div class="profil">
+                <div class="informations">
+                    <?php
+                    echo "<h2><img src='../assets/Unknown.jpeg" . $row["photo"] . "class='photo'></h2>";
+                    echo "<div class='form'>";
+                    echo "<div class='nom_prenom'>";
+                    echo "<h4>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
+                    echo "</div>";
+                    echo "<div class='classe'>";
+                    echo "<div class='anneeScolaire'>";
+                    echo "<h4>" . $row["nomAnnee"] . "</h4>";
+                    echo "</div>";
+                    echo "<div class='email'>";
+                    echo "<h4>" . $row["email"] . "</h4>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "<p><hr noshade></p>";
+                    echo "<div class='description'>";
+                    echo "<h4>" . $row["description"] . "</h4>";
+                    echo "</div>";
+                    echo "</div>";
+                    ?>
                 </div>
-
+                <div class="liste-articles">
+                <?php
+                    while($row2 = $result2->fetch_assoc()){
+                        echo "<div class='article'>";
+                        echo "<div class='media_date'>";
+                        echo "<div class='date_heure'>";
+                        echo "<p> Le " . $row2["ladate"] . " à " . $row2["heure"] . "</p>";
+                        echo "</div>";
+                        // echo "<img src='../assets/Unknown.jpeg" . $row["photo"] . ">";
+                        // echo "<div class='media'>";
+                        // echo "</div>";
+                        echo "</div>";
+                        echo "<div class='contenu'>";
+                        echo "<p>" . $row2["contenu"] . "</p>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                ?> 
+                </div> 
             </div>
         </div>
         <!-- create the footer -->

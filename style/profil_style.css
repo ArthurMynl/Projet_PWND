@@ -5,127 +5,88 @@ body {
     animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
+    background-color:  rgb(17, 80, 99);
 }
 
-h1 {
-    color: grey;
+.profil{
+    display : flex;
+    align-items : center;
+    justify-content : center; 
+    flex-direction : column;
+}
+
+.profil > .informations{
+    color: rgb(0, 0, 0);
+    background-color:  rgb(0, 255, 251);
+    padding : 30px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    width : 310px;
+    height: 340px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center; 
+    text-align: center;     
+    border: none;
+}
+
+.nom_prenom{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : center;
+}
+
+.classe{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center;
+}
+
+.description{
+    display : flex;
+    flex-direction : row;
     text-align: center;
-    margin: 80px 0px 40px;
-    font-family: "Bahnschrift Light";
+    justify-content : center;
+    font-size: 15px;
+    padding: 0px 25px; 
 }
 
-.corps {
+.liste-articles{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center; 
+}
+
+.article{
+    color: rgb(0, 0, 0);
+    background-color:  rgb(0, 255, 251);
+    width : 120%;
+    height: 15%;
+    border-radius: 5px;
+    border: none;
+    margin: 20px;
+}
+
+hr{
+    margin:0px 12px;
+}
+
+.date_heure{
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 100px;
-    position: relative;
-    left: -70px;
+    align-items: flex-end;
+    justify-content : flex-end;
+    font-size: 10px;
+    padding: 8px;
 }
 
-.profil {
+.liste-articles>.article > .contenu{
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.corps>.profil>.form {
-    display: flex;
-    flex-direction: column;
-}
-
-.corps>.profil {
-    color: white;
-}
-
-.corps>.profil>.infos {
-    position: relative;
-    top: -50px;
-    border-spacing: 0px;
-}
-
-.corps>.profil>.informations {
-    background-color: rgb(96, 93, 241);
-    padding: 30px;
-
-    border-radius: 25px;
-    width: 500px;
-    margin: 10px 100px;
+    justify-content : center;
     text-align: center;
-    border-style: outset;
-    border-width: 5px;
-}
-
-.corps>.profil>.infos {
-    background-color: rgb(94, 53, 166);
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    border-radius: 25px;
-    width: 400px;
-    margin: 10px;
-}
-
-.news1,
-.news2,
-.news3 {
-    color: black;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    width: 400px;
-    margin: 10px;
-
-    border-style: outset;
-    border-width: 5px;
-    text-align: center;
-}
-
-h2 {
-    margin-bottom: 60px;
-}
-
-.nom_prenom {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.classe {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: -10px;
-}
-
-.anneeScolaire {
-    position: relative;
-    top: -25px;
-}
-
-.description {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.nom {
-    margin-right: 60px;
-}
-
-.biographie {
-    font-family: italic;
-    margin-top: -30px;
-}
-
-.photo {
-    width: 30%;
-    border-radius: 50%;
-    margin: 10px;
+    margin-bottom: 40px;
 }
