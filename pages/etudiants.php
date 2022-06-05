@@ -46,7 +46,7 @@ include '../includes/core.php'
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='info-etudiant'>";
-                    echo "<img class='photo' src='../assets/" . $row["photo"] . "'>";
+                    echo "<img class='photo' src='../assets/profil" . $row["photo"] . "'>";
                     echo "<h2 class='nom'>" . $row["prenom"] . " " . $row["nomEtudiant"] . "</h2>";
                     echo "<p class='mail'>" . $row["email"] . "</p>";
                     echo "<p class='annee'>" . $row["nomAnnee"] . "</p>";

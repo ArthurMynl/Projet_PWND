@@ -51,12 +51,12 @@ $result = $mysqli->query($sql);
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='article'>";
                     echo "<div class='informations'>";
-                    echo "<img src='../assets/" . $row["photo"] . "' class='photo'>";
+                    echo "<img src='../assets/profil" . $row["photo"] . "' class='photo'>";
                     echo "<h3 class='nomPrenomClasse'>" . $row["nomEtudiant"] . " " . $row["prenom"] . " - " . $row["nomAnnee"] . "</h3>";
                     echo "</div>";
                     echo "<div class='contenu'>";
                     echo "<p class='texte'>" . $row["contenu"] . "</p>";
-                    echo "<img src='images/assets/" . $row["media"] . "' class='media'>";
+                    echo "<img src='images/assets/media" . $row["media"] . "' class='media'>";
                     echo "<p class='date'>" . $row["dateCreation"] . "</p>";
                     echo "<p class='heure'>" . $row["dateCreation"] . "</p>";
                     echo "</div>";

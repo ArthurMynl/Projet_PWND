@@ -46,7 +46,7 @@ $result2 = $mysqli->query($request2);
             <div class="profil">
                 <div class="informations">
                     <?php
-                    echo "<h2><img src='../assets/" . $row["photo"] . "'class='photo'></h2>";
+                    echo "<h2><img src='../assets/profil" . $row["photo"] . "'class='photo'></h2>";
                     echo "<div class='donnees'>";
                     echo "<h4 class='nom'>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
                     echo "<h4 class='classe'>" . $row["nomAnnee"] . "</h4>";
@@ -64,7 +64,7 @@ $result2 = $mysqli->query($request2);
                         echo "<div class='date_heure'>";
                         echo "<p> Le " . $row2["ladate"] . " à " . $row2["heure"] . "</p>";
                         echo "</div>";
-                        // echo "<img src='../assets/Unknown.jpeg" . $row["photo"] . ">";
+                        // echo "<img src='../assets/profil/Unknown.jpeg" . $row["photo"] . ">";
                         // echo "<div class='media'>";
                         // echo "</div>";
                         echo "</div>";

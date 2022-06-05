@@ -44,6 +44,7 @@ if (isset($_POST['message_submit'])) {
     $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
     $resultParticipant = $mysqli->query($participantSQL);
 
+    unset($_POST["message"]);
     unset($_POST["message_submit"]);
 }
 
@@ -55,7 +56,6 @@ if (isset($_POST['conv_courante'])) {
     $resultMessage = $mysqli->query($messageSQL);
     $participantSQL = "SELECT Etudiant.nom as nomEtudiant, Etudiant.prenom as prenomEtudiant FROM Etudiant, Conversation, Membre WHERE Etudiant.idEtu = Membre.etudiant AND Membre.conversation = Conversation.idConv AND Conversation.idConv = " . $_SESSION['idConvCourante'];
     $resultParticipant = $mysqli->query($participantSQL);
-    unset($_POST["nomConv"]);
     unset($_POST["conv_courante"]);
 }
 
@@ -238,14 +238,14 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                     <?php while ($conversation = $resultConv->fetch_assoc()) { ?>
                         <form method='post'>
                             <input type='hidden' name='nomConv' value='<?php echo $conversation['nomConv']; ?>'>
-                            <button type='submit' name="conv_courante" value='<?php $conversation['idConv'] ?>'><?php echo $conversation['nomConv'] ?></button>
+                            <button type='submit' name="conv_courante" value='<?php echo $conversation['idConv'] ?>'><?php echo $conversation['nomConv'] ?></button>
                         </form>
                     <?php } ?>
                 </div>
                 <?php if (isset($_SESSION['idConvCourante'])) { ?>
                     <div class="conversation">
                         <div class='page-messages'>
-                        <h1><?php echo $_SESSION['nomConvCourante']?></h1>
+                            <h1><?php echo $_SESSION['nomConvCourante']?></h1>
                             <div class="messages">
                                 <?php
                                 if (isset($resultMessage)) {

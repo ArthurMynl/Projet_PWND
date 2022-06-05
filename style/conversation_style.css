@@ -172,7 +172,7 @@ body {
     align-items : center;
     justify-content : flex-start;
     overflow-y : scroll;
-    margin-bottom : 5%;
+    margin-bottom : 15px;
 }
 
 #liste-conversations > form > button {
@@ -198,9 +198,8 @@ body {
     display : flex;
     flex-direction: column;
     align-items : center;
-    width : 1000px;
-    height : 45vh;
-    overflow: scroll;
+    width : 80%;
+    height : 60vh;
 }
 
 
@@ -209,12 +208,13 @@ body {
     flex-direction : column;
     align-items : center;
     width : 100%;
+    overflow: scroll;
 }
 
 
 .conversation > .page-messages > .messages > .message-sortant {
     display : flex;
-    flex-direction : row;
+    flex-direction : column;
     align-items : center;
     align-self : flex-end;
     justify-content : flex-end;
@@ -225,13 +225,12 @@ body {
     padding-right : 10px;
     margin-right : 1rem;
     margin-bottom : 0.5rem;
-    height : 50px
 }
 
 
 .conversation > .page-messages > .messages > .message-entrant {
     display : flex;
-    flex-direction : row;
+    flex-direction : column;
     align-items : center;
     align-self : flex-start;
     justify-content : flex-start;
@@ -242,7 +241,6 @@ body {
     padding-right : 10px;
     margin-right : 1rem;
     margin-bottom : 0.5rem;
-    height : 50px
 }
 
 .conversation > .participants {

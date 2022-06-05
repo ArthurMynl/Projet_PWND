@@ -2,51 +2,15 @@
 
 include '../includes/core.php';
 
-ini_set("post_max_size", "100000M");
-ini_set("upload_max_filesize", "100000M");
-ini_set("memory_limit", -1);
-
-$nomOrigine = $_POST['file'];
-$extensionFichier = pathinfo($nomOrigine, PATHINFO_EXTENSION);
-$extensionsAutorisees = array("jpeg", "jpg", "gif", "png");
-
-if (!(in_array($extensionFichier, $extensionsAutorisees))) {
-    $valid = false;
-} else {
-    $valid = true;
-    $MESSAGE_VALID = "Le fichier a correctement été upload";
-
-    $repertoireDestination = dirname(__FILE__) . "/";
-    $nomDestination = "file_" . date("YmdHis") . "." . $extensionFichier;
-
-    // on récupère les infos du fichier à uploader
-    $file_temp = $_POST['file']['tmp_name'];
-    $file_name = $_POST['file']['name'];
-
-    // on renomme le fichier
-    $file_date = date("ymdhis");
-    $file_n_nom = $file_date . "." . $extensionFichier;
-
-    if (move_uploaded_file(
-        $_POST["file"]["tmp_name"],
-        $repertoireDestination . $file_n_nom
-    )) {
-        echo "Le fichier temporaire " . $_POST["file"]["tmp_name"] .
-            " a été déplacé vers " . $repertoireDestination . $file_n_nom;
-    } else {
-        echo "Le fichier n'a pas été uploadé (trop gros ?) ou " .
-            "Le déplacement du fichier temporaire a échoué" .
-            " vérifiez l'existence du répertoire " . $repertoireDestination . $file_n_nom;
+$sql = "SELECT MAX(idArt) FROM articles WHERE auteur =" . $_SESSION['compte'];
+$result = $mysqli->query($sql);
+if($result) {
+    if ($result->num_rows > 0) {
+    $result->fetch_assoc();
+        $article_id = $row['MAX(id)'];
     }
-}
-
-$media = $_POST['file'];
-$requestMedia = "UPDATE Article SET media = '" . $media . "'";
-
-
-
-if (isset($_POST["close"])) {
-    unset($valid);
+} else {
+    $article_id = 1;
 }
 
 ?>
@@ -67,19 +31,17 @@ if (isset($_POST["close"])) {
 <body>
     <div id="container">
         <div id="content-wrap">
-            <?php
-            if (isset($valid) && $valid) {
-                echo "<form class='valid' method='post'>";
-                echo "<h2>Le fichier a correctement été upload</h2>";
-                echo "<button type='submit' name='close' class='close'>X</button>";
-                echo "</form>";
-            } elseif (isset($valid) && !$valid) {
-                echo "<form class='error' method='post'>";
-                echo "<h2>Le fichier n'a pas l'extension attendue</h2>";
-                echo "<button type='submit' name='close' class='close'>X</button>";
-                echo "</form>";
-            }
-            ?>
+            <?php if (isset($valid) && $valid) { ?>
+                <form class='valid' method='post'>
+                <h2>Le fichier a correctement été upload</h2>
+                <button type='submit' name='close' class='close'>X</button>
+                </form>";
+            <?php } elseif (isset($valid) && !$valid) { ?>
+                <form class='error' method='post'>
+                <h2>Le fichier n'a pas l'extension attendue</h2>
+                <button type='submit' name='close' class='close'>X</button>
+                </form>";
+            <?php } ?>
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
@@ -102,6 +64,11 @@ if (isset($_POST["close"])) {
             <div class="corps">
                 <div class="article">
                     <h2> Publication Article </h2>
+                    <form enctype="multipart/form-data" action="../includes/upload.php" method="post">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+                        <input type="file" name="file"> Média </input>
+                        <button class='btn-article' type="submit" name="upload"> UPLOAD FILE </button>
+                    </form>
                     <form method="post">
                         <input type="contenu" name="contenu" id="contenu" placeholder="Contenu">
                         <div class="visibilite">
@@ -112,24 +79,19 @@ if (isset($_POST["close"])) {
                                 <option value="amis"> amis </option>
                             </select>
                         </div>
-                        <form enctype="multipart/form-data" action="fileupload.php" method="post">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-                            Média <input type="file" name="file" />
-                            <button class='btn-article' type="submit" value="1" name="article_preview"> PREVIEW ARTICLE </button>
-                        </form>
+                        <button class='btn-article' type="submit" name="publier"> PREVIEW ARTICLE </button>
                     </form>
                 </div>
                 <div class="apercu">
                     <h2> Aperçu dernier article </h2>
                     <form method="post">
                         <h4> <?php echo $_POST["contenu"] ?></h4>
-                        <?php echo '<img src="' . $repertoireDestination . $file_n_nom . '">'; ?>
                         <h4> <?php echo $_POST["visibilite"] ?></h4>
+                        <img src="" >
                         <?php
                         ini_set('date.timezone', 'Europe/Paris');
                         $now = date_create()->format('Y-m-d H:i:s');
                         echo $now;
-
                         ?>
                         <button type="reset" value="1" name="article_modify" class="btn-article"> MODIFIER ARTICLE </button>
                         <button type="submit" value="1" name="article_submit" class="btn-article"> PUBLIER ARTICLE </button>

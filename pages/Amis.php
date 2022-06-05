@@ -85,7 +85,7 @@ else {
                 <?php
                 while ($row = $result->fetch_array()) {
                     echo "<div class='fiche-ami'>";
-                    echo "<img src='../assets/" . $row["photo"] . "'>";
+                    echo "<img src='../assets/profil" . $row["photo"] . "'>";
                     echo "<h3>" . $row["prenom"] . " " . $row["nom"] . "</p>";
                     echo "<h4>" . $row["nomAnnee"] . "</h4>";
                     echo "<h4>" . $row["email"] . "</h4>";
