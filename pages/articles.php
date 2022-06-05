@@ -2,6 +2,11 @@
 
 include '../includes/core.php';
 
+if (isset($_POST['close'])) {
+    unset($_SESSION['media']);
+    unset($_SESSION['ext_valid']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +25,12 @@ include '../includes/core.php';
 <body>
     <div id="container">
         <div id="content-wrap">
+            <?php if (isset($_SESSION['ext_valid']) && !$_SESSION['ext_valid']) { ?>
+                <form class='error' method='post'>
+                <h2>L'extension du fichier n'est pas acceptée</h2>
+                <button type='submit' name='close' class='close'>X</button>
+                </form>
+            <?php } ?>
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
