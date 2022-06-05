@@ -209,14 +209,10 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                     <li> <a href="/pages/index.php">Accueil</a> </li>
                     <li> <a href="/pages/Etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
-                        <?php
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        ?>
-                        <li> <a href="edit_profil.php">Editer profil</a> </li>
+                        <li> <a href=<?php echo "profil.php?id=" . $_SESSION["compte"] ?> >Profil</a> </li>
                         <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="amis.php">Amis</a> </li>
-                        <?php
-                        echo "<li> <a href='liste_conversation.php?id=" . $_SESSION["compte"] . "' class='active'> Conversation </a> </li>"; ?>
+                        <li> <a href='conversation.php' class="active"> Conversations </a> </li>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
@@ -267,8 +263,8 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                                 <?php } ?>
                             </div>
                             <form method='post' class="envoi-message">
-                                <input type="text" name="message" placeholder="Votre message">
-                                <input type="submit" value="Envoyer" name="message_submit">
+                                <input type="text" name="message" id="message" placeholder="Votre message">
+                                <input type="submit" value="Envoyer" id="btn-envoyer" name="message_submit">
                             </form>
                         </div>
                         <div class='participants'>

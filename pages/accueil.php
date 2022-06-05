@@ -33,13 +33,10 @@ $result = $mysqli->query($sql);
                     <li> <a href="/pages/index.php" class="active">Accueil</a> </li>
                     <li> <a href="/pages/Etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
-                        <?php
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>";
-                        ?>
-                        <li> <a href="edit_profil.php">Editer profil</a> </li>
+                        <li> <a href=<?php echo "profil.php?id=" . $_SESSION["compte"] ?>>Profil</a> </li>
                         <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="amis.php">Amis</a> </li>
-                        <li> <a href='conversation.php'> Conversation </a> </li>
+                        <li> <a href='conversation.php'> Conversations </a> </li>
                         <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
@@ -47,22 +44,22 @@ $result = $mysqli->query($sql);
             <!-- display the articles list -->
             <div class="liste-articles">
                 <h2>Derniers articles postés</h2>
-                <?php
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='article'>";
-                    echo "<div class='informations'>";
-                    echo "<img src='../assets/profil" . $row["photo"] . "' class='photo'>";
-                    echo "<h3 class='nomPrenomClasse'>" . $row["nomEtudiant"] . " " . $row["prenom"] . " - " . $row["nomAnnee"] . "</h3>";
-                    echo "</div>";
-                    echo "<div class='contenu'>";
-                    echo "<p class='texte'>" . $row["contenu"] . "</p>";
-                    echo "<img src='images/assets/media" . $row["media"] . "' class='media'>";
-                    echo "<p class='date'>" . $row["dateCreation"] . "</p>";
-                    echo "<p class='heure'>" . $row["dateCreation"] . "</p>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-                ?>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <div class="article">
+                        <div class='profil'>
+                            <img src=<?php echo "../assets/profil/" . $row['photo'] ?>>
+                            <h3> <?php echo $row['prenom'] . " " . $row['nomEtudiant'] ?></h3>
+                            <h4> <?php echo $row['nomAnnee'] ?> </h4>
+                            <?php echo $row['dateCreation'] ?>
+                        </div>
+                        <div class="contenu">
+                            <p> <?php echo $row["contenu"] ?></p>
+                            <?php if ($row["media"] != 'NULL') { ?>
+                                <img src=<?php echo "../assets/media/" . $row["media"] ?>>
+                            <?php } ?>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <footer>

@@ -1,51 +1,88 @@
 body {
-    background-color: white;
+    background-color: #173C4B;
     margin: 0;
     font-family: "Bahnschrift Light";
 }
 
-.info-etudiant {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 10px;
-    background-color: blue;
+#container {
+    position: relative;
+    min-height: 100vh;
 }
 
-.nom {
-    margin: 20px;
-}
-
-.mail {
-    margin: 20px;
-}
-
-.annee {
-    margin: 20px;
-}
-
-.photo {
-    width: 10%;
-    border-radius: 50%;
-    margin: 20px;
-}
-
-.voir-profil {
-    padding: 10px;
-    margin: 20px;
-    border-radius: 10px;
-    background-color: rgb(112, 110, 241);
-    color: white;
-    border: solid 1px white;
-}
-
-.voir-profil>a {
-    text-decoration: none;
-    color: white;
+#content-wrap {
+    padding-bottom: 4rem;
 }
 
 h1 {
     text-align: center;
-    margin-top: 10px;
+    color: white;
+    font-size: 3rem;
+    margin-left : 30%;
+    margin-right : 30%;
+    background-color : #7F7DFF;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#liste-etudiants {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.etudiant {
+    background-color: #7F7DFF;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin : 1rem;
+    width: 600px;
+    height: 400px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 10px;
+}
+
+
+.etudiant>img {
+    width: 10%;
+    border-radius: 50%;
+}
+
+.etudiant > h3 {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.etudiant > h4 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.etudiant>hr {
+    width: 60%;
+}
+
+.etudiant > .description {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+.etudiant>a {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    background-color: #173C4B;
 }

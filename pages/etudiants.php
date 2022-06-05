@@ -1,6 +1,9 @@
 <?php
 
-include '../includes/core.php'
+include '../includes/core.php';
+
+$sql = "SELECT Etudiant.nom as nomEtudiant, prenom, description, email, photo, idEtu, AnneeScolaire.nom as nomAnnee FROM etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu > '7'";
+$result = $mysqli->query($sql);
 
 ?>
 
@@ -26,11 +29,12 @@ include '../includes/core.php'
                 <li> <img src="../assets/logo.png" id="logo"> </li>
                 <li> <a href="index.php">Accueil</a> </li>
                 <li> <a href="etudiants.php" class="active">Étudiants</a> </li>
-                <?php if ($_SESSION["compte"]) {
-                    echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>"; ?>
-                <li> <a href="edit_profil.php">Mettre à jour le profil</a> </li>
-                <li> <a href="articles.php">Publier un article</a> </li>
-                <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+                <?php if ($_SESSION["compte"]) { ?>
+                    <li> <a href=<?php echo "profil.php?id=" . $_SESSION["compte"] ?>>Profil</a> </li>
+                    <li> <a href="articles.php">Publier un article</a> </li>
+                    <li> <a href="amis.php">Amis</a> </li>
+                    <li> <a href='conversation.php'> Conversations </a> </li>
+                    <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                 <?php } ?>
             </ul>
         </nav>
@@ -38,24 +42,18 @@ include '../includes/core.php'
         <h1>Liste des étudiants</h1>
 
         <!-- display the names and the photo of the students -->
-        <div class="liste-etudiants">
-            <?php
-
-            $sql = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, idEtu, AnneeScolaire.nom as nomAnnee FROM etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu > '7'";
-            $result = $mysqli->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='info-etudiant'>";
-                    echo "<img class='photo' src='../assets/profil" . $row["photo"] . "'>";
-                    echo "<h2 class='nom'>" . $row["prenom"] . " " . $row["nomEtudiant"] . "</h2>";
-                    echo "<p class='mail'>" . $row["email"] . "</p>";
-                    echo "<p class='annee'>" . $row["nomAnnee"] . "</p>";
-                    echo "<a href='profil.php?id=" . $row["idEtu"] . "' class='voir-profil' >Voir profil</a>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-            }
-            ?>
+        <div id="liste-etudiants">
+            <?php while ($row = $result->fetch_array()) { ?>
+                <div class='etudiant'>
+                    <img src=<?php echo '../assets/profil/' . $row["photo"] ?>>
+                    <h3> <?php echo $row["prenom"] . " " . $row["nom"] ?> </p>
+                    <h4> <?php echo $row["nomAnnee"] ?></h4>
+                    <h4> <?php echo $row["email"] ?></h4>
+                    <hr>
+                    <p class='description'> <?php echo $row["description"] ?></p>
+                    <a class='voir-profil' href=<?php echo './profil.php?id=' . $row["idEtu"] ?>>Voir profil</a>
+                </div>
+            <?php } ?>
         </div>
     </div>
     <footer>

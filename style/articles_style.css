@@ -4,12 +4,14 @@ body {
     font-family: "Bahnschrift Light";
 }
 
-.valid {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: green;
+
+#container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 4rem;
 }
 
 .error {
@@ -32,89 +34,196 @@ body {
     margin-right: 20px;
 }
 
-.valid>.close {
-    color: white;
-    background-color: rgb(72, 72, 72);
-    border-radius: 50%;
-    padding: 15px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border: 1px solid white;
-    text-align: center;
-    margin-right: 20px;
-}
-
 .corps {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 100px;
+}
+
+.corps>.article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #7F7DFF;
+    padding : 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.corps>.article>form {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
+    width : 100%;
+}
+
+.corps>.article>form>input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    width: 90%;
+}
+
+.corps>.article>form>.file {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    width: 90%;
+}
+
+.corps>.article>form>.contenu {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    width: 90%;
+}
+
+.corps>.article>form>button {
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: #7F7DFF;
+    color: white;
+    width: 100%;
+}
+
+.corps>.article>form>#visibilité {
+    width: 100%;
+}
+
+.corps>.article>form>#visibilité>select {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-left: 5%;
+    border: 1px solid black;
+    padding: 10px;
+    width: 55%;
+}
+
+.corps>.article>form>#visibilité>label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+    width: 30%;
+}
+
+
+.corps>.article>form>#visibilité {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
 }
 
-.corps>.articles>form {
+
+.corps>.apercu {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border : 1px solid black;
+    background-color: rgb(94, 53, 166);
+    width : 80%;
+    border-radius: 10px;
+    color : white;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
-
-.corps>.articles {
-    background-color: rgb(96, 93, 241);
-    padding: 30px;
-    border-radius: 25px;
-    width: 30%;
-    border: 0px solid black;
-    margin: 10px
-}
-
 
 .corps>.apercu>form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width : 100%;
 }
 
-.corps>.apercu {
-    background-color: rgb(96, 93, 241);
-    padding: 30px;
-    border-radius: 25px;
-    width: 30%;
-    border: 0px solid black;
-    margin: 10px
+.corps>.apercu>form>#article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.corps>.apercu>form>#article>.profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+.corps>.apercu>form>#article>.profil>img {
+    width : 90%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.corps>.apercu>form>#article>.profil>h4 {
+    margin-top: 0;
+}
+
+.corps>.apercu>form>#article>.profil>h3 {
+    margin-bottom: 5px;
+    margin-top: 0;
 }
 
 
-.btn-article {
-    background-color: rgb(92, 105, 138);
-    padding: 10px;
-    margin-top: 15px;
-    color: white;
-    border-radius: 10px;
-    border: 0px solid black;
+.corps>.apercu>form>#article>.contenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
+    width: 80%;
 }
 
-h1 {
-    color: grey;
-    text-align: center;
-    margin: 40px;
-    font-family: "Bahnschrift Light";
+.corps>.apercu>form>#article>.contenu>img {
+    margin-left: 20px;
+    max-width : 90%;
+    max-height: 50vh;
 }
 
-h2 {
-    color: white;
-    text-align: center;
+.corps>.apercu>form>#article>.contenu>p {
+    color : white;
 }
 
-input {
-    margin-top: 15px;
+.corps>.apercu>form>.boutons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.corps>.apercu>form>.boutons>button {
+    margin-top: 10px;
     border-radius: 10px;
     border: 1px solid black;
-    height: 40px;
-    padding-left: 10px;
+    padding: 10px;
+    background-color: #7F7DFF;
+    color: white;
+    width : 170px;
 }
 
-#container {
-    position: relative;
-    min-height: 100vh;
-}
 
-#content-wrap {
-    padding-bottom: 4rem;
-}

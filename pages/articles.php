@@ -7,6 +7,11 @@ if (isset($_POST['close'])) {
     unset($_SESSION['ext_valid']);
 }
 
+
+$request = "SELECT Etudiant.nom as nomEtudiant, prenom , photo, AnneeScolaire.nom as nomAnnee FROM Etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION['compte'];
+$result = $mysqli->query($request);
+$row = $result->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -27,57 +32,69 @@ if (isset($_POST['close'])) {
         <div id="content-wrap">
             <?php if (isset($_SESSION['ext_valid']) && !$_SESSION['ext_valid']) { ?>
                 <form class='error' method='post'>
-                <h2>L'extension du fichier n'est pas acceptée</h2>
-                <button type='submit' name='close' class='close'>X</button>
+                    <h2>L'extension du fichier n'est pas acceptée</h2>
+                    <button type='submit' name='close' class='close'>X</button>
                 </form>
             <?php } ?>
             <!-- create the navbar -->
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-                    <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
-                    <?php if ($_SESSION["compte"]) {
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>"; ?>
-                        <li> <a href="edit_profil.php">Mettre à jour le profil</a> </li>
-                        <li> <a href="articles.php" class="active">Publier un article</a> </li>
-                        <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+                    <?php if ($_SESSION["compte"]) { ?>
+                        <li> <a href=<?php echo "profil.php?id=" . $_SESSION["compte"] ?>>Profil</a> </li>
+                        <li> <a href="articles.php" class='active' >Publier un article</a> </li>
+                        <li> <a href="amis.php">Amis</a> </li>
+                        <li> <a href='conversation.php'> Conversations </a> </li>
+                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
 
-
-            <h1><?php echo "Publier un article" ?></h1>
             <div class="corps">
                 <div class="article">
                     <h2> Publication Article </h2>
                     <form enctype="multipart/form-data" action="../includes/upload.php" method="post">
                         <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-                        <input type="file" name="file">
-                        <input type="text" name="contenu" placeholder="Contenu">
-                        <label class="etiquette-visibilite"> Visibilité </label>
-                        <select name="visibilite" id="visibilite">
-                            <option value="" disabled selected>-- Choisissez --</option>
-                            <option value="public"> public </option>
-                            <option value="amis"> amis </option>
-                        </select>
+                        <input type="file" name="file" class="file">
+                        <input type="text" name="contenu" class="contenu" placeholder="Contenu">
+                        <div id="visibilité">
+                            <label class="etiquette-visibilite"> Visibilité </label>
+                            <select name="visibilite">
+                                <option value="" disabled selected>-- Choisissez --</option>
+                                <option value="public"> public </option>
+                                <option value="amis"> amis </option>
+                            </select>
+                        </div>
                         <button class='btn-article' type="submit" name="upload"> PREVIEW ARTICLE </button>
                     </form>
                 </div>
                 <div class="apercu">
-                    <h2> Aperçu dernier article </h2>
+                    <h2> Aperçu article </h2>
                     <form method="post" action="../includes/publier.php">
-                        <h4> <?php echo $_SESSION["contenu"] ?></h4>
-                        <h4> <?php echo $_SESSION["visibilite"] ?></h4>
-                        <img src=<?php echo "/assets/media/" . $_SESSION["media"] ?>>
-                        <?php
-                        ini_set('date.timezone', 'Europe/Paris');
-                        $_SESSION['now'] = date_create()->format('Y-m-d H:i:s');
-                        echo $_SESSION['now'];
-                        ?>
-                        <button type="reset" value="1" name="article_modify" class="btn-article"> MODIFIER ARTICLE </button>
-                        <button type="submit" value="1" name="article_submit" class="btn-article"> PUBLIER ARTICLE </button>
+                        <div id="article">
+                            <div class='profil'>
+                                <img src=<?php echo "../assets/profil/" . $row['photo'] ?>>
+                                <h3> <?php echo $row['prenom'] . " " . $row['nomEtudiant'] ?></h3>
+                                <h4> <?php echo $row['nomAnnee'] ?> </h4>
+                                <?php
+                                ini_set('date.timezone', 'Europe/Paris');
+                                $_SESSION['now'] = date_create()->format('Y-m-d H:i');
+                                echo $_SESSION['now'];
+                                ?>
+                            </div>
+                            <div class="contenu">
+                                <p> <?php echo $_SESSION["contenu"] ?></p>
+                                <?php if ($_SESSION["media"]) { ?>
+                                    <img src=<?php echo "../assets/media/" . $_SESSION["media"] ?>>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="boutons">
+                            <button type="submit" name="article_delete" class="btn-article"> SUPPRIMER ARTICLE </button>
+                            <button type="submit" value="1" name="article_submit" class="btn-article"> PUBLIER ARTICLE </button>
+                        </div>
                     </form>
                 </div>
             </div>

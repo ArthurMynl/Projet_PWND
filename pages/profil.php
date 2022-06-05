@@ -7,7 +7,7 @@ $result = $mysqli->query($request);
 $row = $result->fetch_assoc();
 
 $request2 = "SELECT Article.contenu, Article.media, TIME(Article.dateCreation) as heure,
-DATE(Article.dateCreation) as ladate FROM Etudiant, Article WHERE Article.auteur =" . $_GET['id'] . " AND Article.auteur = Etudiant.idEtu ORDER BY DATE(Article.dateCreation) ASC" ;
+DATE(Article.dateCreation) as ladate FROM Etudiant, Article WHERE Article.auteur =" . $_GET['id'] . " AND Article.auteur = Etudiant.idEtu ORDER BY DATE(Article.dateCreation) ASC";
 $result2 = $mysqli->query($request2);
 ?>
 
@@ -35,18 +35,19 @@ $result2 = $mysqli->query($request2);
 
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
-                    <?php if ($_SESSION["compte"]) {
-                        echo "<li> <a href='profil.php?id=".$_SESSION["compte"]."' class='active'>Profil</a> </li>"; ?>
-                    <li> <a href="edit_profil.php">Mettre à jour le profil</a> </li>
-                    <li> <a href="articles.php">Publier un article</a> </li>
-                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
+                    <?php if ($_SESSION["compte"]) { ?>
+                        <li> <a href=<?php echo "profil.php?id=" . $_SESSION["compte"] ?> class="active">Profil</a> </li>
+                        <li> <a href="articles.php">Publier un article</a> </li>
+                        <li> <a href="amis.php">Amis</a> </li>
+                        <li> <a href='conversation.php'> Conversations </a> </li>
+                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
             <div class="profil">
                 <div class="informations">
                     <?php
-                    echo "<h2><img src='../assets/profil" . $row["photo"] . "'class='photo'></h2>";
+                    echo "<h2><img src='../assets/profil/" . $row["photo"] . "'class='photo'></h2>";
                     echo "<div class='donnees'>";
                     echo "<h4 class='nom'>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
                     echo "<h4 class='classe'>" . $row["nomAnnee"] . "</h4>";
@@ -57,24 +58,21 @@ $result2 = $mysqli->query($request2);
                     ?>
                 </div>
                 <div class="liste-articles">
-                <?php
-                    while($row2 = $result2->fetch_assoc()){
+                    <?php
+                    while ($row2 = $result2->fetch_assoc()) {
                         echo "<div class='article'>";
                         echo "<div class='media_date'>";
                         echo "<div class='date_heure'>";
                         echo "<p> Le " . $row2["ladate"] . " à " . $row2["heure"] . "</p>";
                         echo "</div>";
-                        // echo "<img src='../assets/profil/Unknown.jpeg" . $row["photo"] . ">";
-                        // echo "<div class='media'>";
-                        // echo "</div>";
                         echo "</div>";
                         echo "<div class='contenu'>";
                         echo "<p>" . $row2["contenu"] . "</p>";
                         echo "</div>";
                         echo "</div>";
                     }
-                ?> 
-                </div> 
+                    ?>
+                </div>
             </div>
         </div>
         <!-- create the footer -->

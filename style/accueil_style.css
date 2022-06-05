@@ -18,42 +18,66 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width : 100%;
 }
 
-.article {
-    padding: 10px;
-    border: 1px solid black;
-    width: 90%;
-    margin-left: 10%;
-    margin-right: 10%;
-    background-color: #7F7DFF;
-    margin-top: 5px;
-    border-radius: 25px;
-}
-
-
-.informations {
+.liste-articles>.article {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
-    margin-top: 10px;
+    justify-content: space-between;
+    width : 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #7F7DFF;
+    padding : 20px;
+    border-radius: 10px
 }
 
-
-.informations>.photo {
-    width: 50px;
+.liste-articles>.article>.profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
     margin-right: 10px;
     margin-left: 10px;
     border-radius: 50%;
 }
 
 
-.contenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+.liste-articles>.article>.profil>img {
+    width : 90%;
+    border-radius: 50%;
+    margin-bottom: 15px;
 }
 
 
+.liste-articles>.article>.profil>h4 {
+    margin-top: 0;
+}
+
+
+.liste-articles>.article>.profil>h3 {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.liste-articles>.article>.contenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
+    width: 80%;
+}
+
+.liste-articles>.article>.contenu>img {
+    margin-left: 20px;
+    max-width : 90%;
+    max-height: 50vh;
+}
+
+.liste-articles>.article>.contenu>p {
+    color : white;
+}

@@ -2,6 +2,8 @@
 
 include_once "core.php";
 
+$extensionsAutorisees = array("jpeg", "jpg", "gif", "png");
+
 if(isset($_POST['upload'])) {
     $file_name = $_FILES['file']['name'];
     $file_loc = $_FILES['file']['tmp_name'];
@@ -29,7 +31,6 @@ if(isset($_POST['upload'])) {
         $_SESSION['ext_valid'] = false;
     }
 
-    
     $_SESSION['contenu'] = $_POST['contenu'];
     $_SESSION['visibilite'] = $_POST['visibilite'];
 
