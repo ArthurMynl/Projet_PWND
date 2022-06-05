@@ -21,11 +21,16 @@ if(isset($_POST['upload'])) {
 
     $final_file = str_replace(' ', '-', $new_file_name);
 
-    move_uploaded_file($file_loc, $folder.$final_file); 
+    if ((in_array($file_extension, $extensionsAutorisees))) {
+        move_uploaded_file($file_loc, $folder.$final_file); 
+        $_SESSION['media'] = $final_file;
+        $_SESSION['ext_valid'] = true;
+    } else {
+        $_SESSION['ext_valid'] = false;
+    }
 
-
+    
     $_SESSION['contenu'] = $_POST['contenu'];
-    $_SESSION['media'] = $final_file;
     $_SESSION['visibilite'] = $_POST['visibilite'];
 
     header("Location: ../pages/articles.php");
