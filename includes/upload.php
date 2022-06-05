@@ -9,16 +9,13 @@ if(isset($_POST['upload'])) {
     $folder = '../assets/media/';
 
     // get the article id from the database
-    $sql = "SELECT MAX(idArt) FROM articles WHERE auteur =" . $_SESSION['compte'];
-    $result = $mysqli->query($sql);
-    if($result) {
-        if ($result->num_rows > 0) {
-        $result->fetch_assoc();
-            $article_id = $row['MAX(id)'];
-        }
-    } else {
-        $article_id = 1;
+    $sql = "SELECT MAX(idArt) FROM Article";
+    $res = $mysqli->query($sql);
+    if (!$res) {
+        exit($mysqli->error);
     }
+    $row = $res->fetch_row();
+    $article_id = $row[0] + 1;
 
     $new_file_name = $_SESSION['compte'] . '-' . $article_id . '.' . $file_extension;
 
@@ -26,14 +23,10 @@ if(isset($_POST['upload'])) {
 
     move_uploaded_file($file_loc, $folder.$final_file); 
 
-    $sql = "INSERT INTO Article (media) VALUES ($final_file)";
-    $result = $mysqli->query($sql);
 
-    if($result) {
-        $valid = true;
-    } else {
-        $valid = false;
-    }
+    $_SESSION['contenu'] = $_POST['contenu'];
+    $_SESSION['media'] = $final_file;
+    $_SESSION['visibilite'] = $_POST['visibilite'];
 
     header("Location: ../pages/articles.php");
 }
