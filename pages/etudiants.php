@@ -2,9 +2,12 @@
 
 include '../includes/core.php';
 
-$sql = "SELECT Etudiant.nom as nomEtudiant, prenom, description, email, photo, idEtu, AnneeScolaire.nom as nomAnnee FROM etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu > '7'";
+$sql = "SELECT Etudiant.nom as nomEtudiant, prenom, description, email, photo, idEtu, AnneeScolaire.nom as nomAnnee FROM etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire";
 $result = $mysqli->query($sql);
 
+if (isset($_POST["rechercher_etudiant_submit"]) && $_POST["rechercher_etudiant_submit"] == 1) {
+    header("Location: recherche_etudiant.php?nom=" . $_POST["etudiant"]);
+}
 ?>
 
 
@@ -40,13 +43,17 @@ $result = $mysqli->query($sql);
         </nav>
 
         <h1>Liste des étudiants</h1>
+        <form method="post" class="recherche-etudiant">
+            <input name="etudiant" type="search" placeholder="Rechercher un étudiant" aria-label="Search">
+            <button value=1 name="rechercher_etudiant_submit" type="submit">Valider</button>
+        </form>
 
         <!-- display the names and the photo of the students -->
         <div id="liste-etudiants">
             <?php while ($row = $result->fetch_array()) { ?>
                 <div class='etudiant'>
                     <img src=<?php echo '../assets/profil/' . $row["photo"] ?>>
-                    <h3> <?php echo $row["prenom"] . " " . $row["nom"] ?> </p>
+                    <h3> <?php echo $row["prenom"] . " " . $row["nomEtudiant"] ?> </p>
                     <h4> <?php echo $row["nomAnnee"] ?></h4>
                     <h4> <?php echo $row["email"] ?></h4>
                     <hr>

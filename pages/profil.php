@@ -2,13 +2,17 @@
 
 include '../includes/core.php';
 
-$request = "SELECT Etudiant.nom as nomEtudiant, prenom, email, photo, description, AnneeScolaire.nom as nomAnnee FROM Etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
+$request = "SELECT idEtu, Etudiant.nom as nomEtudiant, prenom, email, photo, description, AnneeScolaire.nom as nomAnnee FROM Etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_GET['id'];
 $result = $mysqli->query($request);
 $row = $result->fetch_assoc();
 
-$request2 = "SELECT Article.contenu, Article.media, TIME(Article.dateCreation) as heure,
-DATE(Article.dateCreation) as ladate FROM Etudiant, Article WHERE Article.auteur =" . $_GET['id'] . " AND Article.auteur = Etudiant.idEtu ORDER BY DATE(Article.dateCreation) ASC";
-$result2 = $mysqli->query($request2);
+
+$articleSQL = "SELECT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, dateCreation, auteur, media
+                FROM etudiant, anneeScolaire, article
+                WHERE idAnneeScolaire = anneeScolaire AND Article.auteur = Etudiant.idEtu AND Article.auteur =" . $_GET['id'] . "
+                ORDER BY dateCreation DESC";
+$articleResult = $mysqli->query($articleSQL);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,32 +50,36 @@ $result2 = $mysqli->query($request2);
             </nav>
             <div class="profil">
                 <div class="informations">
-                    <?php
-                    echo "<h2><img src='../assets/profil/" . $row["photo"] . "'class='photo'></h2>";
-                    echo "<div class='donnees'>";
-                    echo "<h4 class='nom'>" . $row["nomEtudiant"] . " " . $row["prenom"] . "</h4>";
-                    echo "<h4 class='classe'>" . $row["nomAnnee"] . "</h4>";
-                    echo "<h4 class='mail'>" . $row["email"] . "</h4>";
-                    echo "</div>";
-                    echo "<hr noshade>";
-                    echo "<h4 class='description'>" . $row["description"] . "</h4>";
-                    ?>
+                    <h2><img src=<?php echo "../assets/profil/" . $row["photo"] ?> class='photo'></h2>
+                    <div class='donnees'>
+                        <h4 class='nom'><?php echo $row["nomEtudiant"] . " " . $row["prenom"] ?></h4>
+                        <h4 class='classe'><?php echo $row["nomAnnee"] ?></h4>
+                        <h4 class='mail'><?php echo $row["email"] ?></h4>
+                    </div>
+                    <hr>
+                    <h4 class='description'><?php echo $row["description"] ?></h4>
+                    <?php if (isset($_SESSION["compte"]) && $row["idEtu"] == $_SESSION["compte"]) { ?>
+                        <a class='bouton' href='edit_profil.php'>Modifier le profil</a>
+                    <?php } ?>
                 </div>
                 <div class="liste-articles">
-                    <?php
-                    while ($row2 = $result2->fetch_assoc()) {
-                        echo "<div class='article'>";
-                        echo "<div class='media_date'>";
-                        echo "<div class='date_heure'>";
-                        echo "<p> Le " . $row2["ladate"] . " à " . $row2["heure"] . "</p>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "<div class='contenu'>";
-                        echo "<p>" . $row2["contenu"] . "</p>";
-                        echo "</div>";
-                        echo "</div>";
-                    }
-                    ?>
+                    <h2>Derniers articles postés</h2>
+                    <?php while ($row2 = $articleResult->fetch_assoc()) { ?>
+                        <div class="article">
+                            <div class='profil'>
+                                <img src=<?php echo "../assets/profil/" . $row2['photo'] ?>>
+                                <h3> <?php echo $row2['prenom'] . " " . $row2['nomEtudiant'] ?></h3>
+                                <h4> <?php echo $row2['nomAnnee'] ?> </h4>
+                                <?php echo $row2['dateCreation'] ?>
+                            </div>
+                            <div class="contenu">
+                                <p> <?php echo $row2["contenu"] ?></p>
+                                <?php if ($row2["media"] != 'NULL') { ?>
+                                    <img src=<?php echo "../assets/media/" . $row2["media"] ?>>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

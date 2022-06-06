@@ -1,0 +1,158 @@
+body {
+    background-color: #173C4B;
+    margin: 0;
+    font-family: "Bahnschrift Light";
+}
+
+#container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 4rem;
+}
+
+.small-nav {
+    color: white;
+    position: sticky;
+    top: 10%;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 50px;
+    border: none;
+    background: rgba(127, 125, 255, 0.8);
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(127, 125, 255, 0.3);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.small-nav>ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.small-nav>ul>li {
+    list-style-type: none;
+}
+
+.small-nav>ul>li>a {
+    color: white;
+    text-decoration: none;
+}
+
+.small-nav>ul>li>.recherche>input {
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+}
+
+.small-nav>ul>li>.recherche>button {
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: #7F7DFF;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.liste-demandes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+
+.demande {
+    background-color: #7F7DFF;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    width: 600px;
+    height: 400px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 10px;
+}
+
+
+.demande>img {
+    width: 10%;
+    border-radius: 50%;
+}
+
+.demande>h3 {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.demande>h4 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.demande>hr {
+    width: 60%;
+}
+
+.demande>.description {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.demande>.boutons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.demande>.boutons>form>input {
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    margin: 1rem;
+    background-color: #173C4B;
+}
+
+.demande>.boutons>form>a {
+    padding: 10px;
+    align-self: center;
+    text-decoration: none;
+    color: white;
+    border: none;
+    height : 44px;
+    border-radius: 10px;
+    background-color: #173C4B;
+}

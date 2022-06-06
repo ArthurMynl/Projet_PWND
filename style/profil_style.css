@@ -5,19 +5,20 @@ body {
     animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
-    background-color:  rgb(17, 80, 99);
+    background-color:  #173C4B;
 }
 
-.profil{
+.profil {
     display : flex;
     align-items : center;
     justify-content : center; 
     flex-direction : column;
+    width : 100%;
 }
 
 .profil > .informations{
     color: rgb(0, 0, 0);
-    background-color:  rgb(0, 255, 251);
+    background-color:  #7F7DFF;
     padding : 30px;
     margin-top: 50px;
     margin-bottom: 20px;
@@ -31,11 +32,16 @@ body {
     border: none;
 }
 
+hr {
+    width: 60%;
+    color : white;
+}
+
 .profil > .form { 
     margin-top : 20px;
 }
 
-.profil img { 
+.profil .photo { 
     width: 120px;
     border-radius: 50%;
     margin-top: 10px;
@@ -65,7 +71,6 @@ body {
     margin-top : 20px;
 }
 
-
 .description{
     display : flex;
     flex-direction : row;
@@ -75,40 +80,80 @@ body {
     padding: 0px 25px; 
 }
 
-.liste-articles{
-    display : flex;
-    flex-direction : column;
-    align-items : center;
-    justify-content : center; 
-    width: 70%;
+.bouton {
+    text-decoration: none;
+    padding : 10px;
+    border-radius: 10px;
+    background-color: #7F7DFF;
+    border: 1px solid black;
+    color : white;
 }
 
-.article{
-    color: rgb(0, 0, 0);
-    background-color:  rgb(0, 255, 251);
+.liste-articles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width : 100%;
-    height: 15%;
-    border-radius: 5px;
-    border: none;
-    margin: 20px;
 }
 
-hr{
+.liste-articles>.article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     width : 80%;
-    color :rgb(0, 0, 0);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #7F7DFF;
+    padding : 20px;
+    border-radius: 10px
 }
 
-.date_heure{
+.liste-articles>.article>.profil {
     display: flex;
-    align-items: flex-end;
-    justify-content : flex-end;
-    font-size: 10px;
-    padding: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 50%;
 }
 
-.liste-articles>.article > .contenu{
+
+.liste-articles>.article>.profil>img {
+    width : 90%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+
+.liste-articles>.article>.profil>h4 {
+    margin-top: 0;
+}
+
+
+.liste-articles>.article>.profil>h3 {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.liste-articles>.article>.contenu {
     display: flex;
-    justify-content : center;
-    text-align: center;
-    margin-bottom: 40px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
+    width: 80%;
+}
+
+.liste-articles>.article>.contenu>img {
+    margin-left: 20px;
+    max-width : 90%;
+    max-height: 50vh;
+}
+
+.liste-articles>.article>.contenu>p {
+    color : white;
 }

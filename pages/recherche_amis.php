@@ -1,29 +1,29 @@
 <?php
 
 include "../includes/core.php";
-$_TITRE_PAGE = "Amis RS ESEO";
 
 if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] == 1) {
     header("Location: recherche_amis.php?nom=" . $_POST["amis"]);
 }
 
 # TODO : changer la requete pour prendre les amis dans les deux sens
-$sql = "SELECT statut, a.prenom, a.nom, a.photo, a.email, a.idEtu, AnneeScolaire.nom as nomAnnee, a.description
-        FROM Amis, Etudiant e, Etudiant a, AnneeScolaire
-        WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'valide' AND idAnneeScolaire = a.anneeScolaire AND e.idEtu= '" . $_SESSION["compte"] . "'";
+$rechercheSQL = "SELECT Etudiant.idEtu, Etudiant.description, Etudiant.nom, Etudiant.prenom, Etudiant.photo, Etudiant.email, AnneeScolaire.nom as nomAnnee 
+                FROM Amis, Etudiant, AnneeScolaire 
+                WHERE idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'valide' AND Amis.amis = Etudiant.idEtu AND (Etudiant.nom like '" . $_GET['nom'] . "%' OR Etudiant.prenom like '" . $_GET['nom'] . "%') AND Amis.etudiant = '" . $_SESSION['compte'] . "'";
+
+$rechercheResult = $mysqli->query($rechercheSQL);
 
 
-$sql2 = "SELECT COUNT(statut) as nbDemandes FROM Amis, Etudiant WHERE Amis.amis = Etudiant.idEtu AND Amis.statut = 'en attente' AND Amis.Etudiant = '" . $_SESSION["compte"] . "'";
+$nbDemandesSQL = "SELECT COUNT(statut) as nbDemandes FROM Amis, Etudiant WHERE Amis.statut = 'en attente' AND Amis.amis = Etudiant.idEtu AND Amis.etudiant = '" . $_SESSION['compte'] . "'";
+$nbDemandesResult = $mysqli->query($nbDemandesSQL);
 
-$result = $mysqli->query($sql);
-$result2 = $mysqli->query($sql2);
-
-if ($result2->num_rows > 0) {
-    $row2 = $result2->fetch_array();
-    $nbDemandes = $row2["nbDemandes"];
+if ($nbDemandesResult->num_rows > 0) {
+    $row = $nbDemandesResult->fetch_array();
+    $nbDemandes = $row["nbDemandes"];
 } else {
     $nbDemandes = 0;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -68,19 +68,21 @@ if ($result2->num_rows > 0) {
                     </form>
                 </ul>
             </nav>
-            <h1>Vos amis</h1>
+            <h1><?php echo "Résultats pour : " . $_GET["nom"] ?></h1>
             <div id="afficheAmis">
-                <?php while ($row = $result->fetch_array()) { ?>
-                    <div class='fiche-ami'>
-                        <img src=<?php echo '../assets/profil/' . $row["photo"] ?>>
-                        <h3> <?php echo $row["prenom"] . " " . $row["nom"] ?> </h3>
-                        <h4> <?php echo $row["nomAnnee"] ?></h4>
-                        <h4> <?php echo $row["email"] ?></h4>
-                        <hr>
-                        <p class='description'> <?php echo $row["description"] ?></p>
-                        <a class='voir-profil' href=<?php echo './profil.php?id=' . $row["idEtu"] ?>>Voir profil</a>
-                    </div>
-                <?php } ?>
+                <?php if ($rechercheResult) {
+                    while ($row = $rechercheResult->fetch_array()) { ?>
+                        <div class='fiche-ami'>
+                            <img src=<?php echo '../assets/profil/' . $row["photo"] ?>>
+                            <h3> <?php echo $row["prenom"] . " " . $row["nom"] ?> </h3>
+                            <h4> <?php echo $row["nomAnnee"] ?></h4>
+                            <h4> <?php echo $row["email"] ?></h4>
+                            <hr>
+                            <p class='description'> <?php echo $row["description"] ?></p>
+                            <a class='voir-profil' href=<?php echo './profil.php?id=' . $row["idEtu"] ?>>Voir profil</a>
+                        </div>
+                <?php }
+                } ?>
             </div>
         </div>
         <footer>
