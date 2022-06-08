@@ -46,7 +46,7 @@ $result = $mysqli->query($articleSQL);
             </nav>
             <!-- display the articles list -->
             <div class="liste-articles">
-                <h2>Derniers articles postés</h2>
+                <h1>Derniers articles postés</h1>
                 <?php while ($row = $result->fetch_assoc()) { ?>
                     <div class="article">
                         <div class='profil'>

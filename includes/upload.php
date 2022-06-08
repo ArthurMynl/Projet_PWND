@@ -5,7 +5,7 @@ include_once "core.php";
 $extensionsAutorisees = array("jpeg", "jpg", "gif", "png");
 
 if(isset($_POST['upload'])) {
-    if(isset($_POST['file'])) {
+    if(isset($_FILES['file']['name']) && $_FILES['file']['name'] != '') {
         $file_name = $_FILES['file']['name'];
         $file_loc = $_FILES['file']['tmp_name'];
         $file_extension = pathinfo($file_name)["extension"];
@@ -26,6 +26,8 @@ if(isset($_POST['upload'])) {
 
         if ((in_array($file_extension, $extensionsAutorisees))) {
             move_uploaded_file($file_loc, $folder.$final_file); 
+            echo $file_loc;
+            echo $folder.$final_file;
             $_SESSION['media'] = $final_file;
             $_SESSION['ext_valid'] = true;
         } else {
@@ -40,7 +42,6 @@ if(isset($_POST['upload'])) {
         $_SESSION['media'] = "NULL";
         $_SESSION['contenu'] = $_POST['contenu'];
         $_SESSION['visibilite'] = $_POST['visibilite'];
-        $_SESSION['ext_valid'] = true;
         header("Location: ../pages/articles.php");
     }
 }

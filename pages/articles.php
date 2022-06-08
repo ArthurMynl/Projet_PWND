@@ -7,6 +7,9 @@ if (isset($_POST['close'])) {
     unset($_SESSION['ext_valid']);
 }
 
+if (isset($_POST['close_valid'])){
+    unset($_SESSION['ext_valid']);
+}
 
 $request = "SELECT Etudiant.nom as nomEtudiant, prenom , photo, AnneeScolaire.nom as nomAnnee FROM Etudiant, AnneeScolaire WHERE idAnneeScolaire = anneeScolaire AND idEtu =" . $_SESSION['compte'];
 $result = $mysqli->query($request);
@@ -35,6 +38,11 @@ $row = $result->fetch_assoc();
                     <h2>L'extension du fichier n'est pas acceptée</h2>
                     <button type='submit' name='close' class='close'>X</button>
                 </form>
+            <?php } elseif (isset($_SESSION['ext_valid']) && $_SESSION['ext_valid']) { ?>
+                <form class='valid' method='post'>
+                <h2>Le fichier a été upload</h2>
+                <button type='submit' name='close_valid' class='close'>X</button>
+             </form>
             <?php } ?>
             <!-- create the navbar -->
             <nav class="navbar">
@@ -56,7 +64,6 @@ $row = $result->fetch_assoc();
                 <div class="article">
                     <h2> Publication Article </h2>
                     <form enctype="multipart/form-data" action="../includes/upload.php" method="post">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
                         <input type="file" name="file" class="file">
                         <input type="text" name="contenu" class="contenu" placeholder="Contenu">
                         <div id="visibilité">
