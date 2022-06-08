@@ -304,7 +304,7 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
             <?php } ?>
         </div>
         <footer>
-            <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Titouan Martin - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>

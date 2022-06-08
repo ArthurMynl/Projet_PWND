@@ -101,7 +101,7 @@ $row = $result->fetch_assoc();
         </div>
         <!-- create the footer -->
         <footer>
-            <p>Copyright &copy; 2022 - Par Le groupe - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Théo Lurat - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>

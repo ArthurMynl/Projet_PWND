@@ -83,7 +83,7 @@ if ($result2->num_rows > 0) {
             </div>
         </div>
         <footer>
-            <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Julien Lurton - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>

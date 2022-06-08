@@ -85,7 +85,7 @@ $articleResult = $mysqli->query($articleSQL);
         </div>
         <!-- create the footer -->
         <footer>
-            <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
+            <p>Copyright &copy; 2022 - Par Mathieu Menard - Tous droits réservés</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>

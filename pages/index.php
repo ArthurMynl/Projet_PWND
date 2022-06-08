@@ -151,10 +151,8 @@ if (isset($_SESSION["compte"])) {
         </div>
         <!-- create the footer -->
         <footer>
-            <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
-            <?php $mysqli->close();
-            unset($_SESSION['idConvCourrante']);
-            unset($_SESSION['etat']); ?>
+            <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+            <?php $mysqli->close(); ?>
         </footer>
     </div>
 </body>

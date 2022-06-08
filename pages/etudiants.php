@@ -64,7 +64,7 @@ if (isset($_POST["rechercher_etudiant_submit"]) && $_POST["rechercher_etudiant_s
         </div>
     </div>
     <footer>
-        <p>Copyright &copy; 2022 - Par Le Groupe - Tous droits réservés</p>
+        <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
         <?php $mysqli->close(); ?>
     </footer>
 </div>

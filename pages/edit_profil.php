@@ -126,7 +126,7 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
         </div>
     </div>
     <footer>
-        <p>Copyright &copy; 2022 - Par Arthur Meyniel - Tous droits réservés</p>
+        <p>Copyright &copy; 2022 - Par Mathieu Menard - Tous droits réservés</p>
         <?php $mysqli->close(); ?>
     </footer>
 

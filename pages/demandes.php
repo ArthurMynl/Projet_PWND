@@ -108,7 +108,7 @@ if (isset($_POST['Refuser']) && $_POST['Refuser'] == 'Refuser') {
             </div>
         </div>
         <footer>
-            <p>&copy; Copyright 2022 - All rights reserved - Amis RS ESEO</p>
+            <p>&copy; Copyright 2022 - Par Maxime Lelant - Amis RS ESEO</p>
             <?php $mysqli->close(); ?>
         </footer>
     </div>
