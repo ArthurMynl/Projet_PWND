@@ -2,11 +2,14 @@
 
 include '../includes/core.php';
 
-$sql = "SELECT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, dateCreation, auteur, media
-        FROM etudiant, anneeScolaire, article
-        WHERE idAnneeScolaire = anneeScolaire AND Article.auteur = etudiant.idEtu
-        ORDER BY dateCreation DESC";
-$result = $mysqli->query($sql);
+
+$articleSQL = "SELECT DISTINCT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, dateCreation, auteur, media
+                FROM etudiant, anneeScolaire, article, amis
+                WHERE idAnneeScolaire = anneeScolaire AND (Article.visibilite = 'public' OR (Article.auteur =" . $_SESSION["compte"] . ") OR (Amis.etudiant =" . $_SESSION["compte"] . " AND Amis.amis = Article.auteur) OR (Amis.amis =" . $_SESSION["compte"] . " AND Amis.etudiant = Article.auteur)) AND Article.auteur = Etudiant.idEtu 
+                ORDER BY dateCreation DESC";
+
+$result = $mysqli->query($articleSQL);
+
 
 ?>
 

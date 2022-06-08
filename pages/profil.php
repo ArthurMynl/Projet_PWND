@@ -7,10 +7,11 @@ $result = $mysqli->query($request);
 $row = $result->fetch_assoc();
 
 
-$articleSQL = "SELECT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, dateCreation, auteur, media
-                FROM etudiant, anneeScolaire, article
-                WHERE idAnneeScolaire = anneeScolaire AND Article.auteur = Etudiant.idEtu AND Article.auteur =" . $_GET['id'] . "
+$articleSQL = "SELECT DISTINCT etudiant.nom as nomEtudiant, prenom, photo, anneeScolaire.nom as nomAnnee, contenu, dateCreation, auteur, media
+                FROM etudiant, anneeScolaire, article, amis
+                WHERE idAnneeScolaire = anneeScolaire AND (Article.visibilite = 'public' OR (Article.auteur =" . $_SESSION["compte"] . ") OR (Amis.etudiant =" . $_SESSION["compte"] . " AND Amis.amis =" . $_GET['id'] . ") OR (Amis.amis =" . $_SESSION["compte"] . " AND Amis.etudiant =" . $_GET['id'] . ")) AND Article.auteur = Etudiant.idEtu AND Article.auteur =" . $_GET['id'] . "
                 ORDER BY dateCreation DESC";
+
 $articleResult = $mysqli->query($articleSQL);
 
 ?>

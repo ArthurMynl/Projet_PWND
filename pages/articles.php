@@ -86,7 +86,7 @@ $row = $result->fetch_assoc();
                             </div>
                             <div class="contenu">
                                 <p> <?php echo $_SESSION["contenu"] ?></p>
-                                <?php if ($_SESSION["media"]) { ?>
+                                <?php if ($_SESSION["media"] && $_SESSION["media"] != 'NULL') { ?>
                                     <img src=<?php echo "../assets/media/" . $_SESSION["media"] ?>>
                                 <?php } ?>
                             </div>
