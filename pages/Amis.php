@@ -52,7 +52,7 @@ if ($result2->num_rows > 0) {
                         <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="amis.php" class="active">Amis</a> </li>
                         <li> <a href='conversation.php'> Conversations </a> </li>
-                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+                        <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>

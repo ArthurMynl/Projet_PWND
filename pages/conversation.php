@@ -214,7 +214,7 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                         <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="amis.php">Amis</a> </li>
                         <li> <a href='conversation.php' class="active"> Conversations </a> </li>
-                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+                        <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>

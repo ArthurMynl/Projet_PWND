@@ -37,7 +37,7 @@ if (isset($_POST["rechercher_etudiant_submit"]) && $_POST["rechercher_etudiant_s
                     <li> <a href="articles.php">Publier un article</a> </li>
                     <li> <a href="amis.php">Amis</a> </li>
                     <li> <a href='conversation.php'> Conversations </a> </li>
-                    <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+                    <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                 <?php } ?>
             </ul>
         </nav>

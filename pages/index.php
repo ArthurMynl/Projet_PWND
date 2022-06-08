@@ -93,7 +93,7 @@ if (isset($_SESSION["compte"])) {
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
                     <li> <a href="/pages/index.php" class="active">Accueil</a> </li>
-                    <li> <a href="/pages/etudiants.php">Étudiants</a> </li>
+                    <li> <a href="/pages/etudiants.php" class="deconnexion">Étudiants</a> </li>
                 </ul>
             </nav>
 

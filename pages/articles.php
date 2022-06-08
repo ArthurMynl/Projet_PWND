@@ -55,7 +55,7 @@ $row = $result->fetch_assoc();
                         <li> <a href="articles.php" class='active' >Publier un article</a> </li>
                         <li> <a href="amis.php">Amis</a> </li>
                         <li> <a href='conversation.php'> Conversations </a> </li>
-                        <li> <a href="./index.php?logout=1">Déconnexion</a> </li>
+                        <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
                     <?php } ?>
                 </ul>
             </nav>
