@@ -6,10 +6,10 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
     header("Location: recherche_amis.php?nom=" . $_POST["amis"]);
 }
 
-# TODO : changer la requete pour prendre les amis dans les deux sens
 $rechercheSQL = "SELECT Etudiant.idEtu, Etudiant.description, Etudiant.nom, Etudiant.prenom, Etudiant.photo, Etudiant.email, AnneeScolaire.nom as nomAnnee 
                 FROM Amis, Etudiant, AnneeScolaire 
-                WHERE idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'valide' AND Amis.amis = Etudiant.idEtu AND (Etudiant.nom like '" . $_GET['nom'] . "%' OR Etudiant.prenom like '" . $_GET['nom'] . "%') AND Amis.etudiant = '" . $_SESSION['compte'] . "'";
+                WHERE (idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'valide' AND Amis.amis = Etudiant.idEtu AND (Etudiant.nom like '" . $_GET['nom'] . "%' OR Etudiant.prenom like '" . $_GET['nom'] . "%') AND Amis.etudiant = '" . $_SESSION['compte'] . "')
+                OR (idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'valide' AND Amis.etudiant = Etudiant.idEtu AND (Etudiant.nom like '" . $_GET['nom'] . "%' OR Etudiant.prenom like '" . $_GET['nom'] . "%') AND Amis.amis = '" . $_SESSION['compte'] . "')";
 
 $rechercheResult = $mysqli->query($rechercheSQL);
 

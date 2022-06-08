@@ -7,11 +7,10 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
     header("Location: recherche_amis.php?nom=" . $_POST["amis"]);
 }
 
-# TODO : changer la requete pour prendre les amis dans les deux sens
-$sql = "SELECT statut, a.prenom, a.nom, a.photo, a.email, a.idEtu, AnneeScolaire.nom as nomAnnee, a.description
-        FROM Amis, Etudiant e, Etudiant a, AnneeScolaire
-        WHERE e.idEtu = Amis.etudiant AND a.idEtu = Amis.amis AND statut = 'valide' AND idAnneeScolaire = a.anneeScolaire AND e.idEtu= '" . $_SESSION["compte"] . "'";
-
+$sql = "SELECT Etudiant.idEtu, Etudiant.description, Etudiant.nom, Etudiant.prenom, Etudiant.photo, Etudiant.email, AnneeScolaire.nom as nomAnnee 
+                FROM Amis, Etudiant, AnneeScolaire 
+                WHERE (idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'valide' AND Amis.amis = Etudiant.idEtu AND Amis.etudiant = " . $_SESSION['compte'] . ")
+                OR (idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'valide' AND Amis.etudiant = Etudiant.idEtu AND Amis.amis = " . $_SESSION['compte'] . ")";
 
 $sql2 = "SELECT COUNT(statut) as nbDemandes FROM Amis, Etudiant WHERE Amis.amis = Etudiant.idEtu AND Amis.statut = 'en attente' AND Amis.Etudiant = '" . $_SESSION["compte"] . "'";
 

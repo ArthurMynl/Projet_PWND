@@ -8,7 +8,10 @@ if (isset($_POST["rechercher_amis_submit"]) && $_POST["rechercher_amis_submit"] 
 }
  
 
-$demandesSQL = "SELECT Etudiant.idEtu, Etudiant.description, Etudiant.nom, Etudiant.prenom, Etudiant.photo, Etudiant.email, AnneeScolaire.nom as nomAnnee FROM Amis, Etudiant, AnneeScolaire WHERE idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'en attente' AND Amis.amis = Etudiant.idEtu AND Amis.etudiant = '" . $_SESSION['compte'] . "'";
+$demandesSQL = "SELECT Etudiant.idEtu, Etudiant.description, Etudiant.nom, Etudiant.prenom, Etudiant.photo, Etudiant.email, AnneeScolaire.nom as nomAnnee 
+FROM Amis, Etudiant, AnneeScolaire 
+WHERE (idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'en attente' AND Amis.amis = Etudiant.idEtu AND Amis.etudiant = " . $_SESSION['compte'] . ")
+OR (idAnneeScolaire = Etudiant.anneeScolaire AND Amis.statut = 'en attente' AND Amis.etudiant = Etudiant.idEtu AND Amis.amis = " . $_SESSION['compte'] . ")";
 $liste_demandes = $mysqli->query($demandesSQL);
 if (!$liste_demandes) {
     exit($mysqli->error);
