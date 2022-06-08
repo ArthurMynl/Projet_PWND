@@ -1,15 +1,9 @@
 body {
-    background-color: rgb(169, 219, 210);
+    background-color: rgb(230, 220, 190);
     margin: 0;
     font-family: "Bahnschrift Light";
 }
 
-/*  
-creme : 230, 220, 190
-vert foncé : 23, 46, 27
-
-
-*/
 
 #logo {
     width: 100px;
