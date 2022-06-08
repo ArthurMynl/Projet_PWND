@@ -14,6 +14,7 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
     $prenom = $_POST['prenom'];
     $anneeScolaire = $_POST['annees'];
     $login = $_POST['login'];
+    $description = $mysqli->real_escape_string(trim($_POST['description']));
     $old_pwd = $_POST['old_password'];
     $new_pwd = $_POST['password'];
     $confirm_pwd = $_POST['password_confirm'];
@@ -37,6 +38,11 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
     if(isset($login) && trim($login) != '') {
         $requestLogin = "UPDATE Etudiant SET email = '" . $login . "' WHERE idEtu = " . $_SESSION['compte'];
         $resultLogin = $mysqli->query($requestLogin);
+    }
+
+    if(isset($description) && trim($description) != '') {
+        $requestDescription = "UPDATE Etudiant SET `description` = '" . $description . "' WHERE idEtu = " . $_SESSION['compte'];
+        $resultDescription = $mysqli->query($requestDescription);
     }
 
     if(isset($old_pwd) && trim($old_pwd)!='' && $old_pwd==$result_old_pwd['motDePasse']) {
@@ -78,7 +84,7 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) {
-                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "'>Profil</a> </li>"; ?>
+                        echo "<li> <a href='profil.php?id=" . $_SESSION["compte"] . "' class='active'>Profil</a> </li>"; ?>
                         <li> <a href="articles.php">Publier un article</a> </li>
                         <li> <a href="Amis.php">Amis</a> </li>
                         <li> <a href="./index.php?logout=1" class="deconnexion">Déconnexion</a> </li>
@@ -114,6 +120,10 @@ if (isset($_POST["edit_profil_submit"]) && $_POST["edit_profil_submit"] == 1) {
                         </div>
                         <label>Email</label>
                         <?php echo "<input type='email' name='login' id='login' placeholder='".$row["email"]."'>"; ?>
+                        <label>Description</label>
+                        <?php $maDescription = $row["description"];
+                        $maDescription = str_replace("'", "‘", $maDescription);
+                        echo "<input type='text' name = 'description' id='description' placeholder='" . $maDescription . "'>"; ?>
                         <label>Ancien mot de passe</label>
                         <input type='password' name='old_password' id='old_password'>
                         <label>Nouveau mot de passe</label>
