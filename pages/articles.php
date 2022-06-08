@@ -64,6 +64,7 @@ $row = $result->fetch_assoc();
                 <div class="article">
                     <h2> Publication Article </h2>
                     <form enctype="multipart/form-data" action="../includes/upload.php" method="post">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
                         <input type="file" name="file" class="file">
                         <input type="text" name="contenu" class="contenu" placeholder="Contenu">
                         <div id="visibilité">

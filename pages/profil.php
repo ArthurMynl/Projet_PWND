@@ -14,6 +14,20 @@ $articleSQL = "SELECT DISTINCT etudiant.nom as nomEtudiant, prenom, photo, annee
 
 $articleResult = $mysqli->query($articleSQL);
 
+
+if(isset($_POST['ami']) && $_POST['ami'] == 'Ajouter en ami') {
+    ini_set('date.timezone', 'Europe/Paris');
+    $now = date_create()->format('Y-m-d H:i');
+
+    $request = "INSERT INTO Amis VALUES (" . $_SESSION['compte'] . ", " . $_GET['id'] . ", '" . $now . "' , 'en attente')";
+    echo $request;
+    $mysqli->query($request);
+}
+
+$amisSQL = "SELECT statut FROM Amis WHERE ($_SESSION[compte] = etudiant AND $_GET[id] = amis) OR ($_SESSION[compte] = amis AND $_GET[id] = etudiant)";
+$amisResult = $mysqli->query($amisSQL);
+$amisRow = $amisResult->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +51,6 @@ $articleResult = $mysqli->query($articleSQL);
             <nav class="navbar">
                 <ul>
                     <li> <img src="../assets/logo.png" id="logo"> </li>
-
                     <li> <a href="index.php">Accueil</a> </li>
                     <li> <a href="etudiants.php">Étudiants</a> </li>
                     <?php if ($_SESSION["compte"]) { ?>
@@ -61,6 +74,14 @@ $articleResult = $mysqli->query($articleSQL);
                     <h4 class='description'><?php echo $row["description"] ?></h4>
                     <?php if (isset($_SESSION["compte"]) && $row["idEtu"] == $_SESSION["compte"]) { ?>
                         <a class='bouton' href='edit_profil.php'>Modifier le profil</a>
+                    <?php } else if (empty($amisRow["statut"])) { ?>
+                        <form class='add-ami' method='post'>
+                            <input type='submit' value="Ajouter en ami" name="ami" class='bouton'></input>
+                        </form>
+                    <?php } else if ($amisRow['statut'] == 'en attente') {?>
+                        <h4 class='ami'>En attente</h4>
+                    <?php } else if ($amisRow['statut'] == 'valide') { ?>
+                        <h4 class='ami'>Amis</h4>
                     <?php } ?>
                 </div>
                 <div class="liste-articles">

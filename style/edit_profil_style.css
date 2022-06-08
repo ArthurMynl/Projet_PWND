@@ -1,9 +1,3 @@
-body {
-    background-color : #173C4B;
-    margin: 0;
-    font-family: "Bahnschrift Light";
-}
-
 .corps {
     display : flex;
     justify-content : center;

@@ -1,3 +1,17 @@
+body {
+    background-color: #210070;
+    margin: 0;
+    font-family: "Bahnschrift Light";
+}
+
+
+/*  
+creme : 230, 220, 190
+vert foncé : 23, 46, 27
+
+rgb(86,222,197)
+*/
+
 #logo {
     width: 100px;
     padding: 10px;
@@ -5,7 +19,7 @@
 }
 
 .navbar {
-    background-color: rgb(96, 93, 241);
+    background-color: rgb(86,180,197);
     padding: 0px;
     width: 100%;
 }
@@ -36,7 +50,7 @@
     padding: 10px 15px 10px 15px;
     color: white;
     border-radius: 10px;
-    background-color: rgb(112, 110, 241);
+    background-color: rgb(86,180,197);
 }
 
 .navbar>ul>li>.deconnexion {

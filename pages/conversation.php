@@ -30,7 +30,7 @@ if (isset($_POST['message_submit'])) {
     $id = $row[0] + 1;
 
     // ajouter le message à la bdd
-    $ajoutMessageSQL = "INSERT INTO Message (idMess,contenu,dateEnvoi,conversation,emetteur) VALUES (" . $id . ",'" . trim($_POST["message"]) . "',NOW()," . $_SESSION['idConvCourante'] . "," . $_SESSION['compte'] . ")";
+    $ajoutMessageSQL = "INSERT INTO Message (idMess,contenu,dateEnvoi,conversation,emetteur) VALUES (" . $id . ",'" . $mysqli->real_escape_string(trim($_POST["message"])) . "',NOW()," . $_SESSION['idConvCourante'] . "," . $_SESSION['compte'] . ")";
     $resultAjoutMessage = $mysqli->query($ajoutMessageSQL);
     if (!$resultAjoutMessage) {
         exit($mysqli->error);
@@ -101,7 +101,8 @@ if (isset($_POST['validation_creation']) && $_POST['validation_creation'] == 1) 
 
 
     // ajouter la conversation à la bdd
-    $sql = "INSERT INTO Conversation (idConv,Nom,dateCreation) VALUES (" . $id . ",'" . trim($_POST["nom_conv"]) . "',NOW() )";
+
+    $sql = "INSERT INTO Conversation (idConv,Nom,dateCreation) VALUES (" . $id . ",'" . $mysqli->real_escape_string(trim($_POST["nom_conv"])) . "',NOW() )";
     $result = $mysqli->query($sql);
     if (!$result) {
         exit($mysqli->error);
@@ -233,7 +234,7 @@ if (isset($_POST['annulation_ajout']) && $_POST['annulation_ajout'] == 1) {
                 <div id="liste-conversations">
                     <?php while ($conversation = $resultConv->fetch_assoc()) { ?>
                         <form method='post'>
-                            <input type='hidden' name='nomConv' value='<?php echo $conversation['nomConv']; ?>'>
+                            <input type='hidden' name='nomConv' value='<?php echo str_replace("'", "‘",$conversation['nomConv']); ?>'>
                             <button type='submit' name="conv_courante" value='<?php echo $conversation['idConv'] ?>'><?php echo $conversation['nomConv'] ?></button>
                         </form>
                     <?php } ?>

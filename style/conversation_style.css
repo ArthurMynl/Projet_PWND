@@ -1,8 +1,5 @@
 body {
-    margin: 0;
     height: 100vh;
-    background-color:#173C4B;
-    color : white;
 }
 
 #container {
@@ -180,8 +177,8 @@ body {
 
 #liste-conversations > form > button {
     background-color : #7F7DFF;
+    border: 1px solid black;
     border-radius : 10px;
-    border : none;
     padding-left : 10px;
     padding-right : 10px;
     margin-right : 10px;
